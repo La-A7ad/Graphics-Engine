@@ -31,23 +31,30 @@ int main() {
 
     glfwMakeContextCurrent(window); //activates context to the window we are working with
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to load required entry point";
+
+        return -1;
+    }
 
 
+    int width, height;
+    glfwGetFramebufferSize(window, &width, &height);
+    glViewport(0,0, width, height);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    while (true) {
+        if (glfwWindowShouldClose(window)) {
+            glfwTerminate();
+            return 0;
+        }
+        else {
+            glClearColor(0.1f,0.2f,0.3f,1.0f); 
+            glClear(GL_COLOR_BUFFER_BIT); 
+            glfwSwapBuffers(window); 
+            glfwPollEvents();
+        }
+    }
     return 0;
 }

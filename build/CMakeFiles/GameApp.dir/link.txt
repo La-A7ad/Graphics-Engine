@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/GameApp.dir/link.d CMakeFiles/GameApp.dir/game/main.cpp.o -o GameApp  /usr/lib/libglfw.so.3.4 /usr/lib/libGLX.so /usr/lib/libOpenGL.so
