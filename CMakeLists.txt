@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(GraphicsEngine LANGUAGES CXX)
+project(GraphicsEngine LANGUAGES C CXX)
 
 # --- C++ standard ---
 set(CMAKE_CXX_STANDARD 17)
@@ -14,11 +14,7 @@ else()
 endif()
 
 # --- Include directories ---
-# These paths must match your actual folder layout:
-# GraphicsEngine/
-#   external/glad/include
-#   external/glm
-#   engine/include  (it's okay if it's empty for now)
+# Adjust if your folder names change
 include_directories(
     external/glad/include
     external/glm
@@ -32,7 +28,7 @@ find_package(glfw3 3.3 REQUIRED)
 # --- Game executable (bootstrap app) ---
 add_executable(GameApp
     game/main.cpp
-    external/glad/src/glad.c
+    external/glad/src/glad.c      # <- THIS LINE IS NON-NEGOTIABLE
 )
 
 # --- Link everything needed to talk to the GPU ---

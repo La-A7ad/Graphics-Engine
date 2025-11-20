@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/GameApp.dir/link.d"
+  "CMakeFiles/GameApp.dir/external/glad/src/glad.c.o"
+  "CMakeFiles/GameApp.dir/external/glad/src/glad.c.o.d"
   "CMakeFiles/GameApp.dir/game/main.cpp.o"
   "CMakeFiles/GameApp.dir/game/main.cpp.o.d"
   "GameApp"
@@ -7,6 +9,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang CXX)
+foreach(lang C CXX)
   include(CMakeFiles/GameApp.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c" "CMakeFiles/GameApp.dir/external/glad/src/glad.c.o" "gcc" "CMakeFiles/GameApp.dir/external/glad/src/glad.c.o.d"
   "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/game/main.cpp" "CMakeFiles/GameApp.dir/game/main.cpp.o" "gcc" "CMakeFiles/GameApp.dir/game/main.cpp.o.d"
   "" "GameApp" "gcc" "CMakeFiles/GameApp.dir/link.d"
   )
