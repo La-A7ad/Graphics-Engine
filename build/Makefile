@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Engine
+
+# Build rule for target.
+Engine: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Engine
+.PHONY : Engine
+
+# fast build rule for target.
+Engine/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/build
+.PHONY : Engine/fast
+
+#=============================================================================
 # Target rules for targets named GameApp
 
 # Build rule for target.
@@ -129,12 +142,36 @@ GameApp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/build
 .PHONY : GameApp/fast
 
+engine/src/shader.o: engine/src/shader.cpp.o
+.PHONY : engine/src/shader.o
+
+# target to build an object file
+engine/src/shader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.o
+.PHONY : engine/src/shader.cpp.o
+
+engine/src/shader.i: engine/src/shader.cpp.i
+.PHONY : engine/src/shader.i
+
+# target to preprocess a source file
+engine/src/shader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.i
+.PHONY : engine/src/shader.cpp.i
+
+engine/src/shader.s: engine/src/shader.cpp.s
+.PHONY : engine/src/shader.s
+
+# target to generate assembly for a file
+engine/src/shader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.s
+.PHONY : engine/src/shader.cpp.s
+
 external/glad/src/glad.o: external/glad/src/glad.c.o
 .PHONY : external/glad/src/glad.o
 
 # target to build an object file
 external/glad/src/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/external/glad/src/glad.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/external/glad/src/glad.c.o
 .PHONY : external/glad/src/glad.c.o
 
 external/glad/src/glad.i: external/glad/src/glad.c.i
@@ -142,7 +179,7 @@ external/glad/src/glad.i: external/glad/src/glad.c.i
 
 # target to preprocess a source file
 external/glad/src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/external/glad/src/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/external/glad/src/glad.c.i
 .PHONY : external/glad/src/glad.c.i
 
 external/glad/src/glad.s: external/glad/src/glad.c.s
@@ -150,7 +187,7 @@ external/glad/src/glad.s: external/glad/src/glad.c.s
 
 # target to generate assembly for a file
 external/glad/src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/external/glad/src/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/external/glad/src/glad.c.s
 .PHONY : external/glad/src/glad.c.s
 
 game/main.o: game/main.cpp.o
@@ -185,7 +222,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Engine"
 	@echo "... GameApp"
+	@echo "... engine/src/shader.o"
+	@echo "... engine/src/shader.i"
+	@echo "... engine/src/shader.s"
 	@echo "... external/glad/src/glad.o"
 	@echo "... external/glad/src/glad.i"
 	@echo "... external/glad/src/glad.s"

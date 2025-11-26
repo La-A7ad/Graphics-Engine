@@ -1,4 +1,4 @@
-CMakeFiles/GameApp.dir/external/glad/src/glad.c.o: \
+CMakeFiles/Engine.dir/external/glad/src/glad.c.o: \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/bits/libc-header-start.h /usr/include/features.h \

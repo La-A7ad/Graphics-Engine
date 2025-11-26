@@ -63,10 +63,12 @@ CMAKE_BINARY_DIR = /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/Engine.dir/all
 all: CMakeFiles/GameApp.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
+codegen: CMakeFiles/Engine.dir/codegen
 codegen: CMakeFiles/GameApp.dir/codegen
 .PHONY : codegen
 
@@ -75,22 +77,55 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/Engine.dir/clean
 clean: CMakeFiles/GameApp.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Engine.dir
+
+# All Build rule for target.
+CMakeFiles/Engine.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=1,2,3 "Built target Engine"
+.PHONY : CMakeFiles/Engine.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Engine.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Engine.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles 0
+.PHONY : CMakeFiles/Engine.dir/rule
+
+# Convenience name for target.
+Engine: CMakeFiles/Engine.dir/rule
+.PHONY : Engine
+
+# codegen rule for target.
+CMakeFiles/Engine.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target Engine"
+.PHONY : CMakeFiles/Engine.dir/codegen
+
+# clean rule for target.
+CMakeFiles/Engine.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/clean
+.PHONY : CMakeFiles/Engine.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/GameApp.dir
 
 # All Build rule for target.
-CMakeFiles/GameApp.dir/all:
+CMakeFiles/GameApp.dir/all: CMakeFiles/Engine.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=1,2,3 "Built target GameApp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=4,5 "Built target GameApp"
 .PHONY : CMakeFiles/GameApp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GameApp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/GameApp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles 0
 .PHONY : CMakeFiles/GameApp.dir/rule
@@ -102,7 +137,7 @@ GameApp: CMakeFiles/GameApp.dir/rule
 # codegen rule for target.
 CMakeFiles/GameApp.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target GameApp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=4,5 "Finished codegen for target GameApp"
 .PHONY : CMakeFiles/GameApp.dir/codegen
 
 # clean rule for target.
