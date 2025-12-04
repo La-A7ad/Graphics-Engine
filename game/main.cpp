@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "Engine/shader.hpp"
+#include "Engine/Shader.hpp"
 
 
 
