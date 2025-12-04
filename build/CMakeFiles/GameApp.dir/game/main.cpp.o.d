@@ -169,4 +169,5 @@ CMakeFiles/GameApp.dir/game/main.cpp.o: \
  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
- /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/shader.hpp
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Shader.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Buffers.hpp

@@ -1,2 +1,2 @@
-/usr/bin/ar qc libEngine.a CMakeFiles/Engine.dir/engine/src/shader.cpp.o CMakeFiles/Engine.dir/external/glad/src/glad.c.o
+/usr/bin/ar qc libEngine.a CMakeFiles/Engine.dir/engine/src/Shader.cpp.o CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o CMakeFiles/Engine.dir/external/glad/src/glad.c.o
 /usr/bin/ranlib libEngine.a

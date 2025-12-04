@@ -1,5 +1,5 @@
-CMakeFiles/Engine.dir/engine/src/shader.cpp.o: \
- /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp \
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.o: \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/15.2.1/fstream \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -156,4 +156,4 @@ CMakeFiles/Engine.dir/engine/src/shader.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h \
- /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/shader.hpp
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Shader.hpp

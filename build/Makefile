@@ -142,29 +142,53 @@ GameApp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameApp.dir/build.make CMakeFiles/GameApp.dir/build
 .PHONY : GameApp/fast
 
-engine/src/shader.o: engine/src/shader.cpp.o
-.PHONY : engine/src/shader.o
+engine/src/Buffers.o: engine/src/Buffers.cpp.o
+.PHONY : engine/src/Buffers.o
 
 # target to build an object file
-engine/src/shader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.o
-.PHONY : engine/src/shader.cpp.o
+engine/src/Buffers.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o
+.PHONY : engine/src/Buffers.cpp.o
 
-engine/src/shader.i: engine/src/shader.cpp.i
-.PHONY : engine/src/shader.i
+engine/src/Buffers.i: engine/src/Buffers.cpp.i
+.PHONY : engine/src/Buffers.i
 
 # target to preprocess a source file
-engine/src/shader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.i
-.PHONY : engine/src/shader.cpp.i
+engine/src/Buffers.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Buffers.cpp.i
+.PHONY : engine/src/Buffers.cpp.i
 
-engine/src/shader.s: engine/src/shader.cpp.s
-.PHONY : engine/src/shader.s
+engine/src/Buffers.s: engine/src/Buffers.cpp.s
+.PHONY : engine/src/Buffers.s
 
 # target to generate assembly for a file
-engine/src/shader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/shader.cpp.s
-.PHONY : engine/src/shader.cpp.s
+engine/src/Buffers.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Buffers.cpp.s
+.PHONY : engine/src/Buffers.cpp.s
+
+engine/src/Shader.o: engine/src/Shader.cpp.o
+.PHONY : engine/src/Shader.o
+
+# target to build an object file
+engine/src/Shader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Shader.cpp.o
+.PHONY : engine/src/Shader.cpp.o
+
+engine/src/Shader.i: engine/src/Shader.cpp.i
+.PHONY : engine/src/Shader.i
+
+# target to preprocess a source file
+engine/src/Shader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Shader.cpp.i
+.PHONY : engine/src/Shader.cpp.i
+
+engine/src/Shader.s: engine/src/Shader.cpp.s
+.PHONY : engine/src/Shader.s
+
+# target to generate assembly for a file
+engine/src/Shader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Shader.cpp.s
+.PHONY : engine/src/Shader.cpp.s
 
 external/glad/src/glad.o: external/glad/src/glad.c.o
 .PHONY : external/glad/src/glad.o
@@ -224,9 +248,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Engine"
 	@echo "... GameApp"
-	@echo "... engine/src/shader.o"
-	@echo "... engine/src/shader.i"
-	@echo "... engine/src/shader.s"
+	@echo "... engine/src/Buffers.o"
+	@echo "... engine/src/Buffers.i"
+	@echo "... engine/src/Buffers.s"
+	@echo "... engine/src/Shader.o"
+	@echo "... engine/src/Shader.i"
+	@echo "... engine/src/Shader.s"
 	@echo "... external/glad/src/glad.o"
 	@echo "... external/glad/src/glad.i"
 	@echo "... external/glad/src/glad.s"

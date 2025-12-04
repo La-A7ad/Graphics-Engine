@@ -9,7 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c" "CMakeFiles/Engine.dir/external/glad/src/glad.c.o" "gcc" "CMakeFiles/Engine.dir/external/glad/src/glad.c.o.d"
-  "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp" "CMakeFiles/Engine.dir/engine/src/shader.cpp.o" "gcc" "CMakeFiles/Engine.dir/engine/src/shader.cpp.o.d"
+  "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Buffers.cpp" "CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o" "gcc" "CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o.d"
+  "/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp" "CMakeFiles/Engine.dir/engine/src/Shader.cpp.o" "gcc" "CMakeFiles/Engine.dir/engine/src/Shader.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

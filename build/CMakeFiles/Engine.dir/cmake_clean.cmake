@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Engine.dir/engine/src/shader.cpp.o"
-  "CMakeFiles/Engine.dir/engine/src/shader.cpp.o.d"
+  "CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o"
+  "CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o.d"
+  "CMakeFiles/Engine.dir/engine/src/Shader.cpp.o"
+  "CMakeFiles/Engine.dir/engine/src/Shader.cpp.o.d"
   "CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
   "CMakeFiles/Engine.dir/external/glad/src/glad.c.o.d"
   "libEngine.a"

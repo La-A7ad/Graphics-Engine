@@ -16,7 +16,8 @@ find_package(glfw3 3.3 REQUIRED)
 
 # --- Engine library: all OpenGL code + glad ---
 add_library(Engine STATIC
-    engine/src/shader.cpp
+    engine/src/Shader.cpp
+    engine/src/Buffers.cpp
     external/glad/src/glad.c
 )
 

@@ -1,6 +1,8 @@
 #include <glad/glad.h>
-#include "Buffers.h"
-#include "Mesh"
+#include "Engine/Buffers.hpp"
+
+using namespace engine;
+
 
 VBO::VBO() {
     glGenBuffers(1, &ID);
@@ -13,11 +15,15 @@ VBO::~VBO() {
 
 void VBO::Bind() {
     glBindBuffer(GL_ARRAY_BUFFER, ID);
-    glBufferData(GL_ARRAY_BUFFER, size, data, usage );
 }
 
 void VBO::Unbind() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void VBO::SetData(const void* data, GLsizeiptr size, GLenum usage) {
+      glBindBuffer(GL_ARRAY_BUFFER, ID);
+      glBufferData(GL_ARRAY_BUFFER,size,data, usage );
 }
 
 VAO::VAO() {
@@ -33,7 +39,7 @@ void VAO::Bind() {
 }
 
 void VAO::Unbind() {
-    glBindVertexArray(0)
+    glBindVertexArray(0);
 }
 
 EBO::EBO() {
@@ -50,7 +56,12 @@ void EBO::Bind() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
 }
 
-void EBO::Unbind() const {
+void EBO::Unbind() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
+void EBO::SetData(const void* data, GLsizeiptr size, GLenum usage) {
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER,size,data,usage);
+
+}

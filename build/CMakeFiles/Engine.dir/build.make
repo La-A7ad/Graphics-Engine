@@ -72,24 +72,38 @@ include CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/codegen:
 .PHONY : CMakeFiles/Engine.dir/codegen
 
-CMakeFiles/Engine.dir/engine/src/shader.cpp.o: CMakeFiles/Engine.dir/flags.make
-CMakeFiles/Engine.dir/engine/src/shader.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp
-CMakeFiles/Engine.dir/engine/src/shader.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Engine.dir/engine/src/shader.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/shader.cpp.o -MF CMakeFiles/Engine.dir/engine/src/shader.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/shader.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Engine.dir/engine/src/Shader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Shader.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Shader.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Shader.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp
 
-CMakeFiles/Engine.dir/engine/src/shader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/shader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp > CMakeFiles/Engine.dir/engine/src/shader.cpp.i
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Shader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp > CMakeFiles/Engine.dir/engine/src/Shader.cpp.i
 
-CMakeFiles/Engine.dir/engine/src/shader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/shader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/shader.cpp -o CMakeFiles/Engine.dir/engine/src/shader.cpp.s
+CMakeFiles/Engine.dir/engine/src/Shader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Shader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Shader.cpp -o CMakeFiles/Engine.dir/engine/src/Shader.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Buffers.cpp
+CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Buffers.cpp
+
+CMakeFiles/Engine.dir/engine/src/Buffers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Buffers.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Buffers.cpp > CMakeFiles/Engine.dir/engine/src/Buffers.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/Buffers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Buffers.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Buffers.cpp -o CMakeFiles/Engine.dir/engine/src/Buffers.cpp.s
 
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: CMakeFiles/Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/external/glad/src/glad.c.o -MF CMakeFiles/Engine.dir/external/glad/src/glad.c.o.d -o CMakeFiles/Engine.dir/external/glad/src/glad.c.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c
 
 CMakeFiles/Engine.dir/external/glad/src/glad.c.i: cmake_force
@@ -102,17 +116,19 @@ CMakeFiles/Engine.dir/external/glad/src/glad.c.s: cmake_force
 
 # Object files for target Engine
 Engine_OBJECTS = \
-"CMakeFiles/Engine.dir/engine/src/shader.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Shader.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o" \
 "CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
 
 # External object files for target Engine
 Engine_EXTERNAL_OBJECTS =
 
-libEngine.a: CMakeFiles/Engine.dir/engine/src/shader.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Shader.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o
 libEngine.a: CMakeFiles/Engine.dir/external/glad/src/glad.c.o
 libEngine.a: CMakeFiles/Engine.dir/build.make
 libEngine.a: CMakeFiles/Engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libEngine.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libEngine.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/Engine.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Engine.dir/link.txt --verbose=$(VERBOSE)
 

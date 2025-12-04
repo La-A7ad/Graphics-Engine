@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include "Engine/Shader.hpp"
+#include "Engine/Buffers.hpp"
 
 
 
@@ -58,6 +59,15 @@ int main() {
     };
 
     unsigned int indices[] = { 0, 1, 2 };
+    engine::VAO vao;
+    vao.Bind();
+
+    engine::VBO vbo;
+    vbo.SetData(Vertices, sizeof(Vertices), GL_STATIC_DRAW);
+
+    engine::EBO ebo;
+    ebo.SetData(indices, sizeof(indices), GL_STATIC_DRAW);
+
 
     // Create shader (paths must match your actual folder layout)
     engine::Shader shader("game/assets/shaders/basic.vert",
@@ -70,17 +80,23 @@ int main() {
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+    vao.Unbind();
+    vbo.Unbind();
+
 
     // Main loop
-    while (!glfwWindowShouldClose(window)) {   // <- FIXED condition
+    while (!glfwWindowShouldClose(window)) {  
         // Clear screen
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw our triangle
         shader.use();                          // use shader program
-        glBindVertexArray(VAO);                // bind VAO with VBO/EBO + attributes
+        vao.Bind();
+
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
+
 
         // Swap buffers + process events
         glfwSwapBuffers(window);
