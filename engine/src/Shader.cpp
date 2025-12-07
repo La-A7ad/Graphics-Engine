@@ -110,15 +110,15 @@ void Shader::ReflectAttribs() {
 
     for (GLint i = 0; i < count; ++i) {
         GLsizei written   = 0;
-        GLint   components = 0;
-        GLenum  type       = 0;
+        GLint   size      = 0;  // This is array size, not component count!
+        GLenum  type      = 0;
 
         glGetActiveAttrib(
             ID,
             i,
             maxNameLen,
             &written,
-            &components,
+            &size,
             &type,
             nameBuf.data()
         );
@@ -131,37 +131,88 @@ void Shader::ReflectAttribs() {
             continue;
         }
 
+        // Now we need to determine the component count and base type from the type enum
+        GLint components = 0;
         GLenum baseType = 0;
 
-        // float-based attributes (float, vec2, vec3, vec4)
-        if (type == GL_FLOAT      ||
-            type == GL_FLOAT_VEC2 ||
-            type == GL_FLOAT_VEC3 ||
-            type == GL_FLOAT_VEC4)
-        {
-            baseType = GL_FLOAT;
+        // Determine components and base type from the type enum
+        switch (type) {
+            // Float types
+            case GL_FLOAT:
+                components = 1;
+                baseType = GL_FLOAT;
+                break;
+            case GL_FLOAT_VEC2:
+                components = 2;
+                baseType = GL_FLOAT;
+                break;
+            case GL_FLOAT_VEC3:
+                components = 3;
+                baseType = GL_FLOAT;
+                break;
+            case GL_FLOAT_VEC4:
+                components = 4;
+                baseType = GL_FLOAT;
+                break;
+            
+            // Int types
+            case GL_INT:
+                components = 1;
+                baseType = GL_INT;
+                break;
+            case GL_INT_VEC2:
+                components = 2;
+                baseType = GL_INT;
+                break;
+            case GL_INT_VEC3:
+                components = 3;
+                baseType = GL_INT;
+                break;
+            case GL_INT_VEC4:
+                components = 4;
+                baseType = GL_INT;
+                break;
+            
+            // Unsigned int types
+            case GL_UNSIGNED_INT:
+                components = 1;
+                baseType = GL_UNSIGNED_INT;
+                break;
+            case GL_UNSIGNED_INT_VEC2:
+                components = 2;
+                baseType = GL_UNSIGNED_INT;
+                break;
+            case GL_UNSIGNED_INT_VEC3:
+                components = 3;
+                baseType = GL_UNSIGNED_INT;
+                break;
+            case GL_UNSIGNED_INT_VEC4:
+                components = 4;
+                baseType = GL_UNSIGNED_INT;
+                break;
+            
+            // Matrix types (treated as multiple vec4s, but we'll store the column count)
+            case GL_FLOAT_MAT2:
+                components = 4;  // 2x2 = 4 floats
+                baseType = GL_FLOAT;
+                break;
+            case GL_FLOAT_MAT3:
+                components = 9;  // 3x3 = 9 floats
+                baseType = GL_FLOAT;
+                break;
+            case GL_FLOAT_MAT4:
+                components = 16; // 4x4 = 16 floats
+                baseType = GL_FLOAT;
+                break;
+            
+            default:
+                // Unknown or unsupported type, default to float
+                std::cerr << "Warning: Unknown attribute type " << type << " for " << name << "\n";
+                components = 1;
+                baseType = GL_FLOAT;
+                break;
         }
-        // int-based attributes (int, ivec2, ivec3, ivec4)
-        else if (type == GL_INT      ||
-                 type == GL_INT_VEC2 ||
-                 type == GL_INT_VEC3 ||
-                 type == GL_INT_VEC4)
-        {
-            baseType = GL_INT;
-        }
-        // unsigned-int-based attributes (uint, uvec2, uvec3, uvec4)
-        else if (type == GL_UNSIGNED_INT      ||
-                 type == GL_UNSIGNED_INT_VEC2 ||
-                 type == GL_UNSIGNED_INT_VEC3 ||
-                 type == GL_UNSIGNED_INT_VEC4)
-        {
-            baseType = GL_UNSIGNED_INT;
-        }
-        else {
-            // For now, treat everything else as floatish so it doesn't just die.
-            // You can refine this later for doubles, bools, etc.
-            baseType = GL_FLOAT;
-        }
+
         m_Attributes.emplace(
             name,
             ReflectedAttribs(name, location, components, baseType)
