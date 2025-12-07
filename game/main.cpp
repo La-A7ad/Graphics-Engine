@@ -50,7 +50,7 @@ int main() {
     glViewport(0, 0, width, height);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    // Triangle data
+    // note to self: keep vertices and indices in main for now
     float Vertices[] = {
         // positions            // colors
         -0.5f, 0.0f, 0.0f,   1.0f,0.0f,0.0f,
@@ -59,6 +59,9 @@ int main() {
     };
 
     unsigned int indices[] = { 0, 1, 2 };
+
+
+
     engine::VAO vao;
     vao.Bind();
 
@@ -69,16 +72,18 @@ int main() {
     ebo.SetData(indices, sizeof(indices), GL_STATIC_DRAW);
 
 
-    // Create shader (paths must match your actual folder layout)
     engine::Shader shader("game/assets/shaders/basic.vert",
                   "game/assets/shaders/basic.frag");
 
-    // Vertex attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+    GLsizei stride = 6 * sizeof(float);              
+
+
+
+    // Vertex attributes
+    vao.AddAttribute(shader, "aPos", stride, 0);
+    vao.AddAttribute(shader, "aColor", stride, 3*sizeof(float));
+
 
     vao.Unbind();
     vbo.Unbind();

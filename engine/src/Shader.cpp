@@ -1,9 +1,11 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 #include <glad/glad.h>
 #include "Engine/Shader.hpp"
+
 
 namespace engine {
 
@@ -56,6 +58,8 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
         std::cerr << "ERROR::SHADER::PROGRAM_LINKING_FAILED\n" << infoLog << "\n";
     }
 
+    ReflectAttribs();
+
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 }
@@ -75,5 +79,96 @@ void Shader::setInt(const std::string &name, int value) const {
 void Shader::setFloat(const std::string &name, float value) const {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
+
+GLint Shader::getAttribLocation(const std::string& name) const {
+    return (glGetAttribLocation(ID, name.c_str()));
+}
+
+
+
+const Shader::ReflectedAttribs* Shader::getAttrib(const std::string& name) const {
+    auto it = m_Attributes.find(name);
+
+    if (it == m_Attributes.end()) {
+        return nullptr;
+    }
+
+    return &it->second; 
+}
+
+
+void Shader::ReflectAttribs() {
+    GLint count = 0;
+    glGetProgramiv(ID, GL_ACTIVE_ATTRIBUTES, &count);
+
+    GLint maxNameLen = 0;
+    glGetProgramiv(ID, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &maxNameLen);
+
+    std::vector<char> nameBuf(maxNameLen);
+    m_Attributes.clear();
+
+
+    for (GLint i = 0; i < count; ++i) {
+        GLsizei written   = 0;
+        GLint   components = 0;
+        GLenum  type       = 0;
+
+        glGetActiveAttrib(
+            ID,
+            i,
+            maxNameLen,
+            &written,
+            &components,
+            &type,
+            nameBuf.data()
+        );
+
+       
+        std::string name(nameBuf.data(), written);
+        GLint location = getAttribLocation(name);
+
+        if (location < 0) {
+            continue;
+        }
+
+        GLenum baseType = 0;
+
+        // float-based attributes (float, vec2, vec3, vec4)
+        if (type == GL_FLOAT      ||
+            type == GL_FLOAT_VEC2 ||
+            type == GL_FLOAT_VEC3 ||
+            type == GL_FLOAT_VEC4)
+        {
+            baseType = GL_FLOAT;
+        }
+        // int-based attributes (int, ivec2, ivec3, ivec4)
+        else if (type == GL_INT      ||
+                 type == GL_INT_VEC2 ||
+                 type == GL_INT_VEC3 ||
+                 type == GL_INT_VEC4)
+        {
+            baseType = GL_INT;
+        }
+        // unsigned-int-based attributes (uint, uvec2, uvec3, uvec4)
+        else if (type == GL_UNSIGNED_INT      ||
+                 type == GL_UNSIGNED_INT_VEC2 ||
+                 type == GL_UNSIGNED_INT_VEC3 ||
+                 type == GL_UNSIGNED_INT_VEC4)
+        {
+            baseType = GL_UNSIGNED_INT;
+        }
+        else {
+            // For now, treat everything else as floatish so it doesn't just die.
+            // You can refine this later for doubles, bools, etc.
+            baseType = GL_FLOAT;
+        }
+        m_Attributes.emplace(
+            name,
+            ReflectedAttribs(name, location, components, baseType)
+        );
+    }
+}
+
+ 
 
 } // namespace engine

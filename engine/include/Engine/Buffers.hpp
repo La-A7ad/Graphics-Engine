@@ -1,5 +1,9 @@
 #pragma once
 
+#include <string>
+#include "Engine/Shader.hpp"
+
+
 namespace engine {
 
 class VBO {
@@ -21,12 +25,14 @@ class VAO {
     private:
      GLuint ID;
 
+     
     public:
         VAO();
         ~VAO();
         void Bind();
         void Unbind();
         void Delete();
+        void AddAttribute(const Shader&, const std::string&, GLsizei, std::size_t offset);
 
 
 

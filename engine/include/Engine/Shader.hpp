@@ -2,10 +2,12 @@
 
 #include <glad/glad.h>
 #include <string>
+#include <unordered_map>
 
 namespace engine {
 
 class Shader {
+
 public:
     Shader(const char* vertexPath, const char* fragmentPath);
 
@@ -15,10 +17,52 @@ public:
     void setInt(const std::string &name, int value) const;
     void setFloat(const std::string &name, float value) const;
 
+    //functions used by the VAO to link attributes to the vertex attrib pointer
+
+
+    GLint getAttribLocation(const std::string&) const;
+
+
+
+
+
+    void ReflectAttribs();
+
+     struct ReflectedAttribs {
+        const std::string name;
+        const GLint location;
+        const GLint components;
+        const GLenum baseType;
+
+        ReflectedAttribs(const std::string& n,
+                    GLint loc,
+                    GLint comp,
+                    GLenum type)
+        : name(n), location(loc), components(comp), baseType(type)
+    {}
+
+
+     };
+
+    const Shader::ReflectedAttribs* getAttrib(const std::string&) const;
+
+
+
+
 private:
+
     unsigned int ID;
     static std::string readFile(const char* path);
     static unsigned int compileShader(GLenum type, const std::string& source);
+
+
+     std::unordered_map<std::string, ReflectedAttribs> m_Attributes;
+
+
+
+
+
+
 };
 
 } // namespace engine
