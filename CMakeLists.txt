@@ -1,48 +1,47 @@
-cmake_minimum_required(VERSION 3.16)
-
-project(GraphicsEngine LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.10)
+project(FloatingGardenEngine)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (MSVC)
-    add_compile_options(/W4)
-else()
-    add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
 
-find_package(OpenGL REQUIRED)
-find_package(glfw3 3.3 REQUIRED)
+add_library(glad STATIC libs/glad/src/glad.c)
+target_include_directories(glad PUBLIC libs/glad/include)
 
-# --- Engine library: all OpenGL code + glad ---
-add_library(Engine STATIC
-    engine/src/Shader.cpp
-    engine/src/Buffers.cpp
-    external/glad/src/glad.c
+
+set(GLFW_BUILD_DOCS OFF)
+set(GLFW_BUILD_TESTS OFF)
+set(GLFW_BUILD_EXAMPLES OFF)
+add_subdirectory(libs/glfw)
+
+
+set(ASSIMP_BUILD_TESTS OFF)
+set(ASSIMP_NO_EXPORT ON)
+set(BUILD_SHARED_LIBS OFF)
+add_subdirectory(libs/assimp)   
+
+
+file(GLOB SRC_FILES 
+    src/*.cpp 
+    src/*.c 
+    src/model/*.cpp
 )
 
-target_include_directories(Engine PUBLIC
-    ${CMAKE_SOURCE_DIR}/engine/include
-    ${CMAKE_SOURCE_DIR}/external/glad/include
-    ${CMAKE_SOURCE_DIR}/external/glm
+
+add_executable(Engine ${SRC_FILES})
+
+
+target_include_directories(Engine PRIVATE
+    include
+    libs/glm
+    libs/glad/include
+    libs/assimp/include        
 )
 
-target_link_libraries(Engine PUBLIC
-    OpenGL::GL
+
+target_link_libraries(Engine
+    glad
     glfw
+    assimp                     
+    opengl32
 )
-
-# --- Game executable (bootstrap app) ---
-add_executable(GameApp
-    game/main.cpp
-)
-
-target_link_libraries(GameApp PRIVATE Engine)
-
-add_custom_command(
-    TARGET GameApp POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/game/assets
-        ${CMAKE_CURRENT_BINARY_DIR}/game/assets
-)
-
