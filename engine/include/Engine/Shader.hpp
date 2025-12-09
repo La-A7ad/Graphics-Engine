@@ -28,7 +28,7 @@ public:
 
     void ReflectAttribs();
 
-     struct ReflectedAttribs {
+    struct ReflectedAttribs {
         const std::string name;
         const GLint location;
         const GLint components;

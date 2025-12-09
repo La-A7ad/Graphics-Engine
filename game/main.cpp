@@ -69,19 +69,6 @@ int main() {
     const auto* posAttr = shader.getAttrib("aPos");
     const auto* colorAttr = shader.getAttrib("aColor");
     
-    if (posAttr) {
-        std::cout << "aPos found - location: " << posAttr->location 
-                  << ", components: " << posAttr->components << "\n";
-    } else {
-        std::cout << "ERROR: aPos not found!\n";
-    }
-    
-    if (colorAttr) {
-        std::cout << "aColor found - location: " << colorAttr->location 
-                  << ", components: " << colorAttr->components << "\n";
-    } else {
-        std::cout << "ERROR: aColor not found!\n";
-    }
 
     // Create and bind VAO
     engine::VAO vao;
