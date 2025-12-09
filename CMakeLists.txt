@@ -19,12 +19,16 @@ add_library(Engine STATIC
     engine/src/Shader.cpp
     engine/src/Buffers.cpp
     external/glad/src/glad.c
+
 )
 
 target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/engine/include
     ${CMAKE_SOURCE_DIR}/external/glad/include
     ${CMAKE_SOURCE_DIR}/external/glm
+    ${CMAKE_SOURCE_DIR}/external/glm
+    ${CMAKE_SOURCE_DIR}/external/tinyobjloader 
+
 )
 
 target_link_libraries(Engine PUBLIC
