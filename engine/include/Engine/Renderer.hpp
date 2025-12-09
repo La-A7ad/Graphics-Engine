@@ -2,6 +2,8 @@
 #include "shader.h"
 #include <glad/glad.h>
 
+namespace engine {
+
 class Renderer {
 public:
     Renderer() = default;
@@ -16,3 +18,5 @@ private:
     bool initialized = false;
     void cleanup();
 };
+
+}

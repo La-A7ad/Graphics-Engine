@@ -6,6 +6,9 @@
 #include <string>
 #include <vector>
 
+
+namespace engine {
+
 class Model {
 public:
     std::vector<Mesh> meshes;
@@ -19,3 +22,5 @@ private:
     void processNode(aiNode* node, const aiScene* scene);
     Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 };
+
+}
