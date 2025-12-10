@@ -47,6 +47,8 @@ add_library(Engine STATIC
     
     # External
     external/glad/src/glad.c
+    
+    # REMOVED: engine/src/Transform.cpp (duplicate/useless)
 )
 
 target_include_directories(Engine PUBLIC

@@ -13,9 +13,10 @@ public:
     ~Model() = default;
     
     void Draw(const Shader& shader);
+    std::vector<Mesh> meshes; //testing it as public
 
 private:
-    std::vector<Mesh> meshes;
+    
     std::string directory;
     
     void loadModel(const std::string& path);

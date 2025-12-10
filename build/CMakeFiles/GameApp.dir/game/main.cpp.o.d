@@ -324,4 +324,6 @@ CMakeFiles/GameApp.dir/game/main.cpp.o: \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Texture.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/MeshLoader.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Model.hpp \
- /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TintedMaterial.hpp
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TintedMaterial.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TexturedMaterial.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Sampler.hpp
