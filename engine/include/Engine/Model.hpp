@@ -1,26 +1,24 @@
 #pragma once
-#include "model/mesh.h"
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+
+#include "Engine/Mesh.hpp"
+#include "Engine/Shader.hpp"
 #include <string>
 #include <vector>
-
 
 namespace engine {
 
 class Model {
 public:
-    std::vector<Mesh> meshes;
-    std::string directory;
-
-    Model(const std::string& path) { loadModel(path); }
-    void Draw(unsigned int shaderProgram) const;
+    Model(const std::string& path);
+    ~Model() = default;
+    
+    void Draw(const Shader& shader);
 
 private:
+    std::vector<Mesh> meshes;
+    std::string directory;
+    
     void loadModel(const std::string& path);
-    void processNode(aiNode* node, const aiScene* scene);
-    Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 };
 
-}
+} // namespace engine

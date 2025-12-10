@@ -2,9 +2,9 @@
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
-
-#include <cstdint>
 #include <vector>
+#include "Engine/Shader.hpp"
+#include "Engine/Buffers.hpp"
 
 namespace engine {
 
@@ -16,15 +16,23 @@ struct Vertex {
 
 class Mesh {
 public:
-    std::vector<Vertex> vertices;
-    std::vector<unsigned int> indices;
-
     Mesh(std::vector<Vertex> verts, std::vector<unsigned int> inds);
-    void Draw(unsigned int shaderProgram) const;   
+    ~Mesh();
+    
+    void Draw(const Shader& shader);
 
 private:
-    unsigned int VAO, VBO, EBO;
-    void setupMesh();
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    
+    VAO vao;
+    VBO vbo;
+    EBO ebo;
+    
+    bool setupComplete;
+    const Shader* lastShader;
+    
+    void setupMesh(const Shader& shader);
 };
 
 } // namespace engine

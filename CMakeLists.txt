@@ -18,6 +18,10 @@ find_package(glfw3 3.3 REQUIRED)
 add_library(Engine STATIC
     engine/src/Shader.cpp
     engine/src/Buffers.cpp
+    engine/src/Mesh.cpp
+    engine/src/Model.cpp
+    engine/src/Renderer.cpp
+    engine/src/Transform.cpp
     external/glad/src/glad.c
 )
 

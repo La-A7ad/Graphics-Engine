@@ -1,38 +1,43 @@
-#include "model/mesh.h"
-#include <iostream>
+#include "Engine/Mesh.hpp"
+#include <glad/glad.h>
+
+namespace engine {
 
 Mesh::Mesh(std::vector<Vertex> verts, std::vector<unsigned int> inds)
-    : vertices(std::move(verts)), indices(std::move(inds)) {
-    setupMesh();
+    : vertices(std::move(verts)), indices(std::move(inds)), 
+      setupComplete(false), lastShader(nullptr) {
 }
 
-void Mesh::setupMesh() {
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Normal));
-
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
-
-    glBindVertexArray(0);
+Mesh::~Mesh() {
 }
 
-void Mesh::Draw(unsigned int shaderProgram) const {
-    glUseProgram(shaderProgram);
-    glBindVertexArray(VAO);
+void Mesh::setupMesh(const Shader& shader) {
+    vao.Bind();
+
+    vbo.SetData(vertices.data(), vertices.size() * sizeof(Vertex), GL_STATIC_DRAW);
+
+    ebo.SetData(indices.data(), indices.size() * sizeof(unsigned int), GL_STATIC_DRAW);
+    GLsizei stride = sizeof(Vertex);
+    
+    vao.AddAttribute(shader, "aPosition", stride, 0);
+    vao.AddAttribute(shader, "aNormal", stride, offsetof(Vertex, Normal));
+    vao.AddAttribute(shader, "aTexCoords", stride, offsetof(Vertex, TexCoords));
+
+    vao.Unbind();
+    
+    setupComplete = true;
+    lastShader = &shader;
+}
+
+void Mesh::Draw(const Shader& shader) {
+    if (!setupComplete || lastShader != &shader) {
+        setupMesh(shader);
+    }
+    
+    shader.use();
+    vao.Bind();
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    vao.Unbind();
 }
+
+} // namespace engine

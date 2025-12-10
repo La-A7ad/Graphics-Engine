@@ -1,66 +1,78 @@
-#include "renderer.h"
+#include "Engine/Renderer.hpp"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-Renderer::~Renderer() { cleanup(); }
+namespace engine {
 
-bool Renderer::init() {
-    
+Renderer::Renderer() 
+    : shader(nullptr), width(800), height(600), initialized(false) {
+}
+
+Renderer::~Renderer() {
+    if (shader) {
+        delete shader;
+        shader = nullptr;
+    }
+}
+
+bool Renderer::Init() {
     float vertices[] = {
-        
          0.0f,  0.5f, 0.0f,
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f
     };
 
-    // create VAO/VBO
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glBindVertexArray(VAO);
+    // Load shader first so we can use it for attribute reflection
+    shader = new Shader("game/assets/shaders/basic.vert", 
+                       "game/assets/shaders/basic.frag");
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    // Bind VAO
+    vao.Bind();
 
-    // position attribute
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // Upload vertex data using your VBO
+    vbo.SetData(vertices, sizeof(vertices), GL_STATIC_DRAW);
 
-    glBindVertexArray(0);
+    // Set up vertex attributes using your VAO::AddAttribute
+    GLsizei stride = 3 * sizeof(float);
+    vao.AddAttribute(*shader, "aPos", stride, 0);
 
-    // load shader
-    if (!shader.loadFromFiles("../shaders/basic.vert", "../shaders/basic.frag")) {
-        std::cerr << "Failed to load shaders\n";
-        return false;
-    }
+    vao.Unbind();
 
     initialized = true;
     return true;
 }
 
-void Renderer::renderFrame(float time) {
+void Renderer::RenderFrame(float time) {
     if (!initialized) return;
+
     glClearColor(0.18f, 0.23f, 0.28f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    shader.use();
+    shader->use();
 
-    
+    // Set up transformation matrices
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, time * 0.5f, glm::vec3(0,0,1)); 
+    model = glm::rotate(model, time * 0.5f, glm::vec3(0.0f, 0.0f, 1.0f));
+    
     glm::mat4 view = glm::mat4(1.0f);
-    glm::mat4 proj = glm::ortho(-1.0f,1.0f,-1.0f,1.0f, -1.0f, 1.0f);
+    glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
 
-    glUniformMatrix4fv(shader.getUniformLocation("uModel"), 1, GL_FALSE, &model[0][0]);
-    glUniformMatrix4fv(shader.getUniformLocation("uView"), 1, GL_FALSE, &view[0][0]);
-    glUniformMatrix4fv(shader.getUniformLocation("uProj"), 1, GL_FALSE, &proj[0][0]);
+    // Set uniforms using shader methods
+    shader->setMat4("uModel", glm::value_ptr(model));
+    shader->setMat4("uView", glm::value_ptr(view));
+    shader->setMat4("uProj", glm::value_ptr(proj));
 
-    glBindVertexArray(VAO);
+    vao.Bind();
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
+    vao.Unbind();
 }
 
-void Renderer::cleanup() {
-    if (VBO) { glDeleteBuffers(1, &VBO); VBO = 0; }
-    if (VAO) { glDeleteVertexArrays(1, &VAO); VAO = 0; }
+void Renderer::Resize(int w, int h) {
+    width = w;
+    height = h;
+    glViewport(0, 0, w, h);
 }
+
+} // namespace engine

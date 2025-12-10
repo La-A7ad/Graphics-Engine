@@ -166,6 +166,78 @@ engine/src/Buffers.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Buffers.cpp.s
 .PHONY : engine/src/Buffers.cpp.s
 
+engine/src/Mesh.o: engine/src/Mesh.cpp.o
+.PHONY : engine/src/Mesh.o
+
+# target to build an object file
+engine/src/Mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Mesh.cpp.o
+.PHONY : engine/src/Mesh.cpp.o
+
+engine/src/Mesh.i: engine/src/Mesh.cpp.i
+.PHONY : engine/src/Mesh.i
+
+# target to preprocess a source file
+engine/src/Mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Mesh.cpp.i
+.PHONY : engine/src/Mesh.cpp.i
+
+engine/src/Mesh.s: engine/src/Mesh.cpp.s
+.PHONY : engine/src/Mesh.s
+
+# target to generate assembly for a file
+engine/src/Mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Mesh.cpp.s
+.PHONY : engine/src/Mesh.cpp.s
+
+engine/src/Model.o: engine/src/Model.cpp.o
+.PHONY : engine/src/Model.o
+
+# target to build an object file
+engine/src/Model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Model.cpp.o
+.PHONY : engine/src/Model.cpp.o
+
+engine/src/Model.i: engine/src/Model.cpp.i
+.PHONY : engine/src/Model.i
+
+# target to preprocess a source file
+engine/src/Model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Model.cpp.i
+.PHONY : engine/src/Model.cpp.i
+
+engine/src/Model.s: engine/src/Model.cpp.s
+.PHONY : engine/src/Model.s
+
+# target to generate assembly for a file
+engine/src/Model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Model.cpp.s
+.PHONY : engine/src/Model.cpp.s
+
+engine/src/Renderer.o: engine/src/Renderer.cpp.o
+.PHONY : engine/src/Renderer.o
+
+# target to build an object file
+engine/src/Renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Renderer.cpp.o
+.PHONY : engine/src/Renderer.cpp.o
+
+engine/src/Renderer.i: engine/src/Renderer.cpp.i
+.PHONY : engine/src/Renderer.i
+
+# target to preprocess a source file
+engine/src/Renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Renderer.cpp.i
+.PHONY : engine/src/Renderer.cpp.i
+
+engine/src/Renderer.s: engine/src/Renderer.cpp.s
+.PHONY : engine/src/Renderer.s
+
+# target to generate assembly for a file
+engine/src/Renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Renderer.cpp.s
+.PHONY : engine/src/Renderer.cpp.s
+
 engine/src/Shader.o: engine/src/Shader.cpp.o
 .PHONY : engine/src/Shader.o
 
@@ -189,6 +261,30 @@ engine/src/Shader.s: engine/src/Shader.cpp.s
 engine/src/Shader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Shader.cpp.s
 .PHONY : engine/src/Shader.cpp.s
+
+engine/src/Transform.o: engine/src/Transform.cpp.o
+.PHONY : engine/src/Transform.o
+
+# target to build an object file
+engine/src/Transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Transform.cpp.o
+.PHONY : engine/src/Transform.cpp.o
+
+engine/src/Transform.i: engine/src/Transform.cpp.i
+.PHONY : engine/src/Transform.i
+
+# target to preprocess a source file
+engine/src/Transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Transform.cpp.i
+.PHONY : engine/src/Transform.cpp.i
+
+engine/src/Transform.s: engine/src/Transform.cpp.s
+.PHONY : engine/src/Transform.s
+
+# target to generate assembly for a file
+engine/src/Transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/engine/src/Transform.cpp.s
+.PHONY : engine/src/Transform.cpp.s
 
 external/glad/src/glad.o: external/glad/src/glad.c.o
 .PHONY : external/glad/src/glad.o
@@ -251,9 +347,21 @@ help:
 	@echo "... engine/src/Buffers.o"
 	@echo "... engine/src/Buffers.i"
 	@echo "... engine/src/Buffers.s"
+	@echo "... engine/src/Mesh.o"
+	@echo "... engine/src/Mesh.i"
+	@echo "... engine/src/Mesh.s"
+	@echo "... engine/src/Model.o"
+	@echo "... engine/src/Model.i"
+	@echo "... engine/src/Model.s"
+	@echo "... engine/src/Renderer.o"
+	@echo "... engine/src/Renderer.i"
+	@echo "... engine/src/Renderer.s"
 	@echo "... engine/src/Shader.o"
 	@echo "... engine/src/Shader.i"
 	@echo "... engine/src/Shader.s"
+	@echo "... engine/src/Transform.o"
+	@echo "... engine/src/Transform.i"
+	@echo "... engine/src/Transform.s"
 	@echo "... external/glad/src/glad.o"
 	@echo "... external/glad/src/glad.i"
 	@echo "... external/glad/src/glad.s"

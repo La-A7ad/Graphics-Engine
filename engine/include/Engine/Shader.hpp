@@ -9,6 +9,7 @@ namespace engine {
 class Shader {
 
 public:
+
     Shader(const char* vertexPath, const char* fragmentPath);
 
     void use() const;
@@ -21,6 +22,13 @@ public:
 
 
     GLint getAttribLocation(const std::string&) const;
+
+
+    GLint getUniformLocation(const std::string& name) const;
+    void setMat4(const std::string& name, const float* value) const;
+    GLuint getID() const { return ID; }
+
+    
 
 
 
