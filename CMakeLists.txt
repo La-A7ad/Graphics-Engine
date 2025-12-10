@@ -14,14 +14,38 @@ endif()
 find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 
-# --- Engine library: all OpenGL code + glad ---
 add_library(Engine STATIC
+    # Core rendering
     engine/src/Shader.cpp
     engine/src/Buffers.cpp
     engine/src/Mesh.cpp
     engine/src/Model.cpp
     engine/src/Renderer.cpp
-    engine/src/Transform.cpp
+    
+    # ECS
+    engine/src/Entity.cpp
+    engine/src/World.cpp
+    
+    # Components
+    engine/src/CameraComponent.cpp
+    engine/src/MeshRendererComponent.cpp
+    
+    # Materials
+    engine/src/Material.cpp
+    engine/src/TintedMaterial.cpp
+    engine/src/TexturedMaterial.cpp
+    engine/src/PipelineState.cpp
+    
+    # Assets
+    engine/src/Texture.cpp
+    engine/src/Sampler.cpp
+    
+    # Asset Loaders
+    engine/src/ShaderLoader.cpp
+    engine/src/TextureLoader.cpp
+    engine/src/MeshLoader.cpp
+    
+    # External
     external/glad/src/glad.c
 )
 
@@ -29,7 +53,8 @@ target_include_directories(Engine PUBLIC
     ${CMAKE_SOURCE_DIR}/engine/include
     ${CMAKE_SOURCE_DIR}/external/glad/include
     ${CMAKE_SOURCE_DIR}/external/glm
-    ${CMAKE_SOURCE_DIR}/external/tinyobjloader  
+    ${CMAKE_SOURCE_DIR}/external/tinyobjloader
+    ${CMAKE_SOURCE_DIR}/external/stb
 )
 
 target_link_libraries(Engine PUBLIC
@@ -37,7 +62,6 @@ target_link_libraries(Engine PUBLIC
     glfw
 )
 
-# --- Game executable (bootstrap app) ---
 add_executable(GameApp
     game/main.cpp
 )

@@ -1,6 +1,9 @@
 #include "Engine/Renderer.hpp"
-#include "Engine/Transform.hpp" // Now just GLM wrappers
-#include <iostream>
+#include "Engine/CameraComponent.hpp"
+#include "Engine/MeshRendererComponent.hpp"
+#include "Engine/World.hpp"
+#include <glm/gtc/type_ptr.hpp>
+#include <algorithm>
 
 namespace engine {
 
@@ -9,64 +12,93 @@ Renderer::Renderer()
 }
 
 Renderer::~Renderer() {
-    delete shader;
+    if (shader) {
+        delete shader;
+        shader = nullptr;
+    }
 }
 
 bool Renderer::Init() {
-    // Triangle vertex data (position only)
-    float vertices[] = {
-         0.0f,  0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f
-    };
-
-    // FIXED: Load shader first so attribute reflection works
     shader = new Shader("game/assets/shaders/basic.vert", 
                        "game/assets/shaders/basic.frag");
-
-    // Setup VAO with YOUR Buffer abstractions
-    vao.Bind();
     
-    // Upload data using YOUR VBO
-    vbo.SetData(vertices, sizeof(vertices), GL_STATIC_DRAW);
-
-    // Configure attributes using YOUR Shader reflection + VAO integration
-    GLsizei stride = 3 * sizeof(float);
-    vao.AddAttribute(*shader, "aPos", stride, 0);
-
-    vao.Unbind();
-
-    // Setup OpenGL state
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-
+    
     initialized = true;
     return true;
 }
 
 void Renderer::RenderFrame(float time) {
     if (!initialized) return;
-
+    
     glClearColor(0.18f, 0.23f, 0.28f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
 
-    // Use YOUR Shader abstraction
-    shader->use();
+void Renderer::Render(World* world, CameraComponent* camera) {
+    if (!initialized || !world || !camera) return;
+    
+    glClearColor(0.18f, 0.23f, 0.28f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    camera->aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+    
+    glm::mat4 view = camera->GetViewMatrix();
+    glm::mat4 proj = camera->GetProjectionMatrix();
+    
+    auto renderers = world->GetComponentsOfType<MeshRendererComponent>();
+    
+    std::vector<MeshRendererComponent*> opaque;
+    std::vector<MeshRendererComponent*> transparent;
+    
+    for (auto* renderer : renderers) {
+        if (!renderer->mesh || !renderer->material) continue;
+        
+        if (renderer->material->transparent) {
+            transparent.push_back(renderer);
+        } else {
+            opaque.push_back(renderer);
+        }
+    }
+    
+    glm::vec3 camPos = camera->GetPosition();
+    
+    std::sort(opaque.begin(), opaque.end(), [&camPos](auto* a, auto* b) {
+        float distA = glm::length(a->entity->GetWorldPosition() - camPos);
+        float distB = glm::length(b->entity->GetWorldPosition() - camPos);
+        return distA < distB;
+    });
+    
+    std::sort(transparent.begin(), transparent.end(), [&camPos](auto* a, auto* b) {
+        float distA = glm::length(a->entity->GetWorldPosition() - camPos);
+        float distB = glm::length(b->entity->GetWorldPosition() - camPos);
+        return distA > distB;
+    });
+    
+    for (auto* renderer : opaque) {
+        RenderEntity(renderer, view, proj);
+    }
+    
+    for (auto* renderer : transparent) {
+        RenderEntity(renderer, view, proj);
+    }
+}
 
-    // FIXED: Use GLM (via Transform.hpp) for transforms
-    mat4 model = glm::rotate(glm::mat4(1.0f), time * 0.5f, vec3(0, 0, 1));
-    mat4 view = glm::mat4(1.0f);
-    mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-
-    // Set uniforms using YOUR Shader's methods
-    shader->setMat4("uModel", glm::value_ptr(model));
-    shader->setMat4("uView", glm::value_ptr(view));
-    shader->setMat4("uProj", glm::value_ptr(proj));
-
-    // Draw using YOUR VAO abstraction
-    vao.Bind();
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-    vao.Unbind();
+void Renderer::RenderEntity(MeshRendererComponent* renderer, const glm::mat4& view, const glm::mat4& proj) {
+    Material* mat = renderer->material;
+    Mesh* mesh = renderer->mesh;
+    
+    mat->Bind();
+    mat->Setup();
+    
+    glm::mat4 model = renderer->entity->GetWorldTransform();
+    
+    mat->shader->setMat4("uModel", glm::value_ptr(model));
+    mat->shader->setMat4("uView", glm::value_ptr(view));
+    mat->shader->setMat4("uProj", glm::value_ptr(proj));
+    
+    mesh->Draw(*mat->shader);
 }
 
 void Renderer::Resize(int w, int h) {
@@ -75,4 +107,4 @@ void Renderer::Resize(int w, int h) {
     glViewport(0, 0, w, h);
 }
 
-} // namespace engine
+}

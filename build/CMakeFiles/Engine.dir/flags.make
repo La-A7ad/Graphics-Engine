@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glm -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/tinyobjloader
+C_INCLUDES = -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glm -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/tinyobjloader -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/stb
 
 C_FLAGS = -Wall -Wextra -Wpedantic
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glm -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/tinyobjloader
+CXX_INCLUDES = -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/include -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glm -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/tinyobjloader -I/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/stb
 
 CXX_FLAGS = -std=gnu++17 -Wall -Wextra -Wpedantic
 

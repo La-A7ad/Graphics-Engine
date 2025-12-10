@@ -1,136 +1,198 @@
-#include <glad/glad.h>      // MUST be first OpenGL header
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <iostream>
-#include <cmath>
-#include "Engine/Shader.hpp"
-#include "Engine/Buffers.hpp"
+#include "Engine/World.hpp"
+#include "Engine/Entity.hpp"
+#include "Engine/CameraComponent.hpp"
+#include "Engine/MeshRendererComponent.hpp"
+#include "Engine/Renderer.hpp"
+#include "Engine/ShaderLoader.hpp"
+#include "Engine/TextureLoader.hpp"
+#include "Engine/MeshLoader.hpp"
+#include "Engine/TintedMaterial.hpp"
 
+using namespace engine;
 
+GLFWwindow* window = nullptr;
+int width = 1280;
+int height = 720;
 
-// Resize callback
-static void framebuffer_size_callback(GLFWwindow* /*window*/, int width, int height) {
-    glViewport(0, 0, width, height);
+void framebuffer_size_callback(GLFWwindow* w, int w_new, int h_new) {
+    width = w_new;
+    height = h_new;
 }
 
-int main() {
-    // Init GLFW
+bool InitWindow() {
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW\n";
-        return -1;
+        return false;
     }
-
-    // Request OpenGL 3.3 core
+    
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    // Create window
-    int width  = 1280;
-    int height = 720;
-    GLFWwindow* window = glfwCreateWindow(width, height, "GraphicsEngine Test", nullptr, nullptr);
+    
+    window = glfwCreateWindow(width, height, "Graphics Engine", nullptr, nullptr);
     if (!window) {
-        std::cerr << "Failed to create GLFW window\n";
+        std::cerr << "Failed to create window\n";
         glfwTerminate();
-        return -1;
+        return false;
     }
-
-    // Make context current
+    
     glfwMakeContextCurrent(window);
-
-    // Load OpenGL function pointers via GLAD
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Failed to initialize GLAD\n";
-        glfwDestroyWindow(window);
-        glfwTerminate();
+        return false;
+    }
+    
+    return true;
+}
+
+void ProcessInput(Entity* cameraEntity, float deltaTime) {
+    float speed = 5.0f * deltaTime;
+    
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    }
+    
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        cameraEntity->position += cameraEntity->GetForward() * speed;
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        cameraEntity->position -= cameraEntity->GetForward() * speed;
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        cameraEntity->position -= cameraEntity->GetRight() * speed;
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        cameraEntity->position += cameraEntity->GetRight() * speed;
+    }
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+        cameraEntity->position.y += speed;
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+        cameraEntity->position.y -= speed;
+    }
+}
+
+// Create the cube mesh
+Mesh* CreateCubeMesh() {
+    std::vector<Vertex> vertices = {
+        // Front
+        {{-0.5f, -0.5f,  0.5f}, {0.0f,  0.0f,  1.0f}, {0.0f, 0.0f}},
+        {{ 0.5f, -0.5f,  0.5f}, {0.0f,  0.0f,  1.0f}, {1.0f, 0.0f}},
+        {{ 0.5f,  0.5f,  0.5f}, {0.0f,  0.0f,  1.0f}, {1.0f, 1.0f}},
+        {{-0.5f,  0.5f,  0.5f}, {0.0f,  0.0f,  1.0f}, {0.0f, 1.0f}},
+        
+        // Back
+        {{ 0.5f, -0.5f, -0.5f}, {0.0f,  0.0f, -1.0f}, {0.0f, 0.0f}},
+        {{-0.5f, -0.5f, -0.5f}, {0.0f,  0.0f, -1.0f}, {1.0f, 0.0f}},
+        {{-0.5f,  0.5f, -0.5f}, {0.0f,  0.0f, -1.0f}, {1.0f, 1.0f}},
+        {{ 0.5f,  0.5f, -0.5f}, {0.0f,  0.0f, -1.0f}, {0.0f, 1.0f}},
+        
+        // Top
+        {{-0.5f,  0.5f,  0.5f}, {0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}},
+        {{ 0.5f,  0.5f,  0.5f}, {0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}},
+        {{ 0.5f,  0.5f, -0.5f}, {0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}},
+        {{-0.5f,  0.5f, -0.5f}, {0.0f,  1.0f,  0.0f}, {0.0f, 1.0f}},
+        
+        // Bottom
+        {{-0.5f, -0.5f, -0.5f}, {0.0f, -1.0f,  0.0f}, {0.0f, 0.0f}},
+        {{ 0.5f, -0.5f, -0.5f}, {0.0f, -1.0f,  0.0f}, {1.0f, 0.0f}},
+        {{ 0.5f, -0.5f,  0.5f}, {0.0f, -1.0f,  0.0f}, {1.0f, 1.0f}},
+        {{-0.5f, -0.5f,  0.5f}, {0.0f, -1.0f,  0.0f}, {0.0f, 1.0f}},
+        
+        // Right
+        {{ 0.5f, -0.5f,  0.5f}, {1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}},
+        {{ 0.5f, -0.5f, -0.5f}, {1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}},
+        {{ 0.5f,  0.5f, -0.5f}, {1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}},
+        {{ 0.5f,  0.5f,  0.5f}, {1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}},
+        
+        // Left
+        {{-0.5f, -0.5f, -0.5f}, {-1.0f, 0.0f,  0.0f}, {0.0f, 0.0f}},
+        {{-0.5f, -0.5f,  0.5f}, {-1.0f, 0.0f,  0.0f}, {1.0f, 0.0f}},
+        {{-0.5f,  0.5f,  0.5f}, {-1.0f, 0.0f,  0.0f}, {1.0f, 1.0f}},
+        {{-0.5f,  0.5f, -0.5f}, {-1.0f, 0.0f,  0.0f}, {0.0f, 1.0f}}
+    };
+    
+    std::vector<unsigned int> indices = {
+        0,  1,  2,   2,  3,  0,   // Front
+        4,  5,  6,   6,  7,  4,   // Back
+        8,  9, 10,  10, 11,  8,   // Top
+        12, 13, 14,  14, 15, 12,  // Bottom
+        16, 17, 18,  18, 19, 16,  // Right
+        20, 21, 22,  22, 23, 20   // Left
+    };
+    
+    return new Mesh(vertices, indices);
+}
+
+int main() {
+    if (!InitWindow()) {
         return -1;
     }
-
-    // Set viewport + callback
-    glViewport(0, 0, width, height);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-    // note to self: keep vertices and indices in main for now
-    float Vertices[] = {
-        // positions            // colors
-        -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  // bottom-left (red)
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,  // bottom-right (green)
-         0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f   // top (blue)
-    };
-
-    unsigned int indices[] = { 0, 1, 2 };
-
-    // Create shader first
-    engine::Shader shader("game/assets/shaders/basic.vert",
-                          "game/assets/shaders/basic.frag");
-
-    // Debug: Check if attributes were found
-    std::cout << "Checking shader attributes...\n";
-    const auto* posAttr = shader.getAttrib("aPos");
-    const auto* colorAttr = shader.getAttrib("aColor");
     
-
-    // Create and bind VAO
-    engine::VAO vao;
-    vao.Bind();
-
-    // Create VBO and upload data
-    engine::VBO vbo;
-    vbo.SetData(Vertices, sizeof(Vertices), GL_STATIC_DRAW);
-
-    // Create EBO and upload data
-    engine::EBO ebo;
-    ebo.SetData(indices, sizeof(indices), GL_STATIC_DRAW);
-
-    // IMPORTANT: Make sure VBO is bound before setting up attributes
-    vbo.Bind();
-
-    GLsizei stride = 6 * sizeof(float);
-
-    // Set up vertex attributes
-    std::cout << "Setting up vertex attributes...\n";
-    vao.AddAttribute(shader, "aPos", stride, 0);
-    vao.AddAttribute(shader, "aColor", stride, 3 * sizeof(float));
-    std::cout << "Vertex attributes set up complete.\n";
-
-    // Check for OpenGL errors
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        std::cout << "OpenGL error: " << err << "\n";
+    World world;
+    Renderer renderer;
+    if (!renderer.Init()) {
+        std::cerr << "Failed to initialize renderer\n";
+        return -1;
     }
-
-    // Unbind (optional, but good practice)
-    vao.Unbind();
-    vbo.Unbind();
-
-    std::cout << "Starting render loop...\n";
-
-    // Main loop
-    while (!glfwWindowShouldClose(window)) {  
-        // Clear screen
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);  // Dark gray background
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        // Draw our triangle
-        shader.use();
-        vao.Bind();
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-
-        // Check for errors in render loop (only once)
-        static bool errorChecked = false;
-        if (!errorChecked) {
-            while ((err = glGetError()) != GL_NO_ERROR) {
-                std::cout << "Render OpenGL error: " << err << "\n";
-            }
-            errorChecked = true;
-        }
-
-        // Swap buffers + process events
+    
+    ShaderLoader::Instance().Load("basic", 
+        "game/assets/shaders/basic.vert",
+        "game/assets/shaders/basic.frag");
+    
+    Entity* camera = world.CreateEntity("Camera");
+    camera->position = glm::vec3(0, 2, 5);
+    auto* camComp = camera->AddComponent<CameraComponent>();
+    camComp->cameraType = CameraComponent::PERSPECTIVE;
+    camComp->fovY = glm::radians(60.0f);
+    camComp->nearPlane = 0.1f;
+    camComp->farPlane = 100.0f;
+    
+    // Create cube mesh using the new function
+    Mesh* cubeMesh = CreateCubeMesh();
+    
+    Entity* cube = world.CreateEntity("Cube");
+    cube->position = glm::vec3(0, 0, 0);
+    auto* meshRenderer = cube->AddComponent<MeshRendererComponent>();
+    
+    auto* material = new TintedMaterial();
+    material->shader = ShaderLoader::Instance().Get("basic");
+    material->tint = glm::vec4(1.0f, 0.5f, 0.2f, 1.0f);
+    material->transparent = false;
+    
+    meshRenderer->material = material;
+    meshRenderer->mesh = cubeMesh;  // Assign the created cube mesh
+    
+    float lastTime = glfwGetTime();
+    
+    while (!glfwWindowShouldClose(window)) {
+        float currentTime = glfwGetTime();
+        float deltaTime = currentTime - lastTime;
+        lastTime = currentTime;
+        
+        ProcessInput(camera, deltaTime);
+        
+        cube->rotation.y += deltaTime * 0.5f;
+        
+        renderer.Resize(width, height);
+        renderer.Render(&world, camComp);
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    glfwDestroyWindow(window);
+    
+    delete material;
+    delete cubeMesh; // Clean up the created mesh
+    
+    ShaderLoader::Instance().Clear();
+    TextureLoader::Instance().Clear();
+    MeshLoader::Instance().Clear();
+    
     glfwTerminate();
     return 0;
 }

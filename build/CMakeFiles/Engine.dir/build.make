@@ -142,24 +142,192 @@ CMakeFiles/Engine.dir/engine/src/Renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Renderer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Renderer.cpp -o CMakeFiles/Engine.dir/engine/src/Renderer.cpp.s
 
-CMakeFiles/Engine.dir/engine/src/Transform.cpp.o: CMakeFiles/Engine.dir/flags.make
-CMakeFiles/Engine.dir/engine/src/Transform.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Transform.cpp
-CMakeFiles/Engine.dir/engine/src/Transform.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Engine.dir/engine/src/Transform.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Transform.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Transform.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Transform.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Transform.cpp
+CMakeFiles/Engine.dir/engine/src/Entity.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Entity.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Entity.cpp
+CMakeFiles/Engine.dir/engine/src/Entity.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Engine.dir/engine/src/Entity.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Entity.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Entity.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Entity.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Entity.cpp
 
-CMakeFiles/Engine.dir/engine/src/Transform.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Transform.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Transform.cpp > CMakeFiles/Engine.dir/engine/src/Transform.cpp.i
+CMakeFiles/Engine.dir/engine/src/Entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Entity.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Entity.cpp > CMakeFiles/Engine.dir/engine/src/Entity.cpp.i
 
-CMakeFiles/Engine.dir/engine/src/Transform.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Transform.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Transform.cpp -o CMakeFiles/Engine.dir/engine/src/Transform.cpp.s
+CMakeFiles/Engine.dir/engine/src/Entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Entity.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Entity.cpp -o CMakeFiles/Engine.dir/engine/src/Entity.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/World.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/World.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/World.cpp
+CMakeFiles/Engine.dir/engine/src/World.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Engine.dir/engine/src/World.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/World.cpp.o -MF CMakeFiles/Engine.dir/engine/src/World.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/World.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/World.cpp
+
+CMakeFiles/Engine.dir/engine/src/World.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/World.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/World.cpp > CMakeFiles/Engine.dir/engine/src/World.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/World.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/World.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/World.cpp -o CMakeFiles/Engine.dir/engine/src/World.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/CameraComponent.cpp
+CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o -MF CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/CameraComponent.cpp
+
+CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/CameraComponent.cpp > CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/CameraComponent.cpp -o CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshRendererComponent.cpp
+CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o -MF CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshRendererComponent.cpp
+
+CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshRendererComponent.cpp > CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshRendererComponent.cpp -o CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/Material.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Material.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Material.cpp
+CMakeFiles/Engine.dir/engine/src/Material.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Engine.dir/engine/src/Material.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Material.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Material.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Material.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Material.cpp
+
+CMakeFiles/Engine.dir/engine/src/Material.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Material.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Material.cpp > CMakeFiles/Engine.dir/engine/src/Material.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/Material.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Material.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Material.cpp -o CMakeFiles/Engine.dir/engine/src/Material.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TintedMaterial.cpp
+CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o -MF CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TintedMaterial.cpp
+
+CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TintedMaterial.cpp > CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TintedMaterial.cpp -o CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TexturedMaterial.cpp
+CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o -MF CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TexturedMaterial.cpp
+
+CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TexturedMaterial.cpp > CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TexturedMaterial.cpp -o CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/PipelineState.cpp
+CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o -MF CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/PipelineState.cpp
+
+CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/PipelineState.cpp > CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/PipelineState.cpp -o CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/Texture.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Texture.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Texture.cpp
+CMakeFiles/Engine.dir/engine/src/Texture.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Engine.dir/engine/src/Texture.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Texture.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Texture.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Texture.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Texture.cpp
+
+CMakeFiles/Engine.dir/engine/src/Texture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Texture.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Texture.cpp > CMakeFiles/Engine.dir/engine/src/Texture.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/Texture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Texture.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Texture.cpp -o CMakeFiles/Engine.dir/engine/src/Texture.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Sampler.cpp
+CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o -MF CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Sampler.cpp
+
+CMakeFiles/Engine.dir/engine/src/Sampler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/Sampler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Sampler.cpp > CMakeFiles/Engine.dir/engine/src/Sampler.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/Sampler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/Sampler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/Sampler.cpp -o CMakeFiles/Engine.dir/engine/src/Sampler.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/ShaderLoader.cpp
+CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o -MF CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/ShaderLoader.cpp
+
+CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/ShaderLoader.cpp > CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/ShaderLoader.cpp -o CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TextureLoader.cpp
+CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o -MF CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TextureLoader.cpp
+
+CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TextureLoader.cpp > CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/TextureLoader.cpp -o CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.s
+
+CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o: CMakeFiles/Engine.dir/flags.make
+CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshLoader.cpp
+CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o: CMakeFiles/Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o -MF CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o.d -o CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshLoader.cpp
+
+CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshLoader.cpp > CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.i
+
+CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/src/MeshLoader.cpp -o CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.s
 
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: CMakeFiles/Engine.dir/flags.make
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c
 CMakeFiles/Engine.dir/external/glad/src/glad.c.o: CMakeFiles/Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/Engine.dir/external/glad/src/glad.c.o -MF CMakeFiles/Engine.dir/external/glad/src/glad.c.o.d -o CMakeFiles/Engine.dir/external/glad/src/glad.c.o -c /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/external/glad/src/glad.c
 
 CMakeFiles/Engine.dir/external/glad/src/glad.c.i: cmake_force
@@ -177,7 +345,19 @@ Engine_OBJECTS = \
 "CMakeFiles/Engine.dir/engine/src/Mesh.cpp.o" \
 "CMakeFiles/Engine.dir/engine/src/Model.cpp.o" \
 "CMakeFiles/Engine.dir/engine/src/Renderer.cpp.o" \
-"CMakeFiles/Engine.dir/engine/src/Transform.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Entity.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/World.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Material.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Texture.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o" \
+"CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o" \
 "CMakeFiles/Engine.dir/external/glad/src/glad.c.o"
 
 # External object files for target Engine
@@ -188,11 +368,23 @@ libEngine.a: CMakeFiles/Engine.dir/engine/src/Buffers.cpp.o
 libEngine.a: CMakeFiles/Engine.dir/engine/src/Mesh.cpp.o
 libEngine.a: CMakeFiles/Engine.dir/engine/src/Model.cpp.o
 libEngine.a: CMakeFiles/Engine.dir/engine/src/Renderer.cpp.o
-libEngine.a: CMakeFiles/Engine.dir/engine/src/Transform.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Entity.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/World.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/CameraComponent.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/MeshRendererComponent.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Material.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/TintedMaterial.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/TexturedMaterial.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/PipelineState.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Texture.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/Sampler.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/ShaderLoader.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/TextureLoader.cpp.o
+libEngine.a: CMakeFiles/Engine.dir/engine/src/MeshLoader.cpp.o
 libEngine.a: CMakeFiles/Engine.dir/external/glad/src/glad.c.o
 libEngine.a: CMakeFiles/Engine.dir/build.make
 libEngine.a: CMakeFiles/Engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libEngine.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX static library libEngine.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/Engine.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Engine.dir/link.txt --verbose=$(VERBOSE)
 
