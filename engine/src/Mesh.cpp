@@ -30,7 +30,11 @@ void Mesh::setupMesh(const Shader& shader) {
 }
 
 void Mesh::Draw(const Shader& shader) {
-    if (!setupComplete || lastShader != &shader) {
+    // FIX: Only setup once - VAO configuration is shader-independent
+    // The attribute locations are queried from the shader, but once bound to the VAO,
+    // they don't need to be re-bound unless we're using a different shader with 
+    // completely different attribute layouts
+    if (!setupComplete) {
         setupMesh(shader);
     }
     

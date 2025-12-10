@@ -80,11 +80,18 @@ void Shader::setFloat(const std::string &name, float value) const {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
+// FIX: Implement missing setMat4 function
+void Shader::setMat4(const std::string& name, const float* value) const {
+    glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, value);
+}
+
 GLint Shader::getAttribLocation(const std::string& name) const {
     return (glGetAttribLocation(ID, name.c_str()));
 }
 
-
+GLint Shader::getUniformLocation(const std::string& name) const {
+    return glGetUniformLocation(ID, name.c_str());
+}
 
 const Shader::ReflectedAttribs* Shader::getAttrib(const std::string& name) const {
     auto it = m_Attributes.find(name);

@@ -40,6 +40,9 @@ bool Renderer::Init() {
 
     vao.Unbind();
 
+    // FIX: Enable depth testing since we're clearing the depth buffer
+    glEnable(GL_DEPTH_TEST);
+
     initialized = true;
     return true;
 }

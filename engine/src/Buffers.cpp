@@ -7,7 +7,6 @@ using namespace engine;
 
 VBO::VBO() {
     glGenBuffers(1, &ID);
-
 }
 
 VBO::~VBO() {
@@ -23,8 +22,8 @@ void VBO::Unbind() {
 }
 
 void VBO::SetData(const void* data, GLsizeiptr size, GLenum usage) {
-      glBindBuffer(GL_ARRAY_BUFFER, ID);
-      glBufferData(GL_ARRAY_BUFFER,size,data, usage );
+    glBindBuffer(GL_ARRAY_BUFFER, ID);
+    glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 }
 
 VAO::VAO() {
@@ -91,11 +90,8 @@ void VAO::AddAttribute(const Shader& shader,
     }
 }
 
-
-
 EBO::EBO() {
     glGenBuffers(1, &ID);
-
 }
 
 EBO::~EBO() {
@@ -103,7 +99,6 @@ EBO::~EBO() {
 }
 
 void EBO::Bind() {
-
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
 }
 
@@ -112,7 +107,6 @@ void EBO::Unbind() {
 }
 
 void EBO::SetData(const void* data, GLsizeiptr size, GLenum usage) {
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER,size,data,usage);
-
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, usage);
 }
