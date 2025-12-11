@@ -20,6 +20,14 @@ struct PipelineState {
     
     PipelineState();
     void Apply() const;
+    
+    //compare states
+    bool operator==(const PipelineState& other) const;
+    bool operator!=(const PipelineState& other) const { return !(*this == other); }
+    
+    //gloval state trackig
+    static const PipelineState* currentState;
+    static void SetCurrent(const PipelineState* state) { currentState = state; }
 };
 
 }

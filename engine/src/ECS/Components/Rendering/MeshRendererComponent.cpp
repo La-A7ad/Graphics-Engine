@@ -2,7 +2,8 @@
 
 namespace engine {
 
-MeshRendererComponent::MeshRendererComponent() : mesh(nullptr), material(nullptr) {
+MeshRendererComponent::MeshRendererComponent() 
+    : mesh(nullptr), material(nullptr) {
 }
 
 }

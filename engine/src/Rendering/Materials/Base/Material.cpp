@@ -6,7 +6,7 @@ Material::Material() : shader(nullptr), transparent(false) {
 }
 
 void Material::Bind() {
-    pipelineState.Apply();
+    pipelineState.Apply();  // Now skips redundant calls
     if (shader) {
         shader->use();
     }

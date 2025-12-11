@@ -5,7 +5,7 @@
 
 namespace engine {
 
-Texture::Texture(GLenum target) : target(target) {
+Texture:: Texture(GLenum target) : target(target) {
     glGenTextures(1, &ID);
 }
 
@@ -27,7 +27,7 @@ void Texture::LoadFromFile(const std::string& path, bool generateMipmap) {
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
     
-    if (!data) {
+    if (! data) {
         std::cerr << "Failed to load texture: " << path << "\n";
         return;
     }
@@ -37,17 +37,24 @@ void Texture::LoadFromFile(const std::string& path, bool generateMipmap) {
     else if (channels == 3) format = GL_RGB;
     else if (channels == 4) format = GL_RGBA;
     
+    // FIX:  Proper internal format for GPU storage
+    GLenum internalFormat = GL_RGB8;
+    if (channels == 1) internalFormat = GL_R8;
+    else if (channels == 3) internalFormat = GL_RGB8;
+    else if (channels == 4) internalFormat = GL_RGBA8;
+    
     glBindTexture(target, ID);
-    glTexImage2D(target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-    
-    if (generateMipmap) {
-        glGenerateMipmap(target);
-    }
-    
     glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(target, GL_TEXTURE_MIN_FILTER, generateMipmap ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR);
     glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    // FIX: Use internalFormat instead of format
+    glTexImage2D(target, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+    
+    if (generateMipmap) {
+        glGenerateMipmap(target);
+    }
     
     stbi_image_free(data);
 }

@@ -14,32 +14,32 @@ TexturedMaterial::TexturedMaterial()
 void TexturedMaterial::Setup() {
     if (!shader) return;
     
-    int unit = 0;
-    
+    // Bind textures to their assigned units
     if (albedoMap) {
-        albedoMap->Bind(unit);
-        if (sampler) sampler->Bind(unit);
-        shader->setInt("uAlbedoMap", unit++);
+        albedoMap->Bind(albedoUnit);
+        if (sampler) sampler->Bind(albedoUnit);
+        shader->setInt("uAlbedoMap", albedoUnit);
     }
     
     if (specularMap) {
-        specularMap->Bind(unit);
-        if (sampler) sampler->Bind(unit);
-        shader->setInt("uSpecularMap", unit++);
+        specularMap->Bind(specularUnit);
+        if (sampler) sampler->Bind(specularUnit);
+        shader->setInt("uSpecularMap", specularUnit);
     }
     
     if (normalMap) {
-        normalMap->Bind(unit);
-        if (sampler) sampler->Bind(unit);
-        shader->setInt("uNormalMap", unit++);
+        normalMap->Bind(normalUnit);
+        if (sampler) sampler->Bind(normalUnit);
+        shader->setInt("uNormalMap", normalUnit);
     }
     
     if (emissiveMap) {
-        emissiveMap->Bind(unit);
-        if (sampler) sampler->Bind(unit);
-        shader->setInt("uEmissiveMap", unit++);
+        emissiveMap->Bind(emissiveUnit);
+        if (sampler) sampler->Bind(emissiveUnit);
+        shader->setInt("uEmissiveMap", emissiveUnit);
     }
     
+    // Set tint uniform
     shader->setFloat("uTint.r", tint.r);
     shader->setFloat("uTint.g", tint.g);
     shader->setFloat("uTint.b", tint.b);

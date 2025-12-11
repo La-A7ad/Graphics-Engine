@@ -2,6 +2,9 @@
 
 namespace engine {
 
+// Static member definition
+const PipelineState* PipelineState::currentState = nullptr;
+
 PipelineState::PipelineState()
     : faceCulling(true),
       cullFace(GL_BACK),
@@ -14,7 +17,28 @@ PipelineState::PipelineState()
       colorMask{true, true, true, true} {
 }
 
+bool PipelineState::operator==(const PipelineState& other) const {
+    return faceCulling == other.faceCulling &&
+           cullFace == other.cullFace &&
+           depthTesting == other.depthTesting &&
+           depthFunc == other.depthFunc &&
+           depthMask == other.depthMask &&
+           blending == other.blending &&
+           blendSrc == other.blendSrc &&
+           blendDst == other.blendDst &&
+           colorMask[0] == other.colorMask[0] &&
+           colorMask[1] == other.colorMask[1] &&
+           colorMask[2] == other.colorMask[2] &&
+           colorMask[3] == other.colorMask[3];
+}
+
 void PipelineState::Apply() const {
+    // Only apply if state has changed
+    if (currentState == this) {
+        return;  // Already applied, skip redundant calls
+    }
+    
+    // Apply state changes
     if (faceCulling) {
         glEnable(GL_CULL_FACE);
         glCullFace(cullFace);
@@ -38,6 +62,9 @@ void PipelineState::Apply() const {
     }
     
     glColorMask(colorMask[0], colorMask[1], colorMask[2], colorMask[3]);
+    
+    // Mark this state as current
+    currentState = this;
 }
 
 }

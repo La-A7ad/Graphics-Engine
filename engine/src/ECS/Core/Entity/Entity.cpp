@@ -15,7 +15,7 @@ Entity::Entity(const std::string& name)
 
 Entity::~Entity() {
     for (auto* comp : components) {
-        delete comp;
+        delete comp; //THIS NOW SHOULD WORK SINCE MeshRenderedComponent::material WAS CHANGED TO UNIQUE POINTER
     }
 }
 
