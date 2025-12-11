@@ -1,5 +1,4 @@
 #include "Engine/Assets/Loaders/Shader/ShaderLoader.hpp"
-#include "Engine/ShaderLoader.hpp"
 #include <iostream>
 
 namespace engine {
@@ -24,10 +23,6 @@ Shader* ShaderLoader::Load(const std::string& name, const std::string& vertPath,
         shaders[name] = shader;
         std::cout << "✓ Loaded shader: " << name << "\n";
         return shader;
-    } catch (const ShaderCompilationError& e) {
-        std::cerr << "✗ Failed to load shader '" << name << "': " << e.what() << "\n";
-        return nullptr;
-    }
 }
 
 Shader* ShaderLoader::Get(const std::string& name) {
