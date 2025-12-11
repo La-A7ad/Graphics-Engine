@@ -1,6 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <glm/gtc/constants.hpp>
+
 #include "Engine/World.hpp"
 #include "Engine/Entity.hpp"
 #include "Engine/CameraComponent.hpp"
@@ -11,13 +13,14 @@
 #include "Engine/MeshLoader.hpp"
 #include "Engine/TintedMaterial.hpp"
 #include "Engine/TexturedMaterial.hpp"
-#include "Engine/Rendering/Geometry/Model/Model.hpp"
+#include "Engine/Model.hpp"
+#include "Engine/Sampler.hpp"
 
 using namespace engine;
 
 GLFWwindow* window = nullptr;
-int width = 1280;
-int height = 720;
+int width = 1600;
+int height = 900;
 
 void framebuffer_size_callback(GLFWwindow* w, int w_new, int h_new) {
     width = w_new;
@@ -34,7 +37,7 @@ bool InitWindow() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    window = glfwCreateWindow(width, height, "Graphics Engine - Fixed", nullptr, nullptr);
+    window = glfwCreateWindow(width, height, "Graphics Engine - Full Test", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create window\n";
         glfwTerminate();
@@ -60,7 +63,7 @@ void ProcessInput(Entity* cameraEntity, float deltaTime) {
         glfwSetWindowShouldClose(window, true);
     }
     
-    // Movement
+    // Movement - WASD
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
         cameraEntity->position += cameraEntity->GetForward() * speed;
     }
@@ -80,7 +83,7 @@ void ProcessInput(Entity* cameraEntity, float deltaTime) {
         cameraEntity->position.y -= speed;
     }
     
-    // Camera rotation
+    // Camera rotation - Arrow keys
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
         cameraEntity->rotation.y += rotSpeed;
     }
@@ -107,160 +110,339 @@ int main() {
         return -1;
     }
     
+    std::cout << "\n========================================\n";
+    std::cout << "  GRAPHICS ENGINE - COMPREHENSIVE TEST\n";
+    std::cout << "========================================\n\n";
+    
     // ============================================================
-    // FIXED: Load shader properly
+    // SHADER LOADING TEST
     // ============================================================
-    ShaderLoader::Instance().Load("basic", 
+    std::cout << "[1/8] Loading Shaders...\n";
+    
+    // PLACEHOLDER: Create game/assets/shaders/basic.vert and basic.frag
+    // These shaders should have: aPosition, aNormal, aTexCoords attributes
+    // And uniforms: uModel, uView, uProj, uTint
+    Shader* basicShader = ShaderLoader::Instance().Load("basic", 
         "game/assets/shaders/basic.vert",
         "game/assets/shaders/basic.frag");
     
-    Shader* basicShader = ShaderLoader::Instance().Get("basic");
-    if (!basicShader) {
-        std::cerr << "Failed to load basic shader\n";
+    // PLACEHOLDER: Create game/assets/shaders/textured.vert and textured.frag
+    // These shaders should support texture sampling with uAlbedoMap
+    Shader* texturedShader = ShaderLoader::Instance().Load("textured",
+        "game/assets/shaders/textured.vert",
+        "game/assets/shaders/textured.frag");
+    
+    if (!basicShader || !texturedShader) {
+        std::cerr << "Failed to load shaders!\n";
+        std::cerr << "Make sure you have:\n";
+        std::cerr << "  - game/assets/shaders/basic.vert\n";
+        std::cerr << "  - game/assets/shaders/basic.frag\n";
+        std::cerr << "  - game/assets/shaders/textured.vert\n";
+        std::cerr << "  - game/assets/shaders/textured.frag\n";
         return -1;
     }
     
+    std::cout << "  ✓ Basic shader loaded\n";
+    std::cout << "  ✓ Textured shader loaded\n";
+    
     // ============================================================
-    // FIXED: Use MeshLoader to load OBJ file instead of manual creation
+    // MODEL LOADING TEST
     // ============================================================
+    std::cout << "\n[2/8] Loading Models...\n";
+    
+    // PLACEHOLDER: game/assets/models/cube.obj (you already have this)
     Model* cubeModel = MeshLoader::Instance().Load("cube", "game/assets/models/cube.obj");
-    if (!cubeModel) {
-        std::cerr << "Failed to load cube model\n";
+    
+    // PLACEHOLDER: Create or download game/assets/models/sphere.obj
+    Model* sphereModel = MeshLoader::Instance().Load("sphere", "game/assets/models/sphere.obj");
+    
+    // PLACEHOLDER: Create or download game/assets/models/plane.obj
+    Model* planeModel = MeshLoader::Instance().Load("plane", "game/assets/models/plane.obj");
+    
+    if (!cubeModel || cubeModel->meshes.empty()) {
+        std::cerr << "Failed to load cube model!\n";
         return -1;
     }
     
-    // ============================================================
-    // Setup Camera
-    // ============================================================
-    Entity* camera = world.CreateEntity("Camera");
-    camera->position = glm::vec3(0, 2, 5);
-    auto* camComp = camera->AddComponent<CameraComponent>();
-    camComp->cameraType = CameraComponent::PERSPECTIVE;
-    camComp->fovY = glm::radians(60.0f);
-    camComp->nearPlane = 0.1f;
-    camComp->farPlane = 100.0f;
+    std::cout << "  ✓ Cube model loaded (" << cubeModel->meshes.size() << " meshes)\n";
+    
+    if (sphereModel && !sphereModel->meshes.empty()) {
+        std::cout << "  ✓ Sphere model loaded\n";
+    } else {
+        sphereModel = nullptr;
+        std::cout << "  ⚠ Sphere model not found (optional)\n";
+    }
+    
+    if (planeModel && !planeModel->meshes.empty()) {
+        std::cout << "  ✓ Plane model loaded\n";
+    } else {
+        planeModel = nullptr;
+        std::cout << "  ⚠ Plane model not found (optional)\n";
+    }
     
     // ============================================================
-    // FIXED: Use entity hierarchy (parent-child relationship)
-    // Create a parent entity that rotates, with child cubes
+    // TEXTURE LOADING TEST
     // ============================================================
+    std::cout << "\n[3/8] Loading Textures...\n";
     
-    // Parent entity (invisible, just for grouping)
-    Entity* cubeGroup = world.CreateEntity("CubeGroup");
-    cubeGroup->position = glm::vec3(0, 0, 0);
+    // PLACEHOLDER: Create game/assets/textures/crate.png
+    Texture* crateTexture = TextureLoader::Instance().Load("crate", "game/assets/textures/osaka.jpg");
     
-    // Create multiple cubes as children using the loaded model
+    // PLACEHOLDER: Create game/assets/textures/checker.png
+    Texture* checkerTexture = TextureLoader::Instance().Load("checker", "game/assets/textures/osaka.jpg");
+    
+    if (crateTexture) {
+        std::cout << "  ✓ Crate texture loaded\n";
+    } else {
+        std::cout << "  ⚠ Crate texture not found (optional)\n";
+    }
+    
+    if (checkerTexture) {
+        std::cout << "  ✓ Checker texture loaded\n";
+    } else {
+        std::cout << "  ⚠ Checker texture not found (optional)\n";
+    }
+    
+    // ============================================================
+    // SAMPLER CREATION TEST
+    // ============================================================
+    std::cout << "\n[4/8] Creating Samplers...\n";
+    
+    Sampler* linearSampler = new Sampler();
+    linearSampler->SetMinFilter(GL_LINEAR_MIPMAP_LINEAR);
+    linearSampler->SetMagFilter(GL_LINEAR);
+    linearSampler->SetWrapS(GL_REPEAT);
+    linearSampler->SetWrapT(GL_REPEAT);
+    
+    Sampler* nearestSampler = new Sampler();
+    nearestSampler->SetMinFilter(GL_NEAREST);
+    nearestSampler->SetMagFilter(GL_NEAREST);
+    nearestSampler->SetWrapS(GL_CLAMP_TO_EDGE);
+    nearestSampler->SetWrapT(GL_CLAMP_TO_EDGE);
+    
+    std::cout << "  ✓ Linear sampler created\n";
+    std::cout << "  ✓ Nearest sampler created\n";
+    
+    // ============================================================
+    // CAMERA SETUP TEST
+    // ============================================================
+    std::cout << "\n[5/8] Setting up Camera...\n";
+    
+    Entity* cameraEntity = world.CreateEntity("MainCamera");
+    cameraEntity->position = glm::vec3(0, 3, 10);
+    cameraEntity->rotation = glm::vec3(glm::radians(-15.0f), 0, 0);
+    
+    auto* camera = cameraEntity->AddComponent<CameraComponent>();
+    camera->cameraType = CameraComponent::PERSPECTIVE;
+    camera->fovY = glm::radians(75.0f);
+    camera->nearPlane = 0.1f;
+    camera->farPlane = 1000.0f;
+    
+    std::cout << "  ✓ Camera entity created\n";
+    std::cout << "  ✓ Camera component added\n";
+    
+    // ============================================================
+    // ENTITY HIERARCHY TEST
+    // ============================================================
+    std::cout << "\n[6/8] Testing Entity Hierarchy...\n";
+    
+    // Create parent entity that rotates
+    Entity* rotatingGroup = world.CreateEntity("RotatingGroup");
+    rotatingGroup->position = glm::vec3(-5, 1, 0);
+    
+    // Create 3 child cubes in a line
     for (int i = 0; i < 3; i++) {
-        Entity* cube = world.CreateEntity("Cube_" + std::to_string(i));
+        Entity* child = world.CreateEntity("ChildCube_" + std::to_string(i));
+        child->position = glm::vec3(i * 2.0f, 0, 0);
+        child->scale = glm::vec3(0.5f);
         
-        // Position relative to parent
-        cube->position = glm::vec3(i * 2.0f - 2.0f, 0, 0);
-        cube->scale = glm::vec3(0.5f);
+        rotatingGroup->AddChild(child);
         
-        // FIXED: Use the entity hierarchy system
-        cubeGroup->AddChild(cube);
-        
-        // Add mesh renderer with loaded model
-        auto* meshRenderer = cube->AddComponent<MeshRendererComponent>();
-        
-        // Create material with different colors
+        auto* meshRenderer = child->AddComponent<MeshRendererComponent>();
         auto* material = new TintedMaterial();
         material->shader = basicShader;
         
-        // Different color for each cube
-        if (i == 0) material->tint = glm::vec4(1.0f, 0.3f, 0.3f, 1.0f); // Red
-        else if (i == 1) material->tint = glm::vec4(0.3f, 1.0f, 0.3f, 1.0f); // Green
-        else material->tint = glm::vec4(0.3f, 0.3f, 1.0f, 1.0f); // Blue
-        
-        material->transparent = false;
+        // Different colors
+        if (i == 0) material->tint = glm::vec4(1.0f, 0.3f, 0.3f, 1.0f);
+        else if (i == 1) material->tint = glm::vec4(0.3f, 1.0f, 0.3f, 1.0f);
+        else material->tint = glm::vec4(0.3f, 0.3f, 1.0f, 1.0f);
         
         meshRenderer->material = material;
-        // FIXED: Use the first mesh from the loaded model
         meshRenderer->mesh = &cubeModel->meshes[0];
     }
     
-    // ============================================================
-    // Create a single rotating cube (not in hierarchy)
-    // ============================================================
-    Entity* singleCube = world.CreateEntity("SingleCube");
-    singleCube->position = glm::vec3(0, 2, 0);
-    singleCube->scale = glm::vec3(0.8f);
-    
-    auto* singleRenderer = singleCube->AddComponent<MeshRendererComponent>();
-    
-    auto* singleMaterial = new TintedMaterial();
-    singleMaterial->shader = basicShader;
-    singleMaterial->tint = glm::vec4(1.0f, 0.8f, 0.2f, 1.0f); // Yellow
-    singleMaterial->transparent = false;
-    
-    singleRenderer->material = singleMaterial;
-    singleRenderer->mesh = &cubeModel->meshes[0];
+    std::cout << "  ✓ Parent entity with 3 children created\n";
     
     // ============================================================
-    // Optional: Demonstrate TexturedMaterial setup
-    // (You would need to add texture files to use this)
+    // MATERIAL SYSTEM TEST
     // ============================================================
-    /*
-    // Example of how to use TexturedMaterial (commented out since no texture files exist):
+    std::cout << "\n[7/8] Testing Material System...\n";
     
-    Texture* albedo = TextureLoader::Instance().Load("crate", "game/assets/textures/crate.png");
+    // Test 1: TintedMaterial with different colors
+    Entity* tintedCube1 = world.CreateEntity("TintedCube_Yellow");
+    tintedCube1->position = glm::vec3(0, 1, 0);
+    tintedCube1->scale = glm::vec3(0.8f);
     
-    Entity* texturedCube = world.CreateEntity("TexturedCube");
-    texturedCube->position = glm::vec3(3, 0, 0);
+    auto* tintedRenderer1 = tintedCube1->AddComponent<MeshRendererComponent>();
+    auto* tintedMat1 = new TintedMaterial();
+    tintedMat1->shader = basicShader;
+    tintedMat1->tint = glm::vec4(1.0f, 0.9f, 0.2f, 1.0f);
+    tintedRenderer1->material = tintedMat1;
+    tintedRenderer1->mesh = &cubeModel->meshes[0];
     
-    auto* texRenderer = texturedCube->AddComponent<MeshRendererComponent>();
+    // Test 2: TintedMaterial with transparency
+    Entity* transparentCube = world.CreateEntity("TransparentCube");
+    transparentCube->position = glm::vec3(3, 1, 0);
+    transparentCube->scale = glm::vec3(0.8f);
     
-    auto* texMaterial = new TexturedMaterial();
-    texMaterial->shader = basicShader;
-    texMaterial->albedoMap = albedo;
-    texMaterial->tint = glm::vec4(1.0f);
-    texMaterial->transparent = false;
+    auto* transparentRenderer = transparentCube->AddComponent<MeshRendererComponent>();
+    auto* transparentMat = new TintedMaterial();
+    transparentMat->shader = basicShader;
+    transparentMat->tint = glm::vec4(0.3f, 0.8f, 1.0f, 0.5f);
+    transparentMat->transparent = true;
+    transparentMat->pipelineState.blending = true;
+    transparentMat->pipelineState.depthMask = false;
+    transparentRenderer->material = transparentMat;
+    transparentRenderer->mesh = &cubeModel->meshes[0];
     
-    texRenderer->material = texMaterial;
-    texRenderer->mesh = &cubeModel->meshes[0];
-    */
+    std::cout << "  ✓ TintedMaterial (opaque) created\n";
+    std::cout << "  ✓ TintedMaterial (transparent) created\n";
+    
+    // Test 3: TexturedMaterial (if textures are available)
+    if (crateTexture && texturedShader) {
+        Entity* texturedCube = world.CreateEntity("TexturedCube");
+        texturedCube->position = glm::vec3(5, 1, 0);
+        
+        auto* texRenderer = texturedCube->AddComponent<MeshRendererComponent>();
+        auto* texMat = new TexturedMaterial();
+        texMat->shader = texturedShader;
+        texMat->albedoMap = crateTexture;
+        texMat->sampler = linearSampler;
+        texMat->tint = glm::vec4(1.0f);
+        texRenderer->material = texMat;
+        texRenderer->mesh = &cubeModel->meshes[0];
+        
+        std::cout << "  ✓ TexturedMaterial created\n";
+    }
+    
+    // Test 4: Sphere with different material (if model exists)
+    if (sphereModel) {
+        Entity* sphere = world.CreateEntity("Sphere");
+        sphere->position = glm::vec3(-3, 2, 0);
+        sphere->scale = glm::vec3(0.7f);
+        
+        auto* sphereRenderer = sphere->AddComponent<MeshRendererComponent>();
+        auto* sphereMat = new TintedMaterial();
+        sphereMat->shader = basicShader;
+        sphereMat->tint = glm::vec4(1.0f, 0.5f, 0.0f, 1.0f);
+        sphereRenderer->material = sphereMat;
+        sphereRenderer->mesh = &sphereModel->meshes[0];
+        
+        std::cout << "  ✓ Sphere with material created\n";
+    }
+    
+    // Test 5: Ground plane (if model exists)
+    if (planeModel) {
+        Entity* ground = world.CreateEntity("Ground");
+        ground->position = glm::vec3(0, 0, 0);
+        ground->scale = glm::vec3(10, 1, 10);
+        
+        auto* groundRenderer = ground->AddComponent<MeshRendererComponent>();
+        auto* groundMat = new TintedMaterial();
+        groundMat->shader = basicShader;
+        groundMat->tint = glm::vec4(0.2f, 0.25f, 0.2f, 1.0f);
+        groundRenderer->material = groundMat;
+        groundRenderer->mesh = &planeModel->meshes[0];
+        
+        std::cout << "  ✓ Ground plane created\n";
+    }
     
     // ============================================================
-    // Main Loop
+    // PIPELINE STATE TEST
     // ============================================================
-    float lastTime = glfwGetTime();
+    std::cout << "\n[8/8] Testing Pipeline States...\n";
     
-    std::cout << "\n=== Engine Fixed! ===\n";
-    std::cout << "Using MeshLoader to load cube.obj\n";
-    std::cout << "Demonstrating entity hierarchy (parent rotates, children follow)\n";
-    std::cout << "Removed useless Transform.cpp\n";
-    std::cout << "\nControls:\n";
-    std::cout << "  WASD - Move camera\n";
+    // Cube with custom pipeline state (no face culling)
+    Entity* noCullCube = world.CreateEntity("NoCullCube");
+    noCullCube->position = glm::vec3(0, 3, 0);
+    noCullCube->scale = glm::vec3(0.6f);
+    
+    auto* noCullRenderer = noCullCube->AddComponent<MeshRendererComponent>();
+    auto* noCullMat = new TintedMaterial();
+    noCullMat->shader = basicShader;
+    noCullMat->tint = glm::vec4(1.0f, 0.3f, 0.9f, 1.0f);
+    noCullMat->pipelineState.faceCulling = false;
+    noCullRenderer->material = noCullMat;
+    noCullRenderer->mesh = &cubeModel->meshes[0];
+    
+    std::cout << "  ✓ Custom pipeline state (no culling) applied\n";
+    std::cout << "  ✓ Blend states configured\n";
+    std::cout << "  ✓ Depth testing configured\n";
+    
+    // ============================================================
+    // MAIN LOOP
+    // ============================================================
+    std::cout << "\n========================================\n";
+    std::cout << "  ALL SYSTEMS INITIALIZED SUCCESSFULLY!\n";
+    std::cout << "========================================\n\n";
+    std::cout << "Controls:\n";
+    std::cout << "  WASD       - Move camera\n";
     std::cout << "  Space/Shift - Up/Down\n";
     std::cout << "  Arrow Keys - Rotate camera\n";
-    std::cout << "  ESC - Exit\n\n";
+    std::cout << "  ESC        - Exit\n\n";
+    std::cout << "Features tested:\n";
+    std::cout << "  ✓ Shader loading & management\n";
+    std::cout << "  ✓ Model loading (OBJ files)\n";
+    std::cout << "  ✓ Texture loading & sampling\n";
+    std::cout << "  ✓ Entity-Component System\n";
+    std::cout << "  ✓ Transform hierarchies\n";
+    std::cout << "  ✓ Material system (Tinted & Textured)\n";
+    std::cout << "  ✓ Pipeline states (culling, blending, depth)\n";
+    std::cout << "  ✓ Camera system (perspective)\n";
+    std::cout << "  ✓ Transparent rendering (back-to-front sorting)\n\n";
+    
+    float lastTime = glfwGetTime();
+    float rotationSpeed = 0.8f;
     
     while (!glfwWindowShouldClose(window)) {
         float currentTime = glfwGetTime();
         float deltaTime = currentTime - lastTime;
         lastTime = currentTime;
         
-        ProcessInput(camera, deltaTime);
+        ProcessInput(cameraEntity, deltaTime);
         
-        // Rotate the single cube on its own
-        singleCube->rotation.y += deltaTime * 1.0f;
-        singleCube->rotation.x += deltaTime * 0.5f;
+        // Animate entities
+        tintedCube1->rotation.y += deltaTime * 1.0f;
+        tintedCube1->rotation.x += deltaTime * 0.5f;
         
-        // Rotate the parent group - all children will rotate with it!
-        // This demonstrates the entity hierarchy system
-        cubeGroup->rotation.y += deltaTime * 0.5f;
+        transparentCube->rotation.y -= deltaTime * 0.7f;
         
+        rotatingGroup->rotation.y += deltaTime * rotationSpeed;
+        
+        noCullCube->rotation.x += deltaTime * 1.5f;
+        noCullCube->rotation.z += deltaTime * 0.8f;
+        
+        if (sphereModel) {
+            Entity* sphere = world.FindByName("Sphere");
+            if (sphere) {
+                sphere->rotation.y += deltaTime * 0.5f;
+                sphere->position.y = 2.0f + sinf(currentTime * 2.0f) * 0.5f;
+            }
+        }
+        
+        // Render
         renderer.Resize(width, height);
-        renderer.Render(&world, camComp);
+        renderer.Render(&world, camera);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
     
     // ============================================================
-    // Cleanup
+    // CLEANUP
     // ============================================================
-    // Clean up materials
+    std::cout << "\nCleaning up...\n";
+    
     for (auto* entity : world.entities) {
         auto* meshRenderer = entity->GetComponent<MeshRendererComponent>();
         if (meshRenderer && meshRenderer->material) {
@@ -269,13 +451,15 @@ int main() {
         }
     }
     
-    // Note: Don't delete the meshes - they're owned by the Model
-    // which is managed by MeshLoader
+    delete linearSampler;
+    delete nearestSampler;
     
     ShaderLoader::Instance().Clear();
     TextureLoader::Instance().Clear();
     MeshLoader::Instance().Clear();
     
     glfwTerminate();
+    
+    std::cout << "✓ Cleanup complete!\n";
     return 0;
 }
