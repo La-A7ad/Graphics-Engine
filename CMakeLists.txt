@@ -1,53 +1,55 @@
 cmake_minimum_required(VERSION 3.10)
 
-add_compile_options(-fexceptions)
 
+# ===================================
 # Engine library
+# ===================================
+
 add_library(engine
-    # Assets
+    # Assets / Loaders
     engine/src/Assets/Loaders/Mesh/MeshLoader.cpp
     engine/src/Assets/Loaders/Shader/ShaderLoader.cpp
     engine/src/Assets/Loaders/Texture/TextureLoader.cpp
-    
-    # Core - Graphics - Buffers
+
+    # Core / Graphics / Buffers
     engine/src/Core/Graphics/Buffers/Buffers.cpp
-    
-    # Core - Graphics - Shader
+
+    # Core / Graphics / Shader
     engine/src/Core/Graphics/Shader/Shader.cpp
-    
-    # Core - Graphics - State
+
+    # Core / Graphics / State
     engine/src/Core/Graphics/State/PipelineState.cpp
-    
-    # Core - Graphics - Texture
+
+    # Core / Graphics / Texture
     engine/src/Core/Graphics/Texture/Sampler.cpp
-    engine/src/Core/Graphics/Texture/STBImageImpl.cpp  # <-- STB implementation
+    engine/src/Core/Graphics/Texture/STBImageImpl.cpp      # STB implementation
     engine/src/Core/Graphics/Texture/Texture.cpp
-    
-    # Core - Math
+
+    # Core / Math
     engine/src/Core/Math/Transform.cpp
-    
-    # ECS - Components
+
+    # ECS / Components
     engine/src/ECS/Components/Camera/CameraComponent.cpp
     engine/src/ECS/Components/Rendering/MeshRendererComponent.cpp
-    
-    # ECS - Core
+
+    # ECS / Core
     engine/src/ECS/Core/Entity/Entity.cpp
     engine/src/ECS/Core/World/World.cpp
-    
-    # Rendering - Core
+
+    # Rendering / Core
     engine/src/Rendering/Core/Renderer.cpp
-    
-    # Rendering - Geometry
+
+    # Rendering / Geometry
     engine/src/Rendering/Geometry/Mesh/Mesh.cpp
     engine/src/Rendering/Geometry/Model/Model.cpp
-    
-    # Rendering - Materials
+
+    # Rendering / Materials
     engine/src/Rendering/Materials/Base/Material.cpp
     engine/src/Rendering/Materials/Implementations/TexturedMaterial.cpp
     engine/src/Rendering/Materials/Implementations/TintedMaterial.cpp
 )
 
-# Include directories
+# Public include directories
 target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include
@@ -56,14 +58,14 @@ target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
 )
 
-# Link libraries
+# Link external libraries
 target_link_libraries(engine PUBLIC
     glad
     glm
     glfw
 )
 
-# Set C++ standard
+# C++ standard
 set_target_properties(engine PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON

@@ -3,11 +3,13 @@
 #include <iostream>
 #include <vector>
 
-#include <glad/glad.h>
 #include "Engine/Core/Graphics/Shader/Shader.hpp"
 
 
 namespace engine {
+
+
+
 
 std::string Shader::readFile(const char* path) {
     std::ifstream file(path, std::ios::in);
@@ -225,6 +227,7 @@ void Shader::ReflectAttribs() {
             ReflectedAttribs(name, location, components, baseType)
         );
     }
+
 }
 
  

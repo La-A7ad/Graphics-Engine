@@ -41,11 +41,11 @@ Texture* TextureLoader::Get(const std::string& name) {
     return nullptr;
 }
 
-void TextureLoader:: Clear() {
+void TextureLoader::Clear() {
     for (auto& pair : textures) {
         delete pair.second;
     }
-    textures. clear();
+    textures.clear();
 }
 
 }

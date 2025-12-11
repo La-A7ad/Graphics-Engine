@@ -14,25 +14,29 @@ Entity::Entity(const std::string& name)
 }
 
 Entity::~Entity() {
-    for (auto* comp : components) {
-        delete comp; //THIS NOW SHOULD WORK SINCE MeshRenderedComponent::material WAS CHANGED TO UNIQUE POINTER
-    }
+    children.clear();
 }
 
 void Entity::AddChild(Entity* child) {
     if (child->parent) {
         child->parent->RemoveChild(child);
     }
-    children.push_back(child);
+    children.push_back(std::unique_ptr<Entity>(child));
     child->parent = this;
 }
 
-void Entity::RemoveChild(Entity* child) {
-    auto it = std::find(children.begin(), children.end(), child);
+bool Entity::RemoveChild(Entity* child) {
+    // Find the child in the vector of unique_ptr and erase it
+    auto it = std::find_if(children.begin(), children.end(),
+                           [child](const std::unique_ptr<Entity>& e) {
+                               return e.get() == child;  // Compare raw pointer using .get()
+                           });
+
     if (it != children.end()) {
-        children.erase(it);
-        child->parent = nullptr;
+        children.erase(it);  // Remove the child
+        return true;
     }
+    return false;  // Child not found
 }
 
 glm::mat4 Entity::GetLocalTransform() const {

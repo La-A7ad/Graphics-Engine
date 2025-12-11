@@ -132,8 +132,8 @@ void Renderer::RenderEntity(MeshRendererComponent* renderer,
     }
     
     // Safe to dereference now
-    Material* mat = renderer->material;
-    Mesh* mesh = renderer->mesh;
+    Material* mat = renderer->material.get(); //cuz raw pointers
+    Mesh* mesh = renderer->mesh.get();
     
     // Apply material pipeline state (blending, depth testing, culling, etc.)
     mat->Bind();

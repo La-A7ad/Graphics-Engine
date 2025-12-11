@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <glm/glm.hpp>
 
 namespace engine {
@@ -17,8 +18,8 @@ public:
     glm::vec3 scale;
     
     Entity* parent;
-    std::vector<Entity*> children;
-    std::vector<Component*> components;
+    std::vector<std::unique_ptr<Component>> components;
+    std::vector<std::unique_ptr<Entity>> children;
     
     Entity(const std::string& name = "Entity");
     ~Entity();
@@ -30,7 +31,7 @@ public:
     T* GetComponent();
     
     void AddChild(Entity* child);
-    void RemoveChild(Entity* child);
+    bool RemoveChild(Entity* child);
     
     glm::mat4 GetLocalTransform() const;
     glm::mat4 GetWorldTransform() const;
