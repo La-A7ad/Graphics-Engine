@@ -228,8 +228,17 @@ void Shader::ReflectAttribs() {
         );
     }
 
+
+
 }
+
+ Shader::~Shader() {
+        // REPLACE 'm_RendererID' with whatever your integer member variable is named.
+        // It is the same variable you use in glUseProgram(m_RendererID) inside Bind().
+        if (ID= 0) { 
+            glDeleteProgram(ID);
+        }
 
  
 
-} // namespace engine
+} }// namespace engine

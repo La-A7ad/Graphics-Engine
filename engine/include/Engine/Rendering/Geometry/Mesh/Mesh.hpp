@@ -44,6 +44,14 @@ public:
      */
     void Draw(const Shader& shader);
 
+
+    // Move Constructor (Defaults to moving the underlying VAO/VBO/EBO)
+    Mesh(Mesh&& other) noexcept = default;
+    
+    // Delete Copy
+    Mesh(const Mesh&) = delete;
+    Mesh& operator=(const Mesh&) = delete;
+
 private:
     // Vertex and index data (kept for potential future use)
     std::vector<Vertex> vertices;
@@ -57,13 +65,6 @@ private:
     // Track which shaders have been configured with this mesh
     // Using shader ID avoids pointer lifetime issues
     std::unordered_set<GLuint> configuredShaders;
-    
-    /**
-     * Configure VAO attributes for a specific shader
-     * - Only runs once per unique shader ID
-     * - Sets up position, normal, and texcoord attributes
-     * @param shader The shader to configure attributes for
-     */
     void configureForShader(const Shader& shader);
 };
 

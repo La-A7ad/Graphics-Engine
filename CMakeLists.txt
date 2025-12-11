@@ -1,7 +1,23 @@
 cmake_minimum_required(VERSION 3.10)
+project(GraphicsEngine)
 
 # ===================================
-# Engine library
+# 1. Build GLAD from Source
+# ===================================
+# We create a static library 'glad' from the source file.
+# CMake will now know that 'glad' is a target, not a system library.
+add_library(glad STATIC external/glad/src/glad.c)
+
+# Add the include directories for GLAD (public so linking targets see them)
+target_include_directories(glad PUBLIC external/glad/include)
+
+# On Linux, GLAD often needs 'dl' (dynamic linking loader)
+if(UNIX)
+    target_link_libraries(glad PRIVATE dl)
+endif()
+
+# ===================================
+# 2. Engine Library
 # ===================================
 add_library(engine
     # Assets / Loaders
@@ -16,7 +32,7 @@ add_library(engine
     engine/src/Core/Graphics/State/PipelineState.cpp
     # Core / Graphics / Texture
     engine/src/Core/Graphics/Texture/Sampler.cpp
-    engine/src/Core/Graphics/Texture/STBImageImpl.cpp      # STB implementation
+    engine/src/Core/Graphics/Texture/STBImageImpl.cpp
     engine/src/Core/Graphics/Texture/Texture.cpp
     # Core / Math
     engine/src/Core/Math/Transform.cpp
@@ -37,7 +53,7 @@ add_library(engine
     engine/src/Rendering/Materials/Implementations/TintedMaterial.cpp
 )
 
-# Public include directories
+# Include Directories
 target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include
@@ -46,30 +62,30 @@ target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
 )
 
-# Link external libraries
+# Link Libraries
+# Now 'glad' refers to the CMake target defined above, avoiding the linker error.
 target_link_libraries(engine PUBLIC
     glad
-    glm
     glfw
 )
 
-# C++ standard
+# C++ Standard
 set_target_properties(engine PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
 # ===================================
-# GameApp executable
+# 3. GameApp Executable
 # ===================================
 add_executable(GameApp
     game/main.cpp
 )
 
-# Link the engine library to GameApp
+# Link Engine
 target_link_libraries(GameApp PRIVATE engine)
 
-# Copy assets to build directory after building
+# Copy Assets
 add_custom_command(
     TARGET GameApp POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory

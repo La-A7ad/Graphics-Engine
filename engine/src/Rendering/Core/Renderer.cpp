@@ -1,111 +1,108 @@
-// engine/src/Rendering/Core/Renderer.cpp
-#include "Engine/Rendering/Core/Renderer.hpp"
-#include "Engine/ECS/Components/Camera/CameraComponent.hpp"
-#include "Engine/ECS/Components/Rendering/MeshRendererComponent.hpp"
-#include "Engine/ECS/Core/World/World.hpp"
-#include <glm/gtc/type_ptr.hpp>
-#include <algorithm>
+#include "Engine/Renderer.hpp"
+#include "Engine/World.hpp"                // so we can access world->entities
+#include "Engine/Entity.hpp"
+#include "Engine/MeshRendererComponent.hpp"
+#include "Engine/CameraComponent.hpp"      // so we can call GetProjectionMatrix / GetViewMatrix
+#include "Engine/Shader.hpp"
+#include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>            // glm::value_ptr for setMat4
+
 
 namespace engine {
 
-Renderer::Renderer() 
-    : shader(nullptr), width(800), height(600), initialized(false) {
-}
-
-Renderer::~Renderer() {
-    if (shader) {
-        delete shader;
-        shader = nullptr;
+    Renderer::Renderer() 
+        : width(800), height(600), initialized(false), m_Window(nullptr) {
     }
-}
 
-bool Renderer::Init() {
-    shader = new Shader("game/assets/shaders/basic.vert", 
-                       "game/assets/shaders/basic.frag");
-    
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    
-    initialized = true;
-    return true;
-}
-
-void Renderer::RenderFrame(float time) {
-    if (!initialized) return;
-    
-    glClearColor(0.18f, 0.23f, 0.28f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void Renderer::Render(World* world, CameraComponent* camera) {
-    if (!initialized || !world || !camera) return;
-    
-    glClearColor(0.18f, 0.23f, 0.28f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    camera->aspectRatio = static_cast<float>(width) / static_cast<float>(height);
-    
-    glm::mat4 view = camera->GetViewMatrix();
-    glm::mat4 proj = camera->GetProjectionMatrix();
-    
-    auto renderers = world->GetComponentsOfType<MeshRendererComponent>();
-    
-    std::vector<MeshRendererComponent*> opaque;
-    std::vector<MeshRendererComponent*> transparent;
-    
-    for (auto* renderer : renderers) {
-        if (!renderer->mesh || !renderer->material) continue;
-        
-        if (renderer->material->transparent) {  // CHANGED: material-> stays the same (unique_ptr overloads ->)
-            transparent.push_back(renderer);
-        } else {
-            opaque.push_back(renderer);
+    Renderer::~Renderer() {
+        if (m_Window) {
+            glfwDestroyWindow(m_Window);
         }
+        glfwTerminate();
     }
-    
-    glm::vec3 camPos = camera->GetPosition();
-    
-    std::sort(opaque.begin(), opaque.end(), [&camPos](auto* a, auto* b) {
-        float distA = glm::length(a->entity->GetWorldPosition() - camPos);
-        float distB = glm::length(b->entity->GetWorldPosition() - camPos);
-        return distA < distB;
-    });
-    
-    std::sort(transparent.begin(), transparent.end(), [&camPos](auto* a, auto* b) {
-        float distA = glm::length(a->entity->GetWorldPosition() - camPos);
-        float distB = glm::length(b->entity->GetWorldPosition() - camPos);
-        return distA > distB;
-    });
-    
-    for (auto* renderer : opaque) {
-        RenderEntity(renderer, view, proj);
+
+    bool Renderer::Init() {
+        if (!glfwInit()) {
+            std::cerr << "Failed to initialize GLFW" << std::endl;
+            return false;
+        }
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        m_Window = glfwCreateWindow(width, height, "Graphics Engine", nullptr, nullptr);
+        if (!m_Window) {
+            std::cerr << "Failed to create GLFW window" << std::endl;
+            glfwTerminate();
+            return false;
+        }
+
+        glfwMakeContextCurrent(m_Window);
+
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+            std::cerr << "Failed to initialize GLAD" << std::endl;
+            return false;
+        }
+
+        glEnable(GL_DEPTH_TEST);
+        // glCullFace(GL_BACK); // Optional: Enable if your geometry is winding correctly
+
+        initialized = true;
+        return true;
     }
-    
-    for (auto* renderer : transparent) {
-        RenderEntity(renderer, view, proj);
+
+   void Renderer::Render(World* world, CameraComponent* camera) {
+    if (!initialized || !world || !camera) {
+        return;
+    }
+
+    // Clear frame
+    glViewport(0, 0, width, height);
+    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // 1. Camera matrices
+    glm::mat4 projection = camera->GetProjectionMatrix();
+    glm::mat4 view       = camera->GetViewMatrix();   // uses Entity's transform internally
+
+    // 2. Iterate over all entities in the world
+    for (engine::Entity* entity : world->entities) {
+        if (!entity) continue;
+
+        // Only render entities with a MeshRendererComponent
+        auto* meshRenderer = entity->GetComponent<engine::MeshRendererComponent>();
+        if (!meshRenderer) continue;
+
+        // Make sure mesh + material + shader exist
+        if (!meshRenderer->mesh) continue;
+        if (!meshRenderer->material) continue;
+        engine::Material* material = meshRenderer->material.get();
+        if (!material || !material->shader) continue;
+
+        engine::Shader* shader = material->shader.get();
+
+        // 3. Model matrix from Entity's built-in transform
+        glm::mat4 model = entity->GetWorldTransform();
+
+        // 4. Bind pipeline state + shader
+        material->Bind();  // calls pipelineState.Apply() + shader->use()
+
+        // 5. Set standard matrices – match your GLSL uniforms
+        shader->setMat4("uProj",  glm::value_ptr(projection));
+        shader->setMat4("uView",  glm::value_ptr(view));
+        shader->setMat4("uModel", glm::value_ptr(model));
+
+        // 6. Material-specific uniforms (tint, textures, etc.)
+        material->Setup();
+
+        // 7. Draw the mesh
+        meshRenderer->mesh->Draw(*shader);
     }
 }
 
-void Renderer::RenderEntity(MeshRendererComponent* renderer, const glm::mat4& view, const glm::mat4& proj) {
-    Material* mat = renderer->material.get();  // CHANGED: .get() to get raw pointer
-    Mesh* mesh = renderer->mesh;  // This is already a raw pointer
-    
-    mat->Bind();
-    mat->Setup();
-    
-    glm::mat4 model = renderer->entity->GetWorldTransform();
-    
-    mat->shader->setMat4("uModel", glm::value_ptr(model));
-    mat->shader->setMat4("uView", glm::value_ptr(view));
-    mat->shader->setMat4("uProj", glm::value_ptr(proj));
-    
-    mesh->Draw(*mat->shader);
-}
-
-void Renderer::Resize(int w, int h) {
-    width = w;
-    height = h;
-    glViewport(0, 0, w, h);
-}
 
 }

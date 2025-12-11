@@ -57,6 +57,26 @@ public:
     const Shader::ReflectedAttribs* getAttrib(const std::string&) const;
 
 
+    // Delete Copy
+    Shader(const Shader&) = delete;
+    Shader& operator=(const Shader&) = delete;
+
+    // Move Constructor
+    Shader(Shader&& other) noexcept : ID(other.ID) {
+        other.ID = 0;
+    }
+
+    // Move Assignment
+    Shader& operator=(Shader&& other) noexcept {
+        if (this != &other) {
+            if (ID) glDeleteProgram(ID);
+            ID = other.ID;
+            other.ID = 0;
+        }
+        return *this;
+    }
+
+
 
 
 private:

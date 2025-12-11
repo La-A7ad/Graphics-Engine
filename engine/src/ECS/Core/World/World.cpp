@@ -6,7 +6,7 @@ World::World() {
 }
 
 World::~World() {
-    entities.clear();
+    Clear();
 }
 
 Entity* World::CreateEntity(const std::string& name) {
