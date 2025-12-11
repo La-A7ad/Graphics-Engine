@@ -2,6 +2,7 @@
 
 #include "Engine/Shader.hpp"
 #include "Engine/Buffers.hpp"
+#include <memory>
 #include <glm/glm.hpp>
 
 struct GLFWwindow;
@@ -24,8 +25,8 @@ public:
     GLFWwindow* GetWindow() const { return m_Window; }
     
 private:
-    VAO vao;
-    VBO vbo;
+    std::unique_ptr<VAO> vao;
+    std::unique_ptr<VBO> vbo;
     int width;
     int height;
     bool initialized;

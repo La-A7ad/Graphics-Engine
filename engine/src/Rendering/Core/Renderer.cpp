@@ -13,47 +13,57 @@
 
 namespace engine {
 
-    Renderer::Renderer() 
-        : width(800), height(600), initialized(false), m_Window(nullptr) {
+        Renderer::Renderer()
+    : width(800), height(600), initialized(false), m_Window(nullptr) {
+    // vao/vbo are nullptr initially
+}
+
+Renderer::~Renderer() {
+    // Destroy GL objects *before* killing the context
+    vao.reset();
+    vbo.reset();
+
+    if (m_Window) {
+        glfwDestroyWindow(m_Window);
+        m_Window = nullptr;
+    }
+    glfwTerminate();
+}
+
+bool Renderer::Init() {
+    if (!glfwInit()) {
+        std::cerr << "Failed to initialize GLFW" << std::endl;
+        return false;
     }
 
-    Renderer::~Renderer() {
-        if (m_Window) {
-            glfwDestroyWindow(m_Window);
-        }
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    m_Window = glfwCreateWindow(width, height, "Graphics Engine", nullptr, nullptr);
+    if (!m_Window) {
+        std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
+        return false;
     }
 
-    bool Renderer::Init() {
-        if (!glfwInit()) {
-            std::cerr << "Failed to initialize GLFW" << std::endl;
-            return false;
-        }
+    glfwMakeContextCurrent(m_Window);
 
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-        m_Window = glfwCreateWindow(width, height, "Graphics Engine", nullptr, nullptr);
-        if (!m_Window) {
-            std::cerr << "Failed to create GLFW window" << std::endl;
-            glfwTerminate();
-            return false;
-        }
-
-        glfwMakeContextCurrent(m_Window);
-
-        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-            std::cerr << "Failed to initialize GLAD" << std::endl;
-            return false;
-        }
-
-        glEnable(GL_DEPTH_TEST);
-        // glCullFace(GL_BACK); // Optional: Enable if your geometry is winding correctly
-
-        initialized = true;
-        return true;
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
+        return false;
     }
+
+    glEnable(GL_DEPTH_TEST);
+
+    // NOW OpenGL + GLAD are ready -> safe to create RAII GL objects
+    vao = std::make_unique<VAO>();
+    vbo = std::make_unique<VBO>();
+
+    initialized = true;
+    return true;
+}
+
 
    void Renderer::Render(World* world, CameraComponent* camera) {
     if (!initialized || !world || !camera) {
