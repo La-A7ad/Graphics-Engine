@@ -1,5 +1,5 @@
-// Engine/Assets/Loaders/Shader/ShaderLoader.cpp
 #include "Engine/Assets/Loaders/Shader/ShaderLoader.hpp"
+#include "Engine/ShaderLoader.hpp"
 #include <iostream>
 
 namespace engine {
