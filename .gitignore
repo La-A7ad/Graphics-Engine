@@ -1,7 +1,7 @@
 # Build directories
-/build/
-/cmake-build-*/
-/out/
+build/
+cmake-build-*/
+out/
 
 # IDE files
 .vscode/
