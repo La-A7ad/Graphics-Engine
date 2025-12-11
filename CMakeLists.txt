@@ -15,40 +15,49 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 
 add_library(Engine STATIC
-    # Core rendering
-    engine/src/Shader.cpp
-    engine/src/Buffers.cpp
-    engine/src/Mesh.cpp
-    engine/src/Model.cpp
-    engine/src/Renderer.cpp
+    # Core Graphics - Rendering
+    engine/src/Rendering/Core/Renderer.cpp
     
-    # ECS
-    engine/src/Entity.cpp
-    engine/src/World.cpp
+    # Core Graphics - Buffers
+    engine/src/Core/Graphics/Buffers/Buffers.cpp
     
-    # Components
-    engine/src/CameraComponent.cpp
-    engine/src/MeshRendererComponent.cpp
+    # Core Graphics - Shader
+    engine/src/Core/Graphics/Shader/Shader.cpp
     
-    # Materials
-    engine/src/Material.cpp
-    engine/src/TintedMaterial.cpp
-    engine/src/TexturedMaterial.cpp
-    engine/src/PipelineState.cpp
+    # Core Graphics - State
+    engine/src/Core/Graphics/State/PipelineState.cpp
     
-    # Assets
-    engine/src/Texture.cpp
-    engine/src/Sampler.cpp
+    # Core Graphics - Texture
+    engine/src/Core/Graphics/Texture/Texture.cpp
+    engine/src/Core/Graphics/Texture/Sampler.cpp
     
-    # Asset Loaders
-    engine/src/ShaderLoader.cpp
-    engine/src/TextureLoader.cpp
-    engine/src/MeshLoader.cpp
+    # Core Math
+    engine/src/Core/Math/Transform.cpp
+    
+    # Rendering - Geometry
+    engine/src/Rendering/Geometry/Mesh/Mesh.cpp
+    engine/src/Rendering/Geometry/Model/Model.cpp
+    
+    # Rendering - Materials
+    engine/src/Rendering/Materials/Base/Material.cpp
+    engine/src/Rendering/Materials/Implementations/TintedMaterial.cpp
+    engine/src/Rendering/Materials/Implementations/TexturedMaterial.cpp
+    
+    # ECS - Core
+    engine/src/ECS/Core/Entity/Entity.cpp
+    engine/src/ECS/Core/World/World.cpp
+    
+    # ECS - Components
+    engine/src/ECS/Components/Camera/CameraComponent.cpp
+    engine/src/ECS/Components/Rendering/MeshRendererComponent.cpp
+    
+    # Assets - Loaders
+    engine/src/Assets/Loaders/Shader/ShaderLoader.cpp
+    engine/src/Assets/Loaders/Texture/TextureLoader.cpp
+    engine/src/Assets/Loaders/Mesh/MeshLoader.cpp
     
     # External
     external/glad/src/glad.c
-    
-    # REMOVED: engine/src/Transform.cpp (duplicate/useless)
 )
 
 target_include_directories(Engine PUBLIC

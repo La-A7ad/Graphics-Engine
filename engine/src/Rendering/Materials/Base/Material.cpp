@@ -1,4 +1,4 @@
-#include "Engine/Material.hpp"
+#include "Engine/Rendering/Materials/Base/Material.hpp"
 
 namespace engine {
 

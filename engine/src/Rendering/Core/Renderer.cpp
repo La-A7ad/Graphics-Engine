@@ -1,7 +1,7 @@
-#include "Engine/Renderer.hpp"
-#include "Engine/CameraComponent.hpp"
-#include "Engine/MeshRendererComponent.hpp"
-#include "Engine/World.hpp"
+#include "Engine/Rendering/Core/Renderer.hpp"
+#include "Engine/ECS/Components/Camera/CameraComponent.hpp"
+#include "Engine/ECS/Components/Rendering/MeshRendererComponent.hpp"
+#include "Engine/ECS/Core/World/World.hpp"
 #include <glm/gtc/type_ptr.hpp>
 #include <algorithm>
 

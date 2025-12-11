@@ -1,4 +1,4 @@
-#include "Engine/TextureLoader.hpp"
+#include "Engine/Assets/Loaders/Texture/TextureLoader.hpp"
 
 namespace engine {
 

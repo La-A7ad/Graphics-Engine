@@ -1,6 +1,6 @@
 #include <glad/glad.h>
-#include "Engine/Buffers.hpp"
-#include "Engine/Shader.hpp"
+#include "Engine/Core/Graphics/Buffers/Buffers.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 
 using namespace engine;
 

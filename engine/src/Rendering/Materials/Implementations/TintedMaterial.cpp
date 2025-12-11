@@ -1,4 +1,4 @@
-#include "Engine/TintedMaterial.hpp"
+#include "Engine/Rendering/Materials/Implementations/TintedMaterial.hpp"
 
 namespace engine {
 

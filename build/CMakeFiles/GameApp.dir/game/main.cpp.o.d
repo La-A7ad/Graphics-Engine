@@ -151,12 +151,14 @@ CMakeFiles/GameApp.dir/game/main.cpp.o: \
  /usr/include/c++/15.2.1/bits/ostream.tcc /usr/include/c++/15.2.1/istream \
  /usr/include/c++/15.2.1/bits/istream.tcc \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/World.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ECS/Core/World/World.hpp \
  /usr/include/c++/15.2.1/vector \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \
  /usr/include/c++/15.2.1/bits/vector.tcc \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Entity.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ECS/Core/Entity/Entity.hpp \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/15.2.1/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
@@ -311,19 +313,36 @@ CMakeFiles/GameApp.dir/game/main.cpp.o: \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/CameraComponent.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ECS/Components/Camera/CameraComponent.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Component.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ECS/Core/Component/Component.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/MeshRendererComponent.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ECS/Components/Rendering/MeshRendererComponent.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Mesh.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Geometry/Mesh/Mesh.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Shader.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Core/Graphics/Shader/Shader.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Buffers.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Core/Graphics/Buffers/Buffers.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Material.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Materials/Base/Material.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/PipelineState.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Core/Graphics/State/PipelineState.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Renderer.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Core/Renderer.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/ShaderLoader.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Assets/Loaders/Shader/ShaderLoader.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TextureLoader.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Assets/Loaders/Texture/TextureLoader.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Texture.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Core/Graphics/Texture/Texture.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/MeshLoader.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Assets/Loaders/Mesh/MeshLoader.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Model.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Geometry/Model/Model.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TintedMaterial.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Materials/Implementations/TintedMaterial.hpp \
  /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/TexturedMaterial.hpp \
- /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Sampler.hpp
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Rendering/Materials/Implementations/TexturedMaterial.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Sampler.hpp \
+ /home/Angel/Desktop/Projects/OpenGL/GraphicsEngine/engine/include/Engine/Core/Graphics/Texture/Sampler.hpp

@@ -1,4 +1,4 @@
-#include "Engine/MeshLoader.hpp"
+#include "Engine/Assets/Loaders/Mesh/MeshLoader.hpp"
 
 namespace engine {
 

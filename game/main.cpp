@@ -11,7 +11,7 @@
 #include "Engine/MeshLoader.hpp"
 #include "Engine/TintedMaterial.hpp"
 #include "Engine/TexturedMaterial.hpp"
-#include "Engine/Model.hpp"
+#include "Engine/Rendering/Geometry/Model/Model.hpp"
 
 using namespace engine;
 

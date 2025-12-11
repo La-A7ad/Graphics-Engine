@@ -1,5 +1,5 @@
-#include "Engine/Entity.hpp"
-#include "Engine/Component.hpp"
+#include "Engine/ECS/Core/Entity/Entity.hpp"
+#include "Engine/ECS/Core/Component/Component.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <algorithm>
 

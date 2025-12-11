@@ -1,4 +1,4 @@
-#include "Engine/Mesh.hpp"
+#include "Engine/Rendering/Geometry/Mesh/Mesh.hpp"
 #include <glad/glad.h>
 
 namespace engine {

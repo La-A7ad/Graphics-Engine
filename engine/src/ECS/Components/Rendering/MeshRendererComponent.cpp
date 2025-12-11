@@ -1,4 +1,4 @@
-#include "Engine/MeshRendererComponent.hpp"
+#include "Engine/ECS/Components/Rendering/MeshRendererComponent.hpp"
 
 namespace engine {
 

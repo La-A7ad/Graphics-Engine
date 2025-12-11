@@ -1,4 +1,4 @@
-#include "Engine/Sampler.hpp"
+#include "Engine/Core/Graphics/Texture/Sampler.hpp"
 
 namespace engine {
 

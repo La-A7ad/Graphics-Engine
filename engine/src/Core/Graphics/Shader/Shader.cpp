@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <glad/glad.h>
-#include "Engine/Shader.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 
 
 namespace engine {

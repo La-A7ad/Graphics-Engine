@@ -1,4 +1,4 @@
-#include "Engine/ShaderLoader.hpp"
+#include "Engine/Assets/Loaders/Shader/ShaderLoader.hpp"
 
 namespace engine {
 

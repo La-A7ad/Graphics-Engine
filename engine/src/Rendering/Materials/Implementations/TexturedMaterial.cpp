@@ -1,4 +1,4 @@
-#include "Engine/TexturedMaterial.hpp"
+#include "Engine/Rendering/Materials/Implementations/TexturedMaterial.hpp"
 
 namespace engine {
 

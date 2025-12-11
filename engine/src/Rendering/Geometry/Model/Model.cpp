@@ -1,4 +1,4 @@
-#include "Engine/Model.hpp"
+#include "Engine/Rendering/Geometry/Model/Model.hpp"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
 #include <iostream>

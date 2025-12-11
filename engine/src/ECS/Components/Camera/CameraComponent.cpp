@@ -1,5 +1,5 @@
-#include "Engine/CameraComponent.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/ECS/Components/Camera/CameraComponent.hpp"
+#include "Engine/ECS/Core/Entity/Entity.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace engine {
