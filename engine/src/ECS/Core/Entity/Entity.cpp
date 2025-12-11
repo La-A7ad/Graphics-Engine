@@ -1,3 +1,4 @@
+// engine/src/ECS/Core/Entity/Entity.cpp
 #include "Engine/ECS/Core/Entity/Entity.hpp"
 #include "Engine/ECS/Core/Component/Component.hpp"
 #include <glm/gtc/matrix_transform.hpp>
@@ -14,29 +15,24 @@ Entity::Entity(const std::string& name)
 }
 
 Entity::~Entity() {
-    children.clear();
+    // unique_ptr automatically cleans up components
+    components.clear();
 }
 
 void Entity::AddChild(Entity* child) {
     if (child->parent) {
         child->parent->RemoveChild(child);
     }
-    children.push_back(std::unique_ptr<Entity>(child));
+    children.push_back(child);
     child->parent = this;
 }
 
-bool Entity::RemoveChild(Entity* child) {
-    // Find the child in the vector of unique_ptr and erase it
-    auto it = std::find_if(children.begin(), children.end(),
-                           [child](const std::unique_ptr<Entity>& e) {
-                               return e.get() == child;  // Compare raw pointer using .get()
-                           });
-
+void Entity::RemoveChild(Entity* child) {
+    auto it = std::find(children.begin(), children.end(), child);
     if (it != children.end()) {
-        children.erase(it);  // Remove the child
-        return true;
+        children.erase(it);
+        child->parent = nullptr;
     }
-    return false;  // Child not found
 }
 
 glm::mat4 Entity::GetLocalTransform() const {

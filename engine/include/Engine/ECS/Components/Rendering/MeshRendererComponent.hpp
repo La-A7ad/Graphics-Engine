@@ -1,3 +1,4 @@
+// engine/include/Engine/ECS/Components/Rendering/MeshRendererComponent.hpp
 #pragma once
 
 #include "Engine/Component.hpp"
@@ -9,11 +10,10 @@ namespace engine {
 
 class MeshRendererComponent : public Component {
 public:
-    Mesh* mesh; 
-    std::unique_ptr<Material> material;  
+    Mesh* mesh;  // Non-owning - points to mesh in Model owned by MeshLoader
+    std::unique_ptr<Material> material;  // Owning - this component owns the material
     
     MeshRendererComponent();
-    ~MeshRendererComponent() = default;  //unique_ptr handles cleanup automatically
 };
 
 }

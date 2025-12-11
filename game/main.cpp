@@ -98,13 +98,8 @@ void ProcessInput(Entity* cameraEntity, float deltaTime) {
 }
 
 int main() {
-    if (!InitWindow()) {
-        return -1;
-    }
-    
-    World world;
-    Renderer renderer;
-    if (!renderer.Init()) {
+   
+     if (!renderer.Init()) {
         std::cerr << "Failed to initialize renderer\n";
         return -1;
     }
@@ -145,7 +140,8 @@ int main() {
     if (crateTexture) {
         std::cout << "  ✓ Crate texture loaded\n";
     }
-    
+
+
     // Create shared samplers (smart pointers for automatic cleanup)
     std::cout << "\n[4/8] Creating Samplers...\n";
     
@@ -168,9 +164,10 @@ int main() {
     camera->nearPlane = 0.1f;
     camera->farPlane = 1000.0f;
     std::cout << "  ✓ Camera created\n";
+
+
     
-    // Test entity hierarchy
-    std::cout << "\n[6/8] Testing Entity Hierarchy...\n";
+    
     Entity* rotatingGroup = world.CreateEntity("RotatingGroup");
     rotatingGroup->position = glm::vec3(-5, 1, 0);
     
@@ -183,7 +180,7 @@ int main() {
         
         auto* meshRenderer = child->AddComponent<MeshRendererComponent>();
         
-        // FIXED: Use unique_ptr for automatic memory management
+        // CHANGED: Use make_unique and move
         auto material = std::make_unique<TintedMaterial>();
         material->shader = basicShader;
         
@@ -191,115 +188,133 @@ int main() {
         else if (i == 1) material->tint = glm::vec4(0.3f, 1.0f, 0.3f, 1.0f);
         else material->tint = glm::vec4(0.3f, 0.3f, 1.0f, 1.0f);
         
-        meshRenderer->material = std::move(material);  // Transfer ownership
+        meshRenderer->material = std::move(material);
         meshRenderer->mesh = &cubeModel->meshes[0];
     }
+    
     std::cout << "  ✓ Parent entity with 3 children created\n";
     
-    // Test materials
+    // ============================================================
+    // MATERIAL SYSTEM TEST - CHANGED
+    // ============================================================
     std::cout << "\n[7/8] Testing Material System...\n";
     
-    // Tinted cube
+    // Test 1: TintedMaterial with different colors
     Entity* tintedCube1 = world.CreateEntity("TintedCube_Yellow");
     tintedCube1->position = glm::vec3(0, 1, 0);
     tintedCube1->scale = glm::vec3(0.8f);
     
     auto* tintedRenderer1 = tintedCube1->AddComponent<MeshRendererComponent>();
-    auto tintedMat1 = std::make_unique<TintedMaterial>();
+    auto tintedMat1 = std::make_unique<TintedMaterial>();  // CHANGED
     tintedMat1->shader = basicShader;
     tintedMat1->tint = glm::vec4(1.0f, 0.9f, 0.2f, 1.0f);
-    tintedRenderer1->material = std::move(tintedMat1);
+    tintedRenderer1->material = std::move(tintedMat1);  // CHANGED
     tintedRenderer1->mesh = &cubeModel->meshes[0];
     
-    // Transparent cube
+    // Test 2: TintedMaterial with transparency
     Entity* transparentCube = world.CreateEntity("TransparentCube");
     transparentCube->position = glm::vec3(3, 1, 0);
     transparentCube->scale = glm::vec3(0.8f);
     
     auto* transparentRenderer = transparentCube->AddComponent<MeshRendererComponent>();
-    auto transparentMat = std::make_unique<TintedMaterial>();
+    auto transparentMat = std::make_unique<TintedMaterial>();  // CHANGED
     transparentMat->shader = basicShader;
     transparentMat->tint = glm::vec4(0.3f, 0.8f, 1.0f, 0.5f);
     transparentMat->transparent = true;
     transparentMat->pipelineState.blending = true;
     transparentMat->pipelineState.depthMask = false;
-    transparentRenderer->material = std::move(transparentMat);
+    transparentRenderer->material = std::move(transparentMat);  // CHANGED
     transparentRenderer->mesh = &cubeModel->meshes[0];
     
     std::cout << "  ✓ TintedMaterial (opaque) created\n";
     std::cout << "  ✓ TintedMaterial (transparent) created\n";
     
-    // Textured cube
+    // Test 3: TexturedMaterial (if textures are available)
     if (crateTexture && texturedShader) {
         Entity* texturedCube = world.CreateEntity("TexturedCube");
         texturedCube->position = glm::vec3(5, 1, 0);
         
         auto* texRenderer = texturedCube->AddComponent<MeshRendererComponent>();
-        auto texMat = std::make_unique<TexturedMaterial>();
+        auto texMat = std::make_unique<TexturedMaterial>();  // CHANGED
         texMat->shader = texturedShader;
         texMat->albedoMap = crateTexture;
-        texMat->sampler = linearSampler;  // shared_ptr
+        texMat->sampler = linearSampler;
         texMat->tint = glm::vec4(1.0f);
-        texRenderer->material = std::move(texMat);
+        texRenderer->material = std::move(texMat);  // CHANGED
         texRenderer->mesh = &cubeModel->meshes[0];
         
         std::cout << "  ✓ TexturedMaterial created\n";
     }
     
-    // Test pipeline states
+    // Test 4: Sphere with different material (if model exists)
+    if (sphereModel) {
+        Entity* sphere = world.CreateEntity("Sphere");
+        sphere->position = glm::vec3(-3, 2, 0);
+        sphere->scale = glm::vec3(0.7f);
+        
+        auto* sphereRenderer = sphere->AddComponent<MeshRendererComponent>();
+        auto sphereMat = std::make_unique<TintedMaterial>();  // CHANGED
+        sphereMat->shader = basicShader;
+        sphereMat->tint = glm::vec4(1.0f, 0.5f, 0.0f, 1.0f);
+        sphereRenderer->material = std::move(sphereMat);  // CHANGED
+        sphereRenderer->mesh = &sphereModel->meshes[0];
+        
+        std::cout << "  ✓ Sphere with material created\n";
+    }
+    
+    // Test 5: Ground plane (if model exists)
+    if (planeModel) {
+        Entity* ground = world.CreateEntity("Ground");
+        ground->position = glm::vec3(0, 0, 0);
+        ground->scale = glm::vec3(10, 1, 10);
+        
+        auto* groundRenderer = ground->AddComponent<MeshRendererComponent>();
+        auto groundMat = std::make_unique<TintedMaterial>();  // CHANGED
+        groundMat->shader = basicShader;
+        groundMat->tint = glm::vec4(0.2f, 0.25f, 0.2f, 1.0f);
+        groundRenderer->material = std::move(groundMat);  // CHANGED
+        groundRenderer->mesh = &planeModel->meshes[0];
+        
+        std::cout << "  ✓ Ground plane created\n";
+    }
+    
+    // ============================================================
+    // PIPELINE STATE TEST - CHANGED
+    // ============================================================
     std::cout << "\n[8/8] Testing Pipeline States...\n";
+    
     Entity* noCullCube = world.CreateEntity("NoCullCube");
     noCullCube->position = glm::vec3(0, 3, 0);
     noCullCube->scale = glm::vec3(0.6f);
     
     auto* noCullRenderer = noCullCube->AddComponent<MeshRendererComponent>();
-    auto noCullMat = std::make_unique<TintedMaterial>();
+    auto noCullMat = std::make_unique<TintedMaterial>();  // CHANGED
     noCullMat->shader = basicShader;
     noCullMat->tint = glm::vec4(1.0f, 0.3f, 0.9f, 1.0f);
     noCullMat->pipelineState.faceCulling = false;
-    noCullRenderer->material = std::move(noCullMat);
+    noCullRenderer->material = std::move(noCullMat);  // CHANGED
     noCullRenderer->mesh = &cubeModel->meshes[0];
     
-    std::cout << "  ✓ Custom pipeline state applied\n";
+    std::cout << "  ✓ Custom pipeline state (no culling) applied\n";
     
-    std::cout << "\n========================================\n";
-    std::cout << "  ALL SYSTEMS INITIALIZED!\n";
-    std::cout << "========================================\n\n";
+    // ... (keep main loop and animation code)
     
-    float lastTime = glfwGetTime();
-    
-    while (!glfwWindowShouldClose(window)) {
-        float currentTime = glfwGetTime();
-        float deltaTime = currentTime - lastTime;
-        lastTime = currentTime;
-        
-        ProcessInput(cameraEntity, deltaTime);
-        
-        // Animate
-        tintedCube1->rotation.y += deltaTime * 1.0f;
-        transparentCube->rotation.y -= deltaTime * 0.7f;
-        rotatingGroup->rotation.y += deltaTime * 0.8f;
-        noCullCube->rotation.x += deltaTime * 1.5f;
-        
-        // Render
-        renderer.Resize(width, height);
-        renderer.Render(&world, camera);
-        
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
-    
-    // CLEANUP IS NOW AUTOMATIC!
-    // - unique_ptr<Material> in components
-    // - shared_ptr<Sampler> reference counted
-    // - Loaders clean up on destruction
-    
+    // ============================================================
+    // CLEANUP - CHANGED (much simpler now!)
+    // ============================================================
     std::cout << "\nCleaning up...\n";
+    
+    // Materials are automatically cleaned up by unique_ptr!
+    // No need to manually delete them anymore
+    
+
+    
     ShaderLoader::Instance().Clear();
     TextureLoader::Instance().Clear();
     MeshLoader::Instance().Clear();
     
     glfwTerminate();
+    
     std::cout << "✓ Cleanup complete!\n";
     return 0;
 }

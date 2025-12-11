@@ -1,3 +1,4 @@
+// engine/include/Engine/ECS/Core/Entity/Entity.hpp
 #pragma once
 
 #include <string>
@@ -18,8 +19,8 @@ public:
     glm::vec3 scale;
     
     Entity* parent;
-    std::vector<std::unique_ptr<Component>> components;
-    std::vector<std::unique_ptr<Entity>> children;
+    std::vector<Entity*> children;
+    std::vector<std::unique_ptr<Component>> components;  // CHANGED to unique_ptr
     
     Entity(const std::string& name = "Entity");
     ~Entity();
@@ -31,7 +32,7 @@ public:
     T* GetComponent();
     
     void AddChild(Entity* child);
-    bool RemoveChild(Entity* child);
+    void RemoveChild(Entity* child);
     
     glm::mat4 GetLocalTransform() const;
     glm::mat4 GetWorldTransform() const;
@@ -43,16 +44,17 @@ public:
 
 template<typename T>
 T* Entity::AddComponent() {
-    T* comp = new T();
-    comp->entity = this;
-    components.push_back(comp);
-    return comp;
+    auto comp = std::make_unique<T>();
+    T* ptr = comp.get();
+    ptr->entity = this;
+    components.push_back(std::move(comp));
+    return ptr;
 }
 
 template<typename T>
 T* Entity::GetComponent() {
-    for (auto* comp : components) {
-        if (T* casted = dynamic_cast<T*>(comp)) {
+    for (auto& comp : components) {  // CHANGED: auto& instead of auto*
+        if (T* casted = dynamic_cast<T*>(comp.get())) {  // CHANGED: comp.get()
             return casted;
         }
     }
