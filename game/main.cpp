@@ -105,7 +105,7 @@ int main() {
     tintedMR->material = std::move(tintedMat);
 
     // 6. Textured cube using TextureLoader + TexturedMaterial
-    std::string texPath = "game/assets/textures/osaka.jpg";
+    std::string texPath = "game/assets/textures/Grass_Block_TEX.png";
     engine::Texture* albedoTex =
         engine::TextureLoader::Instance().Load("osaka", texPath);
 

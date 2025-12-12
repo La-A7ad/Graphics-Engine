@@ -67,6 +67,7 @@ void TexturedMaterial::Setup() {
     // Set tint color uniform (multiplied with texture colors in shader)
     // Note: We set each component individually for compatibility
     // Could also use setVec4 if you implement it in Shader class
+    shader->setInt("uAlbedoMap", unit);
     shader->setFloat("uTint.r", tint.r);
     shader->setFloat("uTint.g", tint.g);
     shader->setFloat("uTint.b", tint.b);
