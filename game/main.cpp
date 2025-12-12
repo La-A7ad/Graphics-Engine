@@ -18,6 +18,7 @@
 #include "Engine/TintedMaterial.hpp"
 #include "Engine/TexturedMaterial.hpp"
 #include "Engine/Sampler.hpp"
+#include "Engine/ShaderLoader.hpp"
 
 #define LOG(msg) std::cout << msg << std::endl
 
@@ -98,17 +99,20 @@ int main() {
         "game/assets/shaders/basic.vert",
         "game/assets/shaders/basic.frag"
     );
-    tintedMat->tint = glm::vec4(1.0f, 0.5f, 0.3f, 1.0f); // orange-ish
+    // Bright orange so it's clearly visible
+    tintedMat->tint = glm::vec4(1.0f, 0.5f, 0.2f, 1.0f);
 
     tintedMR->material = std::move(tintedMat);
 
-    // 6. Optionally: create a textured cube using TextureLoader + TexturedMaterial
+    // 6. Textured cube using TextureLoader + TexturedMaterial
     std::string texPath = "game/assets/textures/osaka.jpg";
     engine::Texture* albedoTex =
         engine::TextureLoader::Instance().Load("osaka", texPath);
 
+    engine::Entity* texturedCube = nullptr;
+
     if (albedoTex) {
-        engine::Entity* texturedCube = world.CreateEntity("TexturedCube");
+        texturedCube = world.CreateEntity("TexturedCube");
         if (texturedCube) {
             texturedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
             texturedCube->rotation = glm::vec3(0.0f);
@@ -139,11 +143,27 @@ int main() {
     LOG("Entering main loop...");
     int frames = 0;
 
+    // Rotation state
+    float lastTime = glfwGetTime();
+    float angle = 0.0f;
+
     // 7. Main loop
     while (!glfwWindowShouldClose(window)) {
         // ESC to quit
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GLFW_TRUE);
+        }
+
+        // Time & rotation
+        float currentTime = glfwGetTime();
+        float deltaTime   = currentTime - lastTime;
+        lastTime = currentTime;
+
+        angle += deltaTime * 1.0f; // 1 rad/s around Y axis
+
+        tintedCube->rotation.y = angle;
+        if (texturedCube) {
+            texturedCube->rotation.y = angle;
         }
 
         // Render the world from the main camera
@@ -157,6 +177,11 @@ int main() {
             LOG("First frame rendered successfully.");
         }
     }
+
+    // Cleanup GL resources while the context still exists
+    engine::ShaderLoader::Instance().Clear();
+    engine::MeshLoader::Instance().Clear();
+    engine::TextureLoader::Instance().Clear();
 
     LOG("Exiting...");
     return 0;

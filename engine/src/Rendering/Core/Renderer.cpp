@@ -70,49 +70,54 @@ bool Renderer::Init() {
         return;
     }
 
-    // Clear frame
+    // Get actual framebuffer size every frame
+    int fbWidth = 0, fbHeight = 0;
+    glfwGetFramebufferSize(m_Window, &fbWidth, &fbHeight);
+    if (fbWidth <= 0 || fbHeight <= 0) return;
+
+    width  = fbWidth;
+    height = fbHeight;
+
     glViewport(0, 0, width, height);
     glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // 1. Camera matrices
+    // Camera matrices
     glm::mat4 projection = camera->GetProjectionMatrix();
-    glm::mat4 view       = camera->GetViewMatrix();   // uses Entity's transform internally
+    glm::mat4 view       = camera->GetViewMatrix();
 
-    // 2. Iterate over all entities in the world
+    // Loop over entities
     for (engine::Entity* entity : world->entities) {
         if (!entity) continue;
 
-        // Only render entities with a MeshRendererComponent
         auto* meshRenderer = entity->GetComponent<engine::MeshRendererComponent>();
         if (!meshRenderer) continue;
-
-        // Make sure mesh + material + shader exist
         if (!meshRenderer->mesh) continue;
         if (!meshRenderer->material) continue;
+
         engine::Material* material = meshRenderer->material.get();
-        if (!material || !material->shader) continue;
+        if (!material->shader) continue;
 
         engine::Shader* shader = material->shader.get();
 
-        // 3. Model matrix from Entity's built-in transform
         glm::mat4 model = entity->GetWorldTransform();
 
-        // 4. Bind pipeline state + shader
-        material->Bind();  // calls pipelineState.Apply() + shader->use()
+        // Bind state & shader
+        material->Bind();
 
-        // 5. Set standard matrices – match your GLSL uniforms
+        // IMPORTANT: these names must match the GLSL uniforms
         shader->setMat4("uProj",  glm::value_ptr(projection));
         shader->setMat4("uView",  glm::value_ptr(view));
         shader->setMat4("uModel", glm::value_ptr(model));
 
-        // 6. Material-specific uniforms (tint, textures, etc.)
+        // Material-specific uniforms (tint, etc.)
         material->Setup();
 
-        // 7. Draw the mesh
+        // Draw mesh
         meshRenderer->mesh->Draw(*shader);
     }
 }
+
 
 
 }
