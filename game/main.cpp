@@ -73,6 +73,14 @@ int main() {
         return -1;
     }
 
+    std::string modelPath2 = "game/assets/models/Grass_Block.obj";
+    engine::Model* cubeModel2 = engine::MeshLoader::Instance().Load("MinecraftCube", modelPath2);
+    if (!cubeModel2 || cubeModel2->meshes.empty()) {
+        std::cerr << "Failed to load cube model or it has no meshes. Path: "
+                  << modelPath2 << "\n";
+        return -1;
+    }
+
     // 5. Create a tinted cube
     engine::Entity* tintedCube = world.CreateEntity("TintedCube");
     if (!tintedCube) {
@@ -120,7 +128,7 @@ int main() {
 
             auto* texMR = texturedCube->AddComponent<engine::MeshRendererComponent>();
             if (texMR) {
-                texMR->mesh = &cubeModel->meshes[0];
+                texMR->mesh = &cubeModel2->meshes[0];
 
                 auto texturedMat = std::make_unique<engine::TexturedMaterial>();
                 texturedMat->shader = std::make_shared<engine::Shader>(

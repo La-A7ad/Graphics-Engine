@@ -19,7 +19,7 @@ void main() {
     vec3 ambient = vec3(0.3);
     vec4 texColor = texture(uAlbedoMap, vTexCoords);
     
-    vec3 result = (ambient + diffuse) * texColor.rgb * uTint.rgb;
-    
+    vec3 result = (ambient + diffuse) * texColor.rgb;
+
     FragColor = vec4(result, texColor.a * uTint.a);
 }
