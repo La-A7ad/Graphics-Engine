@@ -1,7 +1,9 @@
+// engine/include/Engine/ECS/Core/Entity/Entity.hpp
 #pragma once
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <glm/glm.hpp>
 
 namespace engine {
@@ -18,7 +20,7 @@ public:
     
     Entity* parent;
     std::vector<Entity*> children;
-    std::vector<Component*> components;
+    std::vector<std::unique_ptr<Component>> components;  // CHANGED to unique_ptr
     
     Entity(const std::string& name = "Entity");
     ~Entity();
@@ -42,16 +44,17 @@ public:
 
 template<typename T>
 T* Entity::AddComponent() {
-    T* comp = new T();
-    comp->entity = this;
-    components.push_back(comp);
-    return comp;
+    auto comp = std::make_unique<T>();
+    T* ptr = comp.get();
+    ptr->entity = this;
+    components.push_back(std::move(comp));
+    return ptr;
 }
 
 template<typename T>
 T* Entity::GetComponent() {
-    for (auto* comp : components) {
-        if (T* casted = dynamic_cast<T*>(comp)) {
+    for (auto& comp : components) {  // CHANGED: auto& instead of auto*
+        if (T* casted = dynamic_cast<T*>(comp.get())) {  // CHANGED: comp.get()
             return casted;
         }
     }

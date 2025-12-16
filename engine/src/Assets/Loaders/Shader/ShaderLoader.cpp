@@ -1,4 +1,5 @@
 #include "Engine/Assets/Loaders/Shader/ShaderLoader.hpp"
+#include <iostream>
 
 namespace engine {
 
@@ -11,30 +12,17 @@ ShaderLoader::~ShaderLoader() {
     Clear();
 }
 
-Shader* ShaderLoader::Load(const std::string& name, const std::string& vertPath, const std::string& fragPath) {
-    auto it = shaders.find(name);
-    if (it != shaders.end()) {
-        return it->second;
-    }
-    
-    Shader* shader = new Shader(vertPath.c_str(), fragPath.c_str());
+Shader* ShaderLoader::Load(const std::string& name,
+                           const std::string& vertPath,
+                           const std::string& fragPath) {
+    auto shader = std::make_shared<Shader>(vertPath.c_str(), fragPath.c_str());
     shaders[name] = shader;
-    return shader;
-}
-
-Shader* ShaderLoader::Get(const std::string& name) {
-    auto it = shaders.find(name);
-    if (it != shaders.end()) {
-        return it->second;
-    }
-    return nullptr;
+    std::cout << "✓ Loaded shader: " << name << "\n";
+    return shader.get();  // Return raw pointer for compatibility
 }
 
 void ShaderLoader::Clear() {
-    for (auto& pair : shaders) {
-        delete pair.second;
-    }
-    shaders.clear();
+    shaders.clear();   // shared_ptr counts drop to 0 -> ~Shader() deletes GL program
 }
 
 }

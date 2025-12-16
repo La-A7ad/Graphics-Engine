@@ -1,4 +1,5 @@
 #include "Engine/Assets/Loaders/Texture/TextureLoader.hpp"
+#include <iostream>
 
 namespace engine {
 
@@ -19,6 +20,15 @@ Texture* TextureLoader::Load(const std::string& name, const std::string& path) {
     
     Texture* texture = new Texture();
     texture->LoadFromFile(path);
+    
+    // FIX: Add validation to ensure texture was loaded
+    // Check if file was found by verifying texture ID is valid
+    if (texture->GetID() == 0) {
+        std::cerr << "ERROR:  Texture '" << name << "' failed to load from:  " << path << "\n";
+        delete texture;
+        return nullptr;
+    }
+    
     textures[name] = texture;
     return texture;
 }

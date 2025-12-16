@@ -11,6 +11,8 @@ void TintedMaterial::Setup() {
         shader->setFloat("uTint.g", tint.g);
         shader->setFloat("uTint.b", tint.b);
         shader->setFloat("uTint.a", tint.a);
+        shader->setVec4("uTint", &tint[0]);
+
     }
 }
 

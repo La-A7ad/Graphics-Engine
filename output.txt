@@ -1,0 +1,1380 @@
+.
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   │   ├── 4.2.0
+│   │   │   ├── CMakeCCompiler.cmake
+│   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   ├── CMakeSystem.cmake
+│   │   │   ├── CompilerIdC
+│   │   │   │   ├── a.out
+│   │   │   │   ├── CMakeCCompilerId.c
+│   │   │   │   └── tmp
+│   │   │   └── CompilerIdCXX
+│   │   │       ├── a.out
+│   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       └── tmp
+│   │   ├── cmake.check_cache
+│   │   ├── CMakeConfigureLog.yaml
+│   │   ├── CMakeDirectoryInformation.cmake
+│   │   ├── CMakeScratch
+│   │   ├── engine.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── cmake_clean_target.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   ├── depend.make
+│   │   │   ├── engine
+│   │   │   │   └── src
+│   │   │   │       ├── Assets
+│   │   │   │       │   └── Loaders
+│   │   │   │       │       ├── Mesh
+│   │   │   │       │       │   ├── MeshLoader.cpp.o
+│   │   │   │       │       │   └── MeshLoader.cpp.o.d
+│   │   │   │       │       ├── Shader
+│   │   │   │       │       │   ├── ShaderLoader.cpp.o
+│   │   │   │       │       │   └── ShaderLoader.cpp.o.d
+│   │   │   │       │       └── Texture
+│   │   │   │       │           ├── TextureLoader.cpp.o
+│   │   │   │       │           └── TextureLoader.cpp.o.d
+│   │   │   │       ├── Core
+│   │   │   │       │   ├── Graphics
+│   │   │   │       │   │   ├── Buffers
+│   │   │   │       │   │   │   ├── Buffers.cpp.o
+│   │   │   │       │   │   │   └── Buffers.cpp.o.d
+│   │   │   │       │   │   ├── Shader
+│   │   │   │       │   │   │   ├── Shader.cpp.o
+│   │   │   │       │   │   │   └── Shader.cpp.o.d
+│   │   │   │       │   │   ├── State
+│   │   │   │       │   │   │   ├── PipelineState.cpp.o
+│   │   │   │       │   │   │   └── PipelineState.cpp.o.d
+│   │   │   │       │   │   └── Texture
+│   │   │   │       │   │       ├── Sampler.cpp.o
+│   │   │   │       │   │       ├── Sampler.cpp.o.d
+│   │   │   │       │   │       ├── STBImageImpl.cpp.o
+│   │   │   │       │   │       ├── STBImageImpl.cpp.o.d
+│   │   │   │       │   │       ├── Texture.cpp.o
+│   │   │   │       │   │       └── Texture.cpp.o.d
+│   │   │   │       │   └── Math
+│   │   │   │       │       ├── Transform.cpp.o
+│   │   │   │       │       └── Transform.cpp.o.d
+│   │   │   │       ├── ECS
+│   │   │   │       │   ├── Components
+│   │   │   │       │   │   ├── Camera
+│   │   │   │       │   │   │   ├── CameraComponent.cpp.o
+│   │   │   │       │   │   │   └── CameraComponent.cpp.o.d
+│   │   │   │       │   │   └── Rendering
+│   │   │   │       │   │       ├── MeshRendererComponent.cpp.o
+│   │   │   │       │   │       └── MeshRendererComponent.cpp.o.d
+│   │   │   │       │   └── Core
+│   │   │   │       │       ├── Entity
+│   │   │   │       │       │   ├── Entity.cpp.o
+│   │   │   │       │       │   └── Entity.cpp.o.d
+│   │   │   │       │       └── World
+│   │   │   │       │           ├── World.cpp.o
+│   │   │   │       │           └── World.cpp.o.d
+│   │   │   │       └── Rendering
+│   │   │   │           ├── Core
+│   │   │   │           │   ├── Renderer.cpp.o
+│   │   │   │           │   └── Renderer.cpp.o.d
+│   │   │   │           ├── Geometry
+│   │   │   │           │   ├── Mesh
+│   │   │   │           │   │   ├── Mesh.cpp.o
+│   │   │   │           │   │   └── Mesh.cpp.o.d
+│   │   │   │           │   └── Model
+│   │   │   │           │       ├── Model.cpp.o
+│   │   │   │           │       └── Model.cpp.o.d
+│   │   │   │           └── Materials
+│   │   │   │               ├── Base
+│   │   │   │               │   ├── Material.cpp.o
+│   │   │   │               │   └── Material.cpp.o.d
+│   │   │   │               └── Implementations
+│   │   │   │                   ├── TexturedMaterial.cpp.o
+│   │   │   │                   ├── TexturedMaterial.cpp.o.d
+│   │   │   │                   ├── TintedMaterial.cpp.o
+│   │   │   │                   └── TintedMaterial.cpp.o.d
+│   │   │   ├── flags.make
+│   │   │   ├── link.txt
+│   │   │   └── progress.make
+│   │   ├── GameApp.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   ├── depend.make
+│   │   │   ├── flags.make
+│   │   │   ├── game
+│   │   │   │   ├── main.cpp.o
+│   │   │   │   └── main.cpp.o.d
+│   │   │   ├── link.txt
+│   │   │   └── progress.make
+│   │   ├── InstallScripts.json
+│   │   ├── Makefile2
+│   │   ├── Makefile.cmake
+│   │   ├── pkgRedirects
+│   │   ├── Progress
+│   │   │   ├── 1
+│   │   │   ├── 10
+│   │   │   ├── 11
+│   │   │   ├── 12
+│   │   │   ├── 13
+│   │   │   ├── 14
+│   │   │   ├── 15
+│   │   │   ├── 16
+│   │   │   ├── 17
+│   │   │   ├── 18
+│   │   │   ├── 19
+│   │   │   ├── 2
+│   │   │   ├── 20
+│   │   │   ├── 21
+│   │   │   ├── 22
+│   │   │   ├── 23
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   ├── 9
+│   │   │   └── count.txt
+│   │   ├── progress.marks
+│   │   └── TargetDirectories.txt
+│   ├── cmake_install.cmake
+│   ├── libengine.a
+│   └── Makefile
+├── CMakeLists.txt
+├── engine
+│   ├── include
+│   │   └── Engine
+│   │       ├── Assets
+│   │       │   └── Loaders
+│   │       │       ├── Mesh
+│   │       │       │   └── MeshLoader.hpp
+│   │       │       ├── Shader
+│   │       │       │   └── ShaderLoader.hpp
+│   │       │       └── Texture
+│   │       │           └── TextureLoader.hpp
+│   │       ├── Buffers.hpp
+│   │       ├── CameraComponent.hpp
+│   │       ├── Component.hpp
+│   │       ├── Core
+│   │       │   ├── Graphics
+│   │       │   │   ├── Buffers
+│   │       │   │   │   └── Buffers.hpp
+│   │       │   │   ├── Shader
+│   │       │   │   │   └── Shader.hpp
+│   │       │   │   ├── State
+│   │       │   │   │   └── PipelineState.hpp
+│   │       │   │   └── Texture
+│   │       │   │       ├── Sampler.hpp
+│   │       │   │       └── Texture.hpp
+│   │       │   └── Math
+│   │       │       └── Transform.hpp
+│   │       ├── ECS
+│   │       │   ├── Components
+│   │       │   │   ├── Camera
+│   │       │   │   │   └── CameraComponent.hpp
+│   │       │   │   └── Rendering
+│   │       │   │       └── MeshRendererComponent.hpp
+│   │       │   └── Core
+│   │       │       ├── Component
+│   │       │       │   └── Component.hpp
+│   │       │       ├── Entity
+│   │       │       │   └── Entity.hpp
+│   │       │       └── World
+│   │       │           └── World.hpp
+│   │       ├── Entity.hpp
+│   │       ├── Material.hpp
+│   │       ├── Mesh.hpp
+│   │       ├── MeshLoader.hpp
+│   │       ├── MeshRendererComponent.hpp
+│   │       ├── Model.hpp
+│   │       ├── PipelineState.hpp
+│   │       ├── Renderer.hpp
+│   │       ├── Rendering
+│   │       │   ├── Core
+│   │       │   │   └── Renderer.hpp
+│   │       │   ├── Geometry
+│   │       │   │   ├── Mesh
+│   │       │   │   │   └── Mesh.hpp
+│   │       │   │   └── Model
+│   │       │   │       └── Model.hpp
+│   │       │   └── Materials
+│   │       │       ├── Base
+│   │       │       │   └── Material.hpp
+│   │       │       └── Implementations
+│   │       │           ├── TexturedMaterial.hpp
+│   │       │           └── TintedMaterial.hpp
+│   │       ├── Sampler.hpp
+│   │       ├── Shader.hpp
+│   │       ├── ShaderLoader.hpp
+│   │       ├── TexturedMaterial.hpp
+│   │       ├── Texture.hpp
+│   │       ├── TextureLoader.hpp
+│   │       ├── TintedMaterial.hpp
+│   │       ├── Transform.hpp
+│   │       └── World.hpp
+│   └── src
+│       ├── Assets
+│       │   └── Loaders
+│       │       ├── Mesh
+│       │       │   └── MeshLoader.cpp
+│       │       ├── Shader
+│       │       │   └── ShaderLoader.cpp
+│       │       └── Texture
+│       │           └── TextureLoader.cpp
+│       ├── Core
+│       │   ├── Graphics
+│       │   │   ├── Buffers
+│       │   │   │   └── Buffers.cpp
+│       │   │   ├── Shader
+│       │   │   │   └── Shader.cpp
+│       │   │   ├── State
+│       │   │   │   └── PipelineState.cpp
+│       │   │   └── Texture
+│       │   │       ├── Sampler.cpp
+│       │   │       ├── STBImageImpl.cpp
+│       │   │       └── Texture.cpp
+│       │   └── Math
+│       │       └── Transform.cpp
+│       ├── ECS
+│       │   ├── Components
+│       │   │   ├── Camera
+│       │   │   │   └── CameraComponent.cpp
+│       │   │   └── Rendering
+│       │   │       └── MeshRendererComponent.cpp
+│       │   └── Core
+│       │       ├── Entity
+│       │       │   └── Entity.cpp
+│       │       └── World
+│       │           └── World.cpp
+│       └── Rendering
+│           ├── Core
+│           │   └── Renderer.cpp
+│           ├── Geometry
+│           │   ├── Mesh
+│           │   │   └── Mesh.cpp
+│           │   └── Model
+│           │       └── Model.cpp
+│           └── Materials
+│               ├── Base
+│               │   └── Material.cpp
+│               └── Implementations
+│                   ├── TexturedMaterial.cpp
+│                   └── TintedMaterial.cpp
+├── external
+│   ├── glad
+│   │   ├── include
+│   │   │   ├── glad
+│   │   │   │   └── glad.h
+│   │   │   └── KHR
+│   │   │       └── khrplatform.h
+│   │   └── src
+│   │       └── glad.c
+│   ├── glm
+│   │   ├── CMakeLists.txt
+│   │   ├── common.hpp
+│   │   ├── copying.txt
+│   │   ├── detail
+│   │   │   ├── compute_common.hpp
+│   │   │   ├── compute_vector_decl.hpp
+│   │   │   ├── compute_vector_relational.hpp
+│   │   │   ├── _features.hpp
+│   │   │   ├── _fixes.hpp
+│   │   │   ├── func_common.inl
+│   │   │   ├── func_common_simd.inl
+│   │   │   ├── func_exponential.inl
+│   │   │   ├── func_exponential_simd.inl
+│   │   │   ├── func_geometric.inl
+│   │   │   ├── func_geometric_simd.inl
+│   │   │   ├── func_integer.inl
+│   │   │   ├── func_integer_simd.inl
+│   │   │   ├── func_matrix.inl
+│   │   │   ├── func_matrix_simd.inl
+│   │   │   ├── func_packing.inl
+│   │   │   ├── func_packing_simd.inl
+│   │   │   ├── func_trigonometric.inl
+│   │   │   ├── func_trigonometric_simd.inl
+│   │   │   ├── func_vector_relational.inl
+│   │   │   ├── func_vector_relational_simd.inl
+│   │   │   ├── glm.cpp
+│   │   │   ├── _noise.hpp
+│   │   │   ├── qualifier.hpp
+│   │   │   ├── setup.hpp
+│   │   │   ├── _swizzle_func.hpp
+│   │   │   ├── _swizzle.hpp
+│   │   │   ├── type_float.hpp
+│   │   │   ├── type_half.hpp
+│   │   │   ├── type_half.inl
+│   │   │   ├── type_mat2x2.hpp
+│   │   │   ├── type_mat2x2.inl
+│   │   │   ├── type_mat2x3.hpp
+│   │   │   ├── type_mat2x3.inl
+│   │   │   ├── type_mat2x4.hpp
+│   │   │   ├── type_mat2x4.inl
+│   │   │   ├── type_mat3x2.hpp
+│   │   │   ├── type_mat3x2.inl
+│   │   │   ├── type_mat3x3.hpp
+│   │   │   ├── type_mat3x3.inl
+│   │   │   ├── type_mat3x4.hpp
+│   │   │   ├── type_mat3x4.inl
+│   │   │   ├── type_mat4x2.hpp
+│   │   │   ├── type_mat4x2.inl
+│   │   │   ├── type_mat4x3.hpp
+│   │   │   ├── type_mat4x3.inl
+│   │   │   ├── type_mat4x4.hpp
+│   │   │   ├── type_mat4x4.inl
+│   │   │   ├── type_mat4x4_simd.inl
+│   │   │   ├── type_quat.hpp
+│   │   │   ├── type_quat.inl
+│   │   │   ├── type_quat_simd.inl
+│   │   │   ├── type_vec1.hpp
+│   │   │   ├── type_vec1.inl
+│   │   │   ├── type_vec2.hpp
+│   │   │   ├── type_vec2.inl
+│   │   │   ├── type_vec3.hpp
+│   │   │   ├── type_vec3.inl
+│   │   │   ├── type_vec4.hpp
+│   │   │   ├── type_vec4.inl
+│   │   │   ├── type_vec4_simd.inl
+│   │   │   └── _vectorize.hpp
+│   │   ├── exponential.hpp
+│   │   ├── ext
+│   │   │   ├── matrix_clip_space.hpp
+│   │   │   ├── matrix_clip_space.inl
+│   │   │   ├── matrix_common.hpp
+│   │   │   ├── matrix_common.inl
+│   │   │   ├── matrix_double2x2.hpp
+│   │   │   ├── matrix_double2x2_precision.hpp
+│   │   │   ├── matrix_double2x3.hpp
+│   │   │   ├── matrix_double2x3_precision.hpp
+│   │   │   ├── matrix_double2x4.hpp
+│   │   │   ├── matrix_double2x4_precision.hpp
+│   │   │   ├── matrix_double3x2.hpp
+│   │   │   ├── matrix_double3x2_precision.hpp
+│   │   │   ├── matrix_double3x3.hpp
+│   │   │   ├── matrix_double3x3_precision.hpp
+│   │   │   ├── matrix_double3x4.hpp
+│   │   │   ├── matrix_double3x4_precision.hpp
+│   │   │   ├── matrix_double4x2.hpp
+│   │   │   ├── matrix_double4x2_precision.hpp
+│   │   │   ├── matrix_double4x3.hpp
+│   │   │   ├── matrix_double4x3_precision.hpp
+│   │   │   ├── matrix_double4x4.hpp
+│   │   │   ├── matrix_double4x4_precision.hpp
+│   │   │   ├── matrix_float2x2.hpp
+│   │   │   ├── matrix_float2x2_precision.hpp
+│   │   │   ├── matrix_float2x3.hpp
+│   │   │   ├── matrix_float2x3_precision.hpp
+│   │   │   ├── matrix_float2x4.hpp
+│   │   │   ├── matrix_float2x4_precision.hpp
+│   │   │   ├── matrix_float3x2.hpp
+│   │   │   ├── matrix_float3x2_precision.hpp
+│   │   │   ├── matrix_float3x3.hpp
+│   │   │   ├── matrix_float3x3_precision.hpp
+│   │   │   ├── matrix_float3x4.hpp
+│   │   │   ├── matrix_float3x4_precision.hpp
+│   │   │   ├── matrix_float4x2.hpp
+│   │   │   ├── matrix_float4x2_precision.hpp
+│   │   │   ├── matrix_float4x3.hpp
+│   │   │   ├── matrix_float4x3_precision.hpp
+│   │   │   ├── matrix_float4x4.hpp
+│   │   │   ├── matrix_float4x4_precision.hpp
+│   │   │   ├── matrix_int2x2.hpp
+│   │   │   ├── matrix_int2x2_sized.hpp
+│   │   │   ├── matrix_int2x3.hpp
+│   │   │   ├── matrix_int2x3_sized.hpp
+│   │   │   ├── matrix_int2x4.hpp
+│   │   │   ├── matrix_int2x4_sized.hpp
+│   │   │   ├── matrix_int3x2.hpp
+│   │   │   ├── matrix_int3x2_sized.hpp
+│   │   │   ├── matrix_int3x3.hpp
+│   │   │   ├── matrix_int3x3_sized.hpp
+│   │   │   ├── matrix_int3x4.hpp
+│   │   │   ├── matrix_int3x4_sized.hpp
+│   │   │   ├── matrix_int4x2.hpp
+│   │   │   ├── matrix_int4x2_sized.hpp
+│   │   │   ├── matrix_int4x3.hpp
+│   │   │   ├── matrix_int4x3_sized.hpp
+│   │   │   ├── matrix_int4x4.hpp
+│   │   │   ├── matrix_int4x4_sized.hpp
+│   │   │   ├── matrix_integer.hpp
+│   │   │   ├── matrix_integer.inl
+│   │   │   ├── matrix_projection.hpp
+│   │   │   ├── matrix_projection.inl
+│   │   │   ├── matrix_relational.hpp
+│   │   │   ├── matrix_relational.inl
+│   │   │   ├── matrix_transform.hpp
+│   │   │   ├── matrix_transform.inl
+│   │   │   ├── matrix_uint2x2.hpp
+│   │   │   ├── matrix_uint2x2_sized.hpp
+│   │   │   ├── matrix_uint2x3.hpp
+│   │   │   ├── matrix_uint2x3_sized.hpp
+│   │   │   ├── matrix_uint2x4.hpp
+│   │   │   ├── matrix_uint2x4_sized.hpp
+│   │   │   ├── matrix_uint3x2.hpp
+│   │   │   ├── matrix_uint3x2_sized.hpp
+│   │   │   ├── matrix_uint3x3.hpp
+│   │   │   ├── matrix_uint3x3_sized.hpp
+│   │   │   ├── matrix_uint3x4.hpp
+│   │   │   ├── matrix_uint3x4_sized.hpp
+│   │   │   ├── matrix_uint4x2.hpp
+│   │   │   ├── matrix_uint4x2_sized.hpp
+│   │   │   ├── matrix_uint4x3.hpp
+│   │   │   ├── matrix_uint4x3_sized.hpp
+│   │   │   ├── matrix_uint4x4.hpp
+│   │   │   ├── matrix_uint4x4_sized.hpp
+│   │   │   ├── _matrix_vectorize.hpp
+│   │   │   ├── quaternion_common.hpp
+│   │   │   ├── quaternion_common.inl
+│   │   │   ├── quaternion_common_simd.inl
+│   │   │   ├── quaternion_double.hpp
+│   │   │   ├── quaternion_double_precision.hpp
+│   │   │   ├── quaternion_exponential.hpp
+│   │   │   ├── quaternion_exponential.inl
+│   │   │   ├── quaternion_float.hpp
+│   │   │   ├── quaternion_float_precision.hpp
+│   │   │   ├── quaternion_geometric.hpp
+│   │   │   ├── quaternion_geometric.inl
+│   │   │   ├── quaternion_relational.hpp
+│   │   │   ├── quaternion_relational.inl
+│   │   │   ├── quaternion_transform.hpp
+│   │   │   ├── quaternion_transform.inl
+│   │   │   ├── quaternion_trigonometric.hpp
+│   │   │   ├── quaternion_trigonometric.inl
+│   │   │   ├── scalar_common.hpp
+│   │   │   ├── scalar_common.inl
+│   │   │   ├── scalar_constants.hpp
+│   │   │   ├── scalar_constants.inl
+│   │   │   ├── scalar_integer.hpp
+│   │   │   ├── scalar_integer.inl
+│   │   │   ├── scalar_int_sized.hpp
+│   │   │   ├── scalar_packing.hpp
+│   │   │   ├── scalar_packing.inl
+│   │   │   ├── scalar_reciprocal.hpp
+│   │   │   ├── scalar_reciprocal.inl
+│   │   │   ├── scalar_relational.hpp
+│   │   │   ├── scalar_relational.inl
+│   │   │   ├── scalar_uint_sized.hpp
+│   │   │   ├── scalar_ulp.hpp
+│   │   │   ├── scalar_ulp.inl
+│   │   │   ├── vector_bool1.hpp
+│   │   │   ├── vector_bool1_precision.hpp
+│   │   │   ├── vector_bool2.hpp
+│   │   │   ├── vector_bool2_precision.hpp
+│   │   │   ├── vector_bool3.hpp
+│   │   │   ├── vector_bool3_precision.hpp
+│   │   │   ├── vector_bool4.hpp
+│   │   │   ├── vector_bool4_precision.hpp
+│   │   │   ├── vector_common.hpp
+│   │   │   ├── vector_common.inl
+│   │   │   ├── vector_double1.hpp
+│   │   │   ├── vector_double1_precision.hpp
+│   │   │   ├── vector_double2.hpp
+│   │   │   ├── vector_double2_precision.hpp
+│   │   │   ├── vector_double3.hpp
+│   │   │   ├── vector_double3_precision.hpp
+│   │   │   ├── vector_double4.hpp
+│   │   │   ├── vector_double4_precision.hpp
+│   │   │   ├── vector_float1.hpp
+│   │   │   ├── vector_float1_precision.hpp
+│   │   │   ├── vector_float2.hpp
+│   │   │   ├── vector_float2_precision.hpp
+│   │   │   ├── vector_float3.hpp
+│   │   │   ├── vector_float3_precision.hpp
+│   │   │   ├── vector_float4.hpp
+│   │   │   ├── vector_float4_precision.hpp
+│   │   │   ├── vector_int1.hpp
+│   │   │   ├── vector_int1_sized.hpp
+│   │   │   ├── vector_int2.hpp
+│   │   │   ├── vector_int2_sized.hpp
+│   │   │   ├── vector_int3.hpp
+│   │   │   ├── vector_int3_sized.hpp
+│   │   │   ├── vector_int4.hpp
+│   │   │   ├── vector_int4_sized.hpp
+│   │   │   ├── vector_integer.hpp
+│   │   │   ├── vector_integer.inl
+│   │   │   ├── vector_packing.hpp
+│   │   │   ├── vector_packing.inl
+│   │   │   ├── vector_reciprocal.hpp
+│   │   │   ├── vector_reciprocal.inl
+│   │   │   ├── vector_relational.hpp
+│   │   │   ├── vector_relational.inl
+│   │   │   ├── vector_uint1.hpp
+│   │   │   ├── vector_uint1_sized.hpp
+│   │   │   ├── vector_uint2.hpp
+│   │   │   ├── vector_uint2_sized.hpp
+│   │   │   ├── vector_uint3.hpp
+│   │   │   ├── vector_uint3_sized.hpp
+│   │   │   ├── vector_uint4.hpp
+│   │   │   ├── vector_uint4_sized.hpp
+│   │   │   ├── vector_ulp.hpp
+│   │   │   └── vector_ulp.inl
+│   │   ├── ext.hpp
+│   │   ├── fwd.hpp
+│   │   ├── geometric.hpp
+│   │   ├── glm.cppm
+│   │   ├── glm.hpp
+│   │   ├── gtc
+│   │   │   ├── bitfield.hpp
+│   │   │   ├── bitfield.inl
+│   │   │   ├── color_space.hpp
+│   │   │   ├── color_space.inl
+│   │   │   ├── constants.hpp
+│   │   │   ├── constants.inl
+│   │   │   ├── epsilon.hpp
+│   │   │   ├── epsilon.inl
+│   │   │   ├── integer.hpp
+│   │   │   ├── integer.inl
+│   │   │   ├── matrix_access.hpp
+│   │   │   ├── matrix_access.inl
+│   │   │   ├── matrix_integer.hpp
+│   │   │   ├── matrix_inverse.hpp
+│   │   │   ├── matrix_inverse.inl
+│   │   │   ├── matrix_transform.hpp
+│   │   │   ├── matrix_transform.inl
+│   │   │   ├── noise.hpp
+│   │   │   ├── noise.inl
+│   │   │   ├── packing.hpp
+│   │   │   ├── packing.inl
+│   │   │   ├── quaternion.hpp
+│   │   │   ├── quaternion.inl
+│   │   │   ├── quaternion_simd.inl
+│   │   │   ├── random.hpp
+│   │   │   ├── random.inl
+│   │   │   ├── reciprocal.hpp
+│   │   │   ├── round.hpp
+│   │   │   ├── round.inl
+│   │   │   ├── type_aligned.hpp
+│   │   │   ├── type_precision.hpp
+│   │   │   ├── type_precision.inl
+│   │   │   ├── type_ptr.hpp
+│   │   │   ├── type_ptr.inl
+│   │   │   ├── ulp.hpp
+│   │   │   ├── ulp.inl
+│   │   │   └── vec1.hpp
+│   │   ├── gtx
+│   │   │   ├── associated_min_max.hpp
+│   │   │   ├── associated_min_max.inl
+│   │   │   ├── bit.hpp
+│   │   │   ├── bit.inl
+│   │   │   ├── closest_point.hpp
+│   │   │   ├── closest_point.inl
+│   │   │   ├── color_encoding.hpp
+│   │   │   ├── color_encoding.inl
+│   │   │   ├── color_space.hpp
+│   │   │   ├── color_space.inl
+│   │   │   ├── color_space_YCoCg.hpp
+│   │   │   ├── color_space_YCoCg.inl
+│   │   │   ├── common.hpp
+│   │   │   ├── common.inl
+│   │   │   ├── compatibility.hpp
+│   │   │   ├── compatibility.inl
+│   │   │   ├── component_wise.hpp
+│   │   │   ├── component_wise.inl
+│   │   │   ├── dual_quaternion.hpp
+│   │   │   ├── dual_quaternion.inl
+│   │   │   ├── easing.hpp
+│   │   │   ├── easing.inl
+│   │   │   ├── euler_angles.hpp
+│   │   │   ├── euler_angles.inl
+│   │   │   ├── extended_min_max.hpp
+│   │   │   ├── extended_min_max.inl
+│   │   │   ├── extend.hpp
+│   │   │   ├── extend.inl
+│   │   │   ├── exterior_product.hpp
+│   │   │   ├── exterior_product.inl
+│   │   │   ├── fast_exponential.hpp
+│   │   │   ├── fast_exponential.inl
+│   │   │   ├── fast_square_root.hpp
+│   │   │   ├── fast_square_root.inl
+│   │   │   ├── fast_trigonometry.hpp
+│   │   │   ├── fast_trigonometry.inl
+│   │   │   ├── float_notmalize.inl
+│   │   │   ├── functions.hpp
+│   │   │   ├── functions.inl
+│   │   │   ├── gradient_paint.hpp
+│   │   │   ├── gradient_paint.inl
+│   │   │   ├── handed_coordinate_space.hpp
+│   │   │   ├── handed_coordinate_space.inl
+│   │   │   ├── hash.hpp
+│   │   │   ├── hash.inl
+│   │   │   ├── integer.hpp
+│   │   │   ├── integer.inl
+│   │   │   ├── intersect.hpp
+│   │   │   ├── intersect.inl
+│   │   │   ├── io.hpp
+│   │   │   ├── io.inl
+│   │   │   ├── log_base.hpp
+│   │   │   ├── log_base.inl
+│   │   │   ├── matrix_cross_product.hpp
+│   │   │   ├── matrix_cross_product.inl
+│   │   │   ├── matrix_decompose.hpp
+│   │   │   ├── matrix_decompose.inl
+│   │   │   ├── matrix_factorisation.hpp
+│   │   │   ├── matrix_factorisation.inl
+│   │   │   ├── matrix_interpolation.hpp
+│   │   │   ├── matrix_interpolation.inl
+│   │   │   ├── matrix_major_storage.hpp
+│   │   │   ├── matrix_major_storage.inl
+│   │   │   ├── matrix_operation.hpp
+│   │   │   ├── matrix_operation.inl
+│   │   │   ├── matrix_query.hpp
+│   │   │   ├── matrix_query.inl
+│   │   │   ├── matrix_transform_2d.hpp
+│   │   │   ├── matrix_transform_2d.inl
+│   │   │   ├── mixed_product.hpp
+│   │   │   ├── mixed_product.inl
+│   │   │   ├── normal.hpp
+│   │   │   ├── normal.inl
+│   │   │   ├── normalize_dot.hpp
+│   │   │   ├── normalize_dot.inl
+│   │   │   ├── norm.hpp
+│   │   │   ├── norm.inl
+│   │   │   ├── number_precision.hpp
+│   │   │   ├── optimum_pow.hpp
+│   │   │   ├── optimum_pow.inl
+│   │   │   ├── orthonormalize.hpp
+│   │   │   ├── orthonormalize.inl
+│   │   │   ├── pca.hpp
+│   │   │   ├── pca.inl
+│   │   │   ├── perpendicular.hpp
+│   │   │   ├── perpendicular.inl
+│   │   │   ├── polar_coordinates.hpp
+│   │   │   ├── polar_coordinates.inl
+│   │   │   ├── projection.hpp
+│   │   │   ├── projection.inl
+│   │   │   ├── quaternion.hpp
+│   │   │   ├── quaternion.inl
+│   │   │   ├── range.hpp
+│   │   │   ├── raw_data.hpp
+│   │   │   ├── raw_data.inl
+│   │   │   ├── rotate_normalized_axis.hpp
+│   │   │   ├── rotate_normalized_axis.inl
+│   │   │   ├── rotate_vector.hpp
+│   │   │   ├── rotate_vector.inl
+│   │   │   ├── scalar_multiplication.hpp
+│   │   │   ├── scalar_relational.hpp
+│   │   │   ├── scalar_relational.inl
+│   │   │   ├── spline.hpp
+│   │   │   ├── spline.inl
+│   │   │   ├── std_based_type.hpp
+│   │   │   ├── std_based_type.inl
+│   │   │   ├── string_cast.hpp
+│   │   │   ├── string_cast.inl
+│   │   │   ├── texture.hpp
+│   │   │   ├── texture.inl
+│   │   │   ├── transform2.hpp
+│   │   │   ├── transform2.inl
+│   │   │   ├── transform.hpp
+│   │   │   ├── transform.inl
+│   │   │   ├── type_aligned.hpp
+│   │   │   ├── type_aligned.inl
+│   │   │   ├── type_trait.hpp
+│   │   │   ├── type_trait.inl
+│   │   │   ├── vec_swizzle.hpp
+│   │   │   ├── vector_angle.hpp
+│   │   │   ├── vector_angle.inl
+│   │   │   ├── vector_query.hpp
+│   │   │   ├── vector_query.inl
+│   │   │   ├── wrap.hpp
+│   │   │   └── wrap.inl
+│   │   ├── integer.hpp
+│   │   ├── mat2x2.hpp
+│   │   ├── mat2x3.hpp
+│   │   ├── mat2x4.hpp
+│   │   ├── mat3x2.hpp
+│   │   ├── mat3x3.hpp
+│   │   ├── mat3x4.hpp
+│   │   ├── mat4x2.hpp
+│   │   ├── mat4x3.hpp
+│   │   ├── mat4x4.hpp
+│   │   ├── matrix.hpp
+│   │   ├── packing.hpp
+│   │   ├── simd
+│   │   │   ├── common.h
+│   │   │   ├── exponential.h
+│   │   │   ├── geometric.h
+│   │   │   ├── integer.h
+│   │   │   ├── matrix.h
+│   │   │   ├── neon.h
+│   │   │   ├── packing.h
+│   │   │   ├── platform.h
+│   │   │   ├── trigonometric.h
+│   │   │   └── vector_relational.h
+│   │   ├── trigonometric.hpp
+│   │   ├── vec2.hpp
+│   │   ├── vec3.hpp
+│   │   ├── vec4.hpp
+│   │   └── vector_relational.hpp
+│   ├── stb
+│   │   ├── data
+│   │   │   ├── atari_8bit_font_revised.png
+│   │   │   ├── easy_font_raw.png
+│   │   │   ├── herringbone
+│   │   │   │   ├── license.txt
+│   │   │   │   ├── template_caves_limit_connectivity.png
+│   │   │   │   ├── template_caves_tiny_corridors.png
+│   │   │   │   ├── template_corner_caves.png
+│   │   │   │   ├── template_horizontal_corridors_v1.png
+│   │   │   │   ├── template_horizontal_corridors_v2.png
+│   │   │   │   ├── template_horizontal_corridors_v3.png
+│   │   │   │   ├── template_limit_connectivity_fat.png
+│   │   │   │   ├── template_limited_connectivity.png
+│   │   │   │   ├── template_maze_2_wide.png
+│   │   │   │   ├── template_maze_plus_2_wide.png
+│   │   │   │   ├── template_open_areas.png
+│   │   │   │   ├── template_ref2_corner_caves.png
+│   │   │   │   ├── template_rooms_and_corridors_2_wide_diagonal_bias.png
+│   │   │   │   ├── template_rooms_and_corridors.png
+│   │   │   │   ├── template_rooms_limit_connectivity.png
+│   │   │   │   ├── template_round_rooms_diagonal_corridors.png
+│   │   │   │   ├── template_sean_dungeon.png
+│   │   │   │   ├── template_simple_caves_2_wide.png
+│   │   │   │   └── template_square_rooms_with_random_rects.png
+│   │   │   ├── map_01.png
+│   │   │   ├── map_02.png
+│   │   │   └── map_03.png
+│   │   ├── deprecated
+│   │   │   ├── rrsprintf.h
+│   │   │   ├── stb.h
+│   │   │   ├── stb_image.c
+│   │   │   ├── stb_image_resize.h
+│   │   │   ├── stretch_test.c
+│   │   │   ├── stretchy_buffer.h
+│   │   │   └── stretchy_buffer.txt
+│   │   ├── docs
+│   │   │   ├── other_libs.md
+│   │   │   ├── stb_howto.txt
+│   │   │   ├── stb_voxel_render_interview.md
+│   │   │   └── why_public_domain.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── stb_c_lexer.h
+│   │   ├── stb_connected_components.h
+│   │   ├── stb_divide.h
+│   │   ├── stb_ds.h
+│   │   ├── stb_dxt.h
+│   │   ├── stb_easy_font.h
+│   │   ├── stb_herringbone_wang_tile.h
+│   │   ├── stb_hexwave.h
+│   │   ├── stb_image.h
+│   │   ├── stb_image_resize2.h
+│   │   ├── stb_image_resize_test
+│   │   │   ├── dotimings.c
+│   │   │   ├── old_image_resize.h
+│   │   │   ├── oldir.c
+│   │   │   ├── stbirtest.c
+│   │   │   └── vf_train.c
+│   │   ├── stb_image_write.h
+│   │   ├── stb_include.h
+│   │   ├── stb_leakcheck.h
+│   │   ├── stb_perlin.h
+│   │   ├── stb_rect_pack.h
+│   │   ├── stb_sprintf.h
+│   │   ├── stb_textedit.h
+│   │   ├── stb_tilemap_editor.h
+│   │   ├── stb_truetype.h
+│   │   ├── stb_vorbis.c
+│   │   ├── stb_voxel_render.h
+│   │   ├── tests
+│   │   │   ├── caveview
+│   │   │   │   ├── cave_main.c
+│   │   │   │   ├── cave_mesher.c
+│   │   │   │   ├── cave_parse.c
+│   │   │   │   ├── cave_parse.h
+│   │   │   │   ├── cave_render.c
+│   │   │   │   ├── caveview.dsp
+│   │   │   │   ├── caveview.dsw
+│   │   │   │   ├── caveview.h
+│   │   │   │   ├── glext.h
+│   │   │   │   ├── glext_list.h
+│   │   │   │   ├── main.c
+│   │   │   │   ├── README.md
+│   │   │   │   ├── stb_gl.h
+│   │   │   │   ├── stb_glprog.h
+│   │   │   │   └── win32
+│   │   │   │       └── SDL_windows_main.c
+│   │   │   ├── c_lexer_test.c
+│   │   │   ├── c_lexer_test.dsp
+│   │   │   ├── fuzz_main.c
+│   │   │   ├── grid_reachability.c
+│   │   │   ├── herringbone.dsp
+│   │   │   ├── herringbone_generator.c
+│   │   │   ├── herringbone_map.c
+│   │   │   ├── herringbone_map.dsp
+│   │   │   ├── image_test.c
+│   │   │   ├── image_test.dsp
+│   │   │   ├── image_write_test.c
+│   │   │   ├── Makefile
+│   │   │   ├── ossfuzz.sh
+│   │   │   ├── oversample
+│   │   │   │   ├── main.c
+│   │   │   │   ├── oversample.dsp
+│   │   │   │   ├── oversample.dsw
+│   │   │   │   ├── oversample.exe
+│   │   │   │   ├── README.md
+│   │   │   │   └── stb_wingraph.h
+│   │   │   ├── pbm
+│   │   │   │   ├── basi0g16.pgm
+│   │   │   │   ├── basi2c16.ppm
+│   │   │   │   ├── cdfn2c08.ppm
+│   │   │   │   ├── cdun2c08.ppm
+│   │   │   │   ├── comment.pgm
+│   │   │   │   └── ctfn0g04.pgm
+│   │   │   ├── pg_test
+│   │   │   │   └── pg_test.c
+│   │   │   ├── pngsuite
+│   │   │   │   ├── 16bit
+│   │   │   │   │   ├── basi0g16.png
+│   │   │   │   │   ├── basi2c16.png
+│   │   │   │   │   ├── basi4a16.png
+│   │   │   │   │   ├── basi6a16.png
+│   │   │   │   │   ├── basn0g16.png
+│   │   │   │   │   ├── basn2c16.png
+│   │   │   │   │   ├── basn4a16.png
+│   │   │   │   │   ├── basn6a16.png
+│   │   │   │   │   ├── bgai4a16.png
+│   │   │   │   │   ├── bgan6a16.png
+│   │   │   │   │   ├── bggn4a16.png
+│   │   │   │   │   ├── bgyn6a16.png
+│   │   │   │   │   ├── oi1n0g16.png
+│   │   │   │   │   ├── oi1n2c16.png
+│   │   │   │   │   ├── oi2n0g16.png
+│   │   │   │   │   ├── oi2n2c16.png
+│   │   │   │   │   ├── oi4n0g16.png
+│   │   │   │   │   ├── oi4n2c16.png
+│   │   │   │   │   ├── oi9n0g16.png
+│   │   │   │   │   ├── oi9n2c16.png
+│   │   │   │   │   ├── tbbn2c16.png
+│   │   │   │   │   ├── tbgn2c16.png
+│   │   │   │   │   └── tbwn0g16.png
+│   │   │   │   ├── corrupt
+│   │   │   │   │   ├── xc1n0g08.png
+│   │   │   │   │   ├── xc9n2c08.png
+│   │   │   │   │   ├── xcrn0g04.png
+│   │   │   │   │   ├── xcsn0g01.png
+│   │   │   │   │   ├── xd0n2c08.png
+│   │   │   │   │   ├── xd3n2c08.png
+│   │   │   │   │   ├── xd9n2c08.png
+│   │   │   │   │   ├── xdtn0g01.png
+│   │   │   │   │   ├── xhdn0g08.png
+│   │   │   │   │   ├── xlfn0g04.png
+│   │   │   │   │   ├── xs1n0g01.png
+│   │   │   │   │   ├── xs2n0g01.png
+│   │   │   │   │   ├── xs4n0g01.png
+│   │   │   │   │   └── xs7n0g01.png
+│   │   │   │   ├── iphone
+│   │   │   │   │   ├── iphone_basi0g01.png
+│   │   │   │   │   ├── iphone_basi0g02.png
+│   │   │   │   │   ├── iphone_basi3p02.png
+│   │   │   │   │   ├── iphone_bgwn6a08.png
+│   │   │   │   │   ├── iphone_bgyn6a16.png
+│   │   │   │   │   ├── iphone_tbyn3p08.png
+│   │   │   │   │   └── iphone_z06n2c08.png
+│   │   │   │   ├── PngSuite.LICENSE
+│   │   │   │   ├── primary
+│   │   │   │   │   ├── basi0g01.png
+│   │   │   │   │   ├── basi0g02.png
+│   │   │   │   │   ├── basi0g04.png
+│   │   │   │   │   ├── basi0g08.png
+│   │   │   │   │   ├── basi2c08.png
+│   │   │   │   │   ├── basi3p01.png
+│   │   │   │   │   ├── basi3p02.png
+│   │   │   │   │   ├── basi3p04.png
+│   │   │   │   │   ├── basi3p08.png
+│   │   │   │   │   ├── basi4a08.png
+│   │   │   │   │   ├── basi6a08.png
+│   │   │   │   │   ├── basn0g01.png
+│   │   │   │   │   ├── basn0g02.png
+│   │   │   │   │   ├── basn0g04.png
+│   │   │   │   │   ├── basn0g08.png
+│   │   │   │   │   ├── basn2c08.png
+│   │   │   │   │   ├── basn3p01.png
+│   │   │   │   │   ├── basn3p02.png
+│   │   │   │   │   ├── basn3p04.png
+│   │   │   │   │   ├── basn3p08.png
+│   │   │   │   │   ├── basn4a08.png
+│   │   │   │   │   ├── basn6a08.png
+│   │   │   │   │   ├── bgai4a08.png
+│   │   │   │   │   ├── bgan6a08.png
+│   │   │   │   │   ├── bgbn4a08.png
+│   │   │   │   │   ├── bgwn6a08.png
+│   │   │   │   │   ├── s01i3p01.png
+│   │   │   │   │   ├── s01n3p01.png
+│   │   │   │   │   ├── s02i3p01.png
+│   │   │   │   │   ├── s02n3p01.png
+│   │   │   │   │   ├── s03i3p01.png
+│   │   │   │   │   ├── s03n3p01.png
+│   │   │   │   │   ├── s04i3p01.png
+│   │   │   │   │   ├── s04n3p01.png
+│   │   │   │   │   ├── s05i3p02.png
+│   │   │   │   │   ├── s05n3p02.png
+│   │   │   │   │   ├── s06i3p02.png
+│   │   │   │   │   ├── s06n3p02.png
+│   │   │   │   │   ├── s07i3p02.png
+│   │   │   │   │   ├── s07n3p02.png
+│   │   │   │   │   ├── s08i3p02.png
+│   │   │   │   │   ├── s08n3p02.png
+│   │   │   │   │   ├── s09i3p02.png
+│   │   │   │   │   ├── s09n3p02.png
+│   │   │   │   │   ├── s32i3p04.png
+│   │   │   │   │   ├── s32n3p04.png
+│   │   │   │   │   ├── s33i3p04.png
+│   │   │   │   │   ├── s33n3p04.png
+│   │   │   │   │   ├── s34i3p04.png
+│   │   │   │   │   ├── s34n3p04.png
+│   │   │   │   │   ├── s35i3p04.png
+│   │   │   │   │   ├── s35n3p04.png
+│   │   │   │   │   ├── s36i3p04.png
+│   │   │   │   │   ├── s36n3p04.png
+│   │   │   │   │   ├── s37i3p04.png
+│   │   │   │   │   ├── s37n3p04.png
+│   │   │   │   │   ├── s38i3p04.png
+│   │   │   │   │   ├── s38n3p04.png
+│   │   │   │   │   ├── s39i3p04.png
+│   │   │   │   │   ├── s39n3p04.png
+│   │   │   │   │   ├── s40i3p04.png
+│   │   │   │   │   ├── s40n3p04.png
+│   │   │   │   │   ├── tbbn0g04.png
+│   │   │   │   │   ├── tbbn3p08.png
+│   │   │   │   │   ├── tbgn3p08.png
+│   │   │   │   │   ├── tbrn2c08.png
+│   │   │   │   │   ├── tbwn3p08.png
+│   │   │   │   │   ├── tbyn3p08.png
+│   │   │   │   │   ├── tm3n3p02.png
+│   │   │   │   │   ├── tp0n0g08.png
+│   │   │   │   │   ├── tp0n2c08.png
+│   │   │   │   │   ├── tp0n3p08.png
+│   │   │   │   │   ├── tp1n3p08.png
+│   │   │   │   │   ├── z00n2c08.png
+│   │   │   │   │   ├── z03n2c08.png
+│   │   │   │   │   ├── z06n2c08.png
+│   │   │   │   │   └── z09n2c08.png
+│   │   │   │   ├── primary_check
+│   │   │   │   │   ├── basi0g01.png
+│   │   │   │   │   ├── basi0g02.png
+│   │   │   │   │   ├── basi0g04.png
+│   │   │   │   │   ├── basi0g08.png
+│   │   │   │   │   ├── basi2c08.png
+│   │   │   │   │   ├── basi3p01.png
+│   │   │   │   │   ├── basi3p02.png
+│   │   │   │   │   ├── basi3p04.png
+│   │   │   │   │   ├── basi3p08.png
+│   │   │   │   │   ├── basi4a08.png
+│   │   │   │   │   ├── basi6a08.png
+│   │   │   │   │   ├── basn0g01.png
+│   │   │   │   │   ├── basn0g02.png
+│   │   │   │   │   ├── basn0g04.png
+│   │   │   │   │   ├── basn0g08.png
+│   │   │   │   │   ├── basn2c08.png
+│   │   │   │   │   ├── basn3p01.png
+│   │   │   │   │   ├── basn3p02.png
+│   │   │   │   │   ├── basn3p04.png
+│   │   │   │   │   ├── basn3p08.png
+│   │   │   │   │   ├── basn4a08.png
+│   │   │   │   │   ├── basn6a08.png
+│   │   │   │   │   ├── bgai4a08.png
+│   │   │   │   │   ├── bgan6a08.png
+│   │   │   │   │   ├── bgbn4a08.png
+│   │   │   │   │   ├── bgwn6a08.png
+│   │   │   │   │   ├── s01i3p01.png
+│   │   │   │   │   ├── s01n3p01.png
+│   │   │   │   │   ├── s02i3p01.png
+│   │   │   │   │   ├── s02n3p01.png
+│   │   │   │   │   ├── s03i3p01.png
+│   │   │   │   │   ├── s03n3p01.png
+│   │   │   │   │   ├── s04i3p01.png
+│   │   │   │   │   ├── s04n3p01.png
+│   │   │   │   │   ├── s05i3p02.png
+│   │   │   │   │   ├── s05n3p02.png
+│   │   │   │   │   ├── s06i3p02.png
+│   │   │   │   │   ├── s06n3p02.png
+│   │   │   │   │   ├── s07i3p02.png
+│   │   │   │   │   ├── s07n3p02.png
+│   │   │   │   │   ├── s08i3p02.png
+│   │   │   │   │   ├── s08n3p02.png
+│   │   │   │   │   ├── s09i3p02.png
+│   │   │   │   │   ├── s09n3p02.png
+│   │   │   │   │   ├── s32i3p04.png
+│   │   │   │   │   ├── s32n3p04.png
+│   │   │   │   │   ├── s33i3p04.png
+│   │   │   │   │   ├── s33n3p04.png
+│   │   │   │   │   ├── s34i3p04.png
+│   │   │   │   │   ├── s34n3p04.png
+│   │   │   │   │   ├── s35i3p04.png
+│   │   │   │   │   ├── s35n3p04.png
+│   │   │   │   │   ├── s36i3p04.png
+│   │   │   │   │   ├── s36n3p04.png
+│   │   │   │   │   ├── s37i3p04.png
+│   │   │   │   │   ├── s37n3p04.png
+│   │   │   │   │   ├── s38i3p04.png
+│   │   │   │   │   ├── s38n3p04.png
+│   │   │   │   │   ├── s39i3p04.png
+│   │   │   │   │   ├── s39n3p04.png
+│   │   │   │   │   ├── s40i3p04.png
+│   │   │   │   │   ├── s40n3p04.png
+│   │   │   │   │   ├── tbbn0g04.png
+│   │   │   │   │   ├── tbbn3p08.png
+│   │   │   │   │   ├── tbgn3p08.png
+│   │   │   │   │   ├── tbrn2c08.png
+│   │   │   │   │   ├── tbwn3p08.png
+│   │   │   │   │   ├── tbyn3p08.png
+│   │   │   │   │   ├── tm3n3p02.png
+│   │   │   │   │   ├── tp0n0g08.png
+│   │   │   │   │   ├── tp0n2c08.png
+│   │   │   │   │   ├── tp0n3p08.png
+│   │   │   │   │   ├── tp1n3p08.png
+│   │   │   │   │   ├── z00n2c08.png
+│   │   │   │   │   ├── z03n2c08.png
+│   │   │   │   │   ├── z06n2c08.png
+│   │   │   │   │   └── z09n2c08.png
+│   │   │   │   ├── ref_results.csv
+│   │   │   │   └── unused
+│   │   │   │       ├── ccwn2c08.png
+│   │   │   │       ├── ccwn3p08.png
+│   │   │   │       ├── cdfn2c08.png
+│   │   │   │       ├── cdhn2c08.png
+│   │   │   │       ├── cdsn2c08.png
+│   │   │   │       ├── cdun2c08.png
+│   │   │   │       ├── ch1n3p04.png
+│   │   │   │       ├── ch2n3p08.png
+│   │   │   │       ├── cm0n0g04.png
+│   │   │   │       ├── cm7n0g04.png
+│   │   │   │       ├── cm9n0g04.png
+│   │   │   │       ├── cs3n2c16.png
+│   │   │   │       ├── cs3n3p08.png
+│   │   │   │       ├── cs5n2c08.png
+│   │   │   │       ├── cs5n3p08.png
+│   │   │   │       ├── cs8n2c08.png
+│   │   │   │       ├── cs8n3p08.png
+│   │   │   │       ├── ct0n0g04.png
+│   │   │   │       ├── ct1n0g04.png
+│   │   │   │       ├── cten0g04.png
+│   │   │   │       ├── ctfn0g04.png
+│   │   │   │       ├── ctgn0g04.png
+│   │   │   │       ├── cthn0g04.png
+│   │   │   │       ├── ctjn0g04.png
+│   │   │   │       ├── ctzn0g04.png
+│   │   │   │       ├── f00n0g08.png
+│   │   │   │       ├── f00n2c08.png
+│   │   │   │       ├── f01n0g08.png
+│   │   │   │       ├── f01n2c08.png
+│   │   │   │       ├── f02n0g08.png
+│   │   │   │       ├── f02n2c08.png
+│   │   │   │       ├── f03n0g08.png
+│   │   │   │       ├── f03n2c08.png
+│   │   │   │       ├── f04n0g08.png
+│   │   │   │       ├── f04n2c08.png
+│   │   │   │       ├── f99n0g04.png
+│   │   │   │       ├── g03n0g16.png
+│   │   │   │       ├── g03n2c08.png
+│   │   │   │       ├── g03n3p04.png
+│   │   │   │       ├── g04n0g16.png
+│   │   │   │       ├── g04n2c08.png
+│   │   │   │       ├── g04n3p04.png
+│   │   │   │       ├── g05n0g16.png
+│   │   │   │       ├── g05n2c08.png
+│   │   │   │       ├── g05n3p04.png
+│   │   │   │       ├── g07n0g16.png
+│   │   │   │       ├── g07n2c08.png
+│   │   │   │       ├── g07n3p04.png
+│   │   │   │       ├── g10n0g16.png
+│   │   │   │       ├── g10n2c08.png
+│   │   │   │       ├── g10n3p04.png
+│   │   │   │       ├── g25n0g16.png
+│   │   │   │       ├── g25n2c08.png
+│   │   │   │       ├── g25n3p04.png
+│   │   │   │       ├── pp0n2c16.png
+│   │   │   │       ├── pp0n6a08.png
+│   │   │   │       ├── ps1n0g08.png
+│   │   │   │       ├── ps1n2c16.png
+│   │   │   │       ├── ps2n0g08.png
+│   │   │   │       └── ps2n2c16.png
+│   │   │   ├── prerelease
+│   │   │   │   └── stb_lib.h
+│   │   │   ├── resample_test_c.c
+│   │   │   ├── resample_test.cpp
+│   │   │   ├── resize.dsp
+│   │   │   ├── sdf
+│   │   │   │   ├── sdf_test_arial_16.png
+│   │   │   │   ├── sdf_test.c
+│   │   │   │   ├── sdf_test_times_16.png
+│   │   │   │   └── sdf_test_times_50.png
+│   │   │   ├── stb.c
+│   │   │   ├── stb_c_lexer_fuzzer.cpp
+│   │   │   ├── stb_cpp.cpp
+│   │   │   ├── stb_cpp.dsp
+│   │   │   ├── stb.dsp
+│   │   │   ├── stb.dsw
+│   │   │   ├── stbi_read_fuzzer.c
+│   │   │   ├── stblib.dsp
+│   │   │   ├── stblib_test.c
+│   │   │   ├── stblib_test_companion.c
+│   │   │   ├── stb_png.dict
+│   │   │   ├── stb_static.c
+│   │   │   ├── stretch_test.dsp
+│   │   │   ├── test_c_compilation.c
+│   │   │   ├── test_c_lexer.c
+│   │   │   ├── test_cpp_compilation.cpp
+│   │   │   ├── test_ds.c
+│   │   │   ├── test_ds_cpp.cpp
+│   │   │   ├── test_dxt.c
+│   │   │   ├── test_easyfont.c
+│   │   │   ├── test_image.c
+│   │   │   ├── test_image_write.c
+│   │   │   ├── test_perlin.c
+│   │   │   ├── test_png_paeth.c
+│   │   │   ├── test_png_regress.c
+│   │   │   ├── test.sbm
+│   │   │   ├── test_siphash.c
+│   │   │   ├── test_sprintf.c
+│   │   │   ├── test_truetype.c
+│   │   │   ├── test_vorbis.c
+│   │   │   ├── test_voxel.c
+│   │   │   ├── textedit_sample.c
+│   │   │   ├── tilemap_editor_integration_example.c
+│   │   │   ├── truetype_test_win32.c
+│   │   │   └── vorbseek
+│   │   │       ├── vorbseek.c
+│   │   │       └── vorbseek.dsp
+│   │   └── tools
+│   │       ├── build_matrix.c
+│   │       ├── easy_font_maker.c
+│   │       ├── make_readme.c
+│   │       ├── make_readme.dsp
+│   │       ├── mr.bat
+│   │       ├── README.footer.md
+│   │       ├── README.header.md
+│   │       ├── README.list
+│   │       ├── trailing_whitespace.c
+│   │       ├── unicode
+│   │       │   └── unicode.dsp
+│   │       └── unicode.c
+│   └── tinyobjloader
+│       ├── appveyor.yml
+│       ├── azure-pipelines.yml
+│       ├── bootstrap-cmake-linux-with-pyhthon.sh
+│       ├── BUILD.bazel
+│       ├── build.ninja
+│       ├── cmake
+│       │   ├── aarch64-linux-gnu.toolchain
+│       │   ├── ClangClCMakeCompileRules.cmake
+│       │   ├── clang-cl-msvc-windows.cmake
+│       │   ├── clang-cl-msvc-wsl.cmake
+│       │   ├── linux_i386.toolchain.cmake
+│       │   ├── llvm-mingw-cross.cmake
+│       │   ├── llvm-mingw-win64.cmake
+│       │   ├── mingw64-cross.cmake
+│       │   └── sanitizers
+│       │       ├── asan-wrapper
+│       │       ├── FindASan.cmake
+│       │       ├── FindMSan.cmake
+│       │       ├── FindSanitizers.cmake
+│       │       ├── FindTSan.cmake
+│       │       ├── FindUBSan.cmake
+│       │       └── sanitize-helpers.cmake
+│       ├── CMakeLists.txt
+│       ├── cmake_uninstall.cmake.in
+│       ├── deps
+│       │   └── cpplint.py
+│       ├── examples
+│       │   ├── callback_api
+│       │   │   ├── main.cc
+│       │   │   └── Makefile
+│       │   ├── obj_sticher
+│       │   │   ├── obj_sticher.cc
+│       │   │   ├── obj_writer.cc
+│       │   │   ├── obj_writer.h
+│       │   │   └── premake4.lua
+│       │   ├── skin_weight
+│       │   │   ├── main.cc
+│       │   │   ├── Makefile
+│       │   │   └── README.md
+│       │   ├── viewer
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── premake4.lua
+│       │   │   ├── README.md
+│       │   │   ├── stb_image.h
+│       │   │   ├── trackball.cc
+│       │   │   ├── trackball.h
+│       │   │   └── viewer.cc
+│       │   └── voxelize
+│       │       ├── main.cc
+│       │       ├── Makefile
+│       │       ├── README.md
+│       │       └── voxelizer.h
+│       ├── experimental
+│       │   ├── lfpAlloc
+│       │   │   ├── Allocator.hpp
+│       │   │   ├── ChunkList.hpp
+│       │   │   ├── LICENSE
+│       │   │   ├── PoolDispatcher.hpp
+│       │   │   ├── Pool.hpp
+│       │   │   └── Utils.hpp
+│       │   ├── premake5.lua
+│       │   ├── README.md
+│       │   ├── tinyobj_loader_opt.h
+│       │   ├── trackball.cc
+│       │   ├── trackball.h
+│       │   └── viewer.cc
+│       ├── fuzzer
+│       │   ├── afl.tar.gz
+│       │   ├── fuzz_ParseFromString.cc
+│       │   ├── README.md
+│       │   ├── regression_runner
+│       │   │   ├── Makefile
+│       │   │   └── README.md
+│       │   ├── regressions
+│       │   │   └── clusterfuzz-testcase-minimized-fuzz_ParseFromString-4877060179886080
+│       │   └── runner.py
+│       ├── images
+│       │   ├── rungholt.jpg
+│       │   └── sanmugel.png
+│       ├── jni
+│       │   ├── Android.mk
+│       │   ├── Application.mk
+│       │   ├── Makefile
+│       │   └── README
+│       ├── LICENSE
+│       ├── loader_example.cc
+│       ├── MANIFEST.in
+│       ├── mapbox
+│       │   ├── earcut.hpp
+│       │   └── LICENSE
+│       ├── models
+│       │   ├── catmark_torus_creases0.obj
+│       │   ├── colorspace-issue-184.mtl
+│       │   ├── colorspace-issue-184.obj
+│       │   ├── cornell_box.mtl
+│       │   ├── cornell_box_multimaterial.obj
+│       │   ├── cornell_box.obj
+│       │   ├── cube.mtl
+│       │   ├── cube.obj
+│       │   ├── cube-vertexcol.obj
+│       │   ├── cube-vertex-w-component.obj
+│       │   ├── cube_w_BOM.mtl
+│       │   ├── cube_w_BOM.obj
+│       │   ├── invalid-face-definition.mtl
+│       │   ├── invalid-face-definition.obj
+│       │   ├── invalid-relative-texture-index.obj
+│       │   ├── invalid-relative-vertex-index.obj
+│       │   ├── issue-138.mtl
+│       │   ├── issue-138.obj
+│       │   ├── issue-140-zero-face-idx.mtl
+│       │   ├── issue-140-zero-face-idx.obj
+│       │   ├── issue-161-inconsistent-f.obj
+│       │   ├── issue-162-smoothing-group.mtl
+│       │   ├── issue-162-smoothing-group.obj
+│       │   ├── issue-235.mtl
+│       │   ├── issue-235-usemtl-then-o.obj
+│       │   ├── issue-244-mtl-searchpaths.obj
+│       │   ├── issue-246-usemtl-whitespace.mtl
+│       │   ├── issue-246-usemtl-whitespace.obj
+│       │   ├── issue-248-texres-texopt.mtl
+│       │   ├── issue-248-texres-texopt.obj
+│       │   ├── issue-295-trianguation-failure.obj
+│       │   ├── issue-319-002.obj
+│       │   ├── issue-319-003.obj
+│       │   ├── issue-330.obj
+│       │   ├── issue-356-leading-spaces-newmtl.mtl
+│       │   ├── issue-356-leading-spaces-newmtl.obj
+│       │   ├── issue-389-comment.obj
+│       │   ├── issue-391.mtl
+│       │   ├── issue-391.obj
+│       │   ├── issue-92.mtl
+│       │   ├── issue-92.obj
+│       │   ├── issue-95-2.mtl
+│       │   ├── issue-95-2.obj
+│       │   ├── issue-95.mtl
+│       │   ├── issue-95.obj
+│       │   ├── leading-decimal-dot-issue-201.mtl
+│       │   ├── leading-decimal-dot-issue-201.obj
+│       │   ├── leading-zero-in-exponent-notation-issue-210.mtl
+│       │   ├── leading-zero-in-exponent-notation-issue-210.obj
+│       │   ├── line-prim.obj
+│       │   ├── map-bump.mtl
+│       │   ├── map-bump.obj
+│       │   ├── missing_material_file.obj
+│       │   ├── mtl filename with whitespace issue46.mtl
+│       │   ├── mtl filename with whitespace issue46.obj
+│       │   ├── mtllib-multiple-files-issue-112.mtl
+│       │   ├── mtllib-multiple-files-issue-112.obj
+│       │   ├── no_material.obj
+│       │   ├── norm-texopt.mtl
+│       │   ├── norm-texopt.obj
+│       │   ├── pbr-mat-ext.mtl
+│       │   ├── pbr-mat-ext.obj
+│       │   ├── points-prim.obj
+│       │   ├── refl.mtl
+│       │   ├── refl.obj
+│       │   ├── skin-weight.obj
+│       │   ├── smoothing-group-two-squares.obj
+│       │   ├── smoothing-normal.mtl
+│       │   ├── smoothing-normal.obj
+│       │   ├── test-nan.obj
+│       │   ├── texture-filename-with-whitespace.mtl
+│       │   ├── texture-filename-with-whitespace.obj
+│       │   ├── texture-options-issue-85.mtl
+│       │   ├── texture-options-issue-85.obj
+│       │   ├── tr-and-d-issue-43.mtl
+│       │   ├── tr-and-d-issue-43.obj
+│       │   ├── usemtl-issue-104.obj
+│       │   ├── usemtl-issue-68.mtl
+│       │   └── usemtl-issue-68.obj
+│       ├── MODULE.bazel
+│       ├── pbr-mtl.md
+│       ├── premake4.lua
+│       ├── pyproject.toml
+│       ├── python
+│       │   ├── bindings.cc
+│       │   ├── LICENSE
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── sample.py
+│       │   └── tiny_obj_loader.cc
+│       ├── README.md
+│       ├── setup.py
+│       ├── tests
+│       │   ├── acutest.h
+│       │   ├── assets
+│       │   │   └── issue-244.mtl
+│       │   ├── config-msvc.py
+│       │   ├── config-posix.py
+│       │   ├── issue-177.mtl
+│       │   ├── issue-177.obj
+│       │   ├── kuroga.py
+│       │   ├── LICENSE.acutest.txt
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── tester.cc
+│       │   └── vcbuild.bat
+│       ├── tiny_obj_loader.cc
+│       ├── tinyobjloader-config.cmake.in
+│       ├── tiny_obj_loader.h
+│       ├── tinyobjloader.pc.in
+│       ├── tools
+│       │   └── windows
+│       │       └── premake5.exe
+│       └── vcsetup.bat
+├── game
+│   ├── assets
+│   │   ├── models
+│   │   │   └── cube.obj
+│   │   ├── shaders
+│   │   │   ├── basic.frag
+│   │   │   ├── basic.vert
+│   │   │   ├── textured.frag
+│   │   │   └── textured.vert
+│   │   └── textures
+│   │       └── osaka.jpg
+│   └── main.cpp
+└── output.txt
+
+167 directories, 1211 files

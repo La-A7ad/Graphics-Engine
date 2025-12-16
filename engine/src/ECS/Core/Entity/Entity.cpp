@@ -1,3 +1,4 @@
+// engine/src/ECS/Core/Entity/Entity.cpp
 #include "Engine/ECS/Core/Entity/Entity.hpp"
 #include "Engine/ECS/Core/Component/Component.hpp"
 #include <glm/gtc/matrix_transform.hpp>
@@ -14,9 +15,8 @@ Entity::Entity(const std::string& name)
 }
 
 Entity::~Entity() {
-    for (auto* comp : components) {
-        delete comp;
-    }
+    // unique_ptr automatically cleans up components
+    components.clear();
 }
 
 void Entity::AddChild(Entity* child) {

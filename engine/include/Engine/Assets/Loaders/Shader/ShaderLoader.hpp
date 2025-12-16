@@ -2,13 +2,14 @@
 
 #include "Engine/Shader.hpp"
 #include <unordered_map>
+#include <memory>
 #include <string>
 
 namespace engine {
 
 class ShaderLoader {
 private:
-    std::unordered_map<std::string, Shader*> shaders;
+    std::unordered_map<std::string, std::shared_ptr<Shader>> shaders;
     
     ShaderLoader() = default;
     

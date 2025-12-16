@@ -3,11 +3,13 @@
 #include <iostream>
 #include <vector>
 
-#include <glad/glad.h>
 #include "Engine/Core/Graphics/Shader/Shader.hpp"
 
 
 namespace engine {
+
+
+
 
 std::string Shader::readFile(const char* path) {
     std::ifstream file(path, std::ios::in);
@@ -79,6 +81,11 @@ void Shader::setInt(const std::string &name, int value) const {
 void Shader::setFloat(const std::string &name, float value) const {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
+
+void Shader::setVec4(const std::string& name, const float* value) {
+    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, value);
+}
+
 
 // FIX: Implement missing setMat4 function
 void Shader::setMat4(const std::string& name, const float* value) const {
@@ -225,7 +232,18 @@ void Shader::ReflectAttribs() {
             ReflectedAttribs(name, location, components, baseType)
         );
     }
+
+
+
 }
+
+Shader::~Shader() {
+    if (ID != 0) {
+        glDeleteProgram(ID);
+        ID = 0;
+    }
+}
+
 
  
 

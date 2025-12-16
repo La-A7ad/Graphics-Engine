@@ -1,3 +1,4 @@
+// engine/include/Engine/ECS/Core/World/World.hpp
 #pragma once
 
 #include <vector>
@@ -26,8 +27,8 @@ template<typename T>
 std::vector<T*> World::GetComponentsOfType() {
     std::vector<T*> result;
     for (auto* entity : entities) {
-        for (auto* comp : entity->components) {
-            if (T* casted = dynamic_cast<T*>(comp)) {
+        for (auto& comp : entity->components) {  // CHANGED: auto& instead of auto*
+            if (T* casted = dynamic_cast<T*>(comp.get())) {  // CHANGED: comp.get()
                 result.push_back(casted);
             }
         }
