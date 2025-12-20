@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/Mesh.hpp"
-#include "Engine/Shader.hpp"
+#include "Engine/Rendering/Geometry/Mesh/Mesh.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 #include <string>
 #include <vector>
 

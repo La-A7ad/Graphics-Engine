@@ -60,6 +60,8 @@ target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/external/stb
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/cgltf
+
 )
 
 # Link Libraries

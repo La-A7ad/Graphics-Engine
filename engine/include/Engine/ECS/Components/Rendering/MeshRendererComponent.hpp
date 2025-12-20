@@ -1,9 +1,9 @@
 // engine/include/Engine/ECS/Components/Rendering/MeshRendererComponent.hpp
 #pragma once
 
-#include "Engine/Component.hpp"
-#include "Engine/Mesh.hpp"
-#include "Engine/Material.hpp"
+#include "Engine/ECS/Core/Component/Component.hpp"
+#include "Engine/Rendering/Geometry/Mesh/Mesh.hpp"
+#include "Engine/Rendering/Materials/Base/Material.hpp"
 #include <memory>
 
 namespace engine {

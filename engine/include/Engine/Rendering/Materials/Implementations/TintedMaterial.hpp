@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Material.hpp"
+#include "Engine/Rendering/Materials/Base/Material.hpp"
 #include <glm/glm.hpp>
 
 namespace engine {

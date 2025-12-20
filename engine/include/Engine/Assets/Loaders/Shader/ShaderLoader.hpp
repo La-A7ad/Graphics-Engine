@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Shader.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 #include <unordered_map>
 #include <memory>
 #include <string>
