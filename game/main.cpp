@@ -23,7 +23,7 @@
 #define LOG(msg) std::cout << msg << std::endl
 
 int main() {
-    // 1. Create renderer + init OpenGL context / window
+    // Create renderer + init OpenGL context / window
     engine::Renderer renderer;
     if (!renderer.Init()) {
         std::cerr << "Failed to initialize renderer.\n";
@@ -36,10 +36,10 @@ int main() {
         return -1;
     }
 
-    // 2. Create world
+    //Create world
     engine::World world;
 
-    // 3. Create camera entity
+    //Create camera entity
     engine::Entity* cameraEntity = world.CreateEntity("MainCamera");
     if (!cameraEntity) {
         std::cerr << "Failed to create camera entity.\n";
@@ -64,7 +64,7 @@ int main() {
         camera->aspectRatio = static_cast<float>(fbWidth) / static_cast<float>(fbHeight);
     }
 
-    // 4. Load a model via MeshLoader (lifetime managed there)
+    //Load a model via MeshLoader (lifetime managed there)
     std::string modelPath = "game/assets/models/cube.obj";
     engine::Model* cubeModel = engine::MeshLoader::Instance().Load("cube", modelPath);
     if (!cubeModel || cubeModel->meshes.empty()) {
@@ -73,22 +73,14 @@ int main() {
         return -1;
     }
 
-    std::string modelPath2 = "game/assets/models/Grass_Block.obj";
-    engine::Model* cubeModel2 = engine::MeshLoader::Instance().Load("MinecraftCube", modelPath2);
-    if (!cubeModel2 || cubeModel2->meshes.empty()) {
-        std::cerr << "Failed to load cube model or it has no meshes. Path: "
-                  << modelPath2 << "\n";
-        return -1;
-    }
-
-    // 5. Create a tinted cube
+    //Create a tinted cube
     engine::Entity* tintedCube = world.CreateEntity("TintedCube");
     if (!tintedCube) {
         std::cerr << "Failed to create tinted cube entity.\n";
         return -1;
     }
 
-    tintedCube->position = glm::vec3(0.0f, 0.0f, 0.0f);
+    tintedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
     tintedCube->rotation = glm::vec3(0.0f);
     tintedCube->scale    = glm::vec3(1.0f);
 
@@ -112,8 +104,8 @@ int main() {
 
     tintedMR->material = std::move(tintedMat);
 
-    // 6. Textured cube using TextureLoader + TexturedMaterial
-    std::string texPath = "game/assets/textures/Grass_Block_TEX.png";
+    // Textured cube using TextureLoader + TexturedMaterial
+    std::string texPath = "game/assets/textures/osaka.jpg";
     engine::Texture* albedoTex =
         engine::TextureLoader::Instance().Load("osaka", texPath);
 
@@ -122,13 +114,13 @@ int main() {
     if (albedoTex) {
         texturedCube = world.CreateEntity("TexturedCube");
         if (texturedCube) {
-            texturedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
+            texturedCube->position = glm::vec3(0.0f, 0.0f, 0.0f);
             texturedCube->rotation = glm::vec3(0.0f);
             texturedCube->scale    = glm::vec3(1.0f);
 
             auto* texMR = texturedCube->AddComponent<engine::MeshRendererComponent>();
             if (texMR) {
-                texMR->mesh = &cubeModel2->meshes[0];
+                texMR->mesh = &cubeModel->meshes[0];
 
                 auto texturedMat = std::make_unique<engine::TexturedMaterial>();
                 texturedMat->shader = std::make_shared<engine::Shader>(
@@ -155,7 +147,7 @@ int main() {
     float lastTime = glfwGetTime();
     float angle = 0.0f;
 
-    // 7. Main loop
+    //  Main loop
     while (!glfwWindowShouldClose(window)) {
         // ESC to quit
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -172,6 +164,7 @@ int main() {
         tintedCube->rotation.y = angle;
         if (texturedCube) {
             texturedCube->rotation.y = angle;
+            texturedCube->rotation.x = angle;
         }
 
         // Render the world from the main camera

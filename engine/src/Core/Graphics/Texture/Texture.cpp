@@ -1,6 +1,4 @@
 #include "Engine/Core/Graphics/Texture/Texture.hpp"
-// REMOVED: #define STB_IMAGE_IMPLEMENTATION
-// This is now in STBImageImpl.cpp to avoid multiple definition errors
 #include <stb_image.h>
 #include <iostream>
 
