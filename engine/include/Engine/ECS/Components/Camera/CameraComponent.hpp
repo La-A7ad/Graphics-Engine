@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Component.hpp"
+#include "Engine/ECS/Core/Component/Component.hpp"
 #include <glm/glm.hpp>
 
 namespace engine {

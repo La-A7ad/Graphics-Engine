@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Material.hpp"
-#include "Engine/Texture.hpp"
-#include "Engine/Sampler.hpp"
+#include "Engine/Rendering/Materials/Base/Material.hpp"
+#include "Engine/Core/Graphics/Texture/Texture.hpp"
+#include "Engine/Core/Graphics/Texture/Sampler.hpp"
 #include <glm/glm.hpp>
 #include <memory>
 

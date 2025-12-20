@@ -1,9 +1,9 @@
-#include "Engine/Renderer.hpp"
-#include "Engine/World.hpp"                // so we can access world->entities
-#include "Engine/Entity.hpp"
-#include "Engine/MeshRendererComponent.hpp"
-#include "Engine/CameraComponent.hpp"      // so we can call GetProjectionMatrix / GetViewMatrix
-#include "Engine/Shader.hpp"
+#include "Engine/Rendering/Core/Renderer.hpp"
+#include "Engine/ECS/Core/World/World.hpp"                // so we can access world->entities
+#include "Engine/ECS/Core/Entity/Entity.hpp"
+#include "Engine/ECS/Components/Rendering/MeshRendererComponent.hpp"
+#include "Engine/ECS/Components/Camera/CameraComponent.hpp"      // so we can call GetProjectionMatrix / GetViewMatrix
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

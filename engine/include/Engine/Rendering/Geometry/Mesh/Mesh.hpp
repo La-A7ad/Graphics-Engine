@@ -4,8 +4,8 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <unordered_set>
-#include "Engine/Shader.hpp"
-#include "Engine/Buffers.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
+#include "Engine/Core/Graphics/Buffers/Buffers.hpp"
 
 namespace engine {
 

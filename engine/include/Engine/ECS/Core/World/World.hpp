@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "Engine/Entity.hpp"
+#include "Engine/ECS/Core/Entity/Entity.hpp"
 
 namespace engine {
 

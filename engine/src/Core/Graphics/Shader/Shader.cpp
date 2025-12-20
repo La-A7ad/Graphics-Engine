@@ -92,6 +92,10 @@ void Shader::setMat4(const std::string& name, const float* value) const {
     glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, value);
 }
 
+void Shader::setVec4(const std::string& name, const float* value) {
+    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, value);
+}
+
 GLint Shader::getAttribLocation(const std::string& name) const {
     return (glGetAttribLocation(ID, name.c_str()));
 }

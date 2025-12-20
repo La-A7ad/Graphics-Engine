@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Texture.hpp"
+#include "Engine/Core/Graphics/Texture/Texture.hpp"
 #include <unordered_map>
 #include <string>
 

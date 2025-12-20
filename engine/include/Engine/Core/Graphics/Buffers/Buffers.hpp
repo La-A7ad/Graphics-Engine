@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Engine/Shader.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 
 
 namespace engine {

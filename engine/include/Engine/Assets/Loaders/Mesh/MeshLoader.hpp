@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Model.hpp"
+#include "Engine/Rendering/Geometry/Model/Model.hpp"
 #include <unordered_map>
 #include <string>
 

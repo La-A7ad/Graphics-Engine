@@ -2,23 +2,11 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include "Engine/Engine.hpp"
 #include <memory>
 #include <string>
 
 #include <glm/glm.hpp>
-
-#include "Engine/World.hpp"
-#include "Engine/Entity.hpp"
-#include "Engine/CameraComponent.hpp"
-#include "Engine/MeshRendererComponent.hpp"
-#include "Engine/Renderer.hpp"
-#include "Engine/Shader.hpp"
-#include "Engine/MeshLoader.hpp"
-#include "Engine/TextureLoader.hpp"
-#include "Engine/TintedMaterial.hpp"
-#include "Engine/TexturedMaterial.hpp"
-#include "Engine/Sampler.hpp"
-#include "Engine/ShaderLoader.hpp"
 
 #define LOG(msg) std::cout << msg << std::endl
 
@@ -80,7 +68,7 @@ int main() {
         return -1;
     }
 
-    tintedCube->position = glm::vec3(0.0f, 0.0f, 0.0f);
+    tintedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
     tintedCube->rotation = glm::vec3(0.0f);
     tintedCube->scale    = glm::vec3(1.0f);
 
@@ -105,7 +93,7 @@ int main() {
     tintedMR->material = std::move(tintedMat);
 
     // Textured cube using TextureLoader + TexturedMaterial
-    std::string texPath = "game/assets/textures/Grass_Block_TEX.png";
+    std::string texPath = "game/assets/textures/osaka.jpg";
     engine::Texture* albedoTex =
         engine::TextureLoader::Instance().Load("osaka", texPath);
 
@@ -114,7 +102,7 @@ int main() {
     if (albedoTex) {
         texturedCube = world.CreateEntity("TexturedCube");
         if (texturedCube) {
-            texturedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
+            texturedCube->position = glm::vec3(0.0f, 0.0f, 0.0f);
             texturedCube->rotation = glm::vec3(0.0f);
             texturedCube->scale    = glm::vec3(1.0f);
 
@@ -164,6 +152,7 @@ int main() {
         tintedCube->rotation.y = angle;
         if (texturedCube) {
             texturedCube->rotation.y = angle;
+            texturedCube->rotation.x = angle;
         }
 
         // Render the world from the main camera

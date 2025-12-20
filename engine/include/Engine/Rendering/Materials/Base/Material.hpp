@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/Shader.hpp"
-#include "Engine/PipelineState.hpp"
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
+#include "Engine/Core/Graphics/State/PipelineState.hpp"
 #include <memory>
 
 namespace engine {
