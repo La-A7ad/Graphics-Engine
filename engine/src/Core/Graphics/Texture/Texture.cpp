@@ -31,10 +31,15 @@ void Texture::LoadFromFile(const std::string& path, bool generateMipmap) {
     unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
     
     if (!data) {
-        std::cerr << "Failed to load texture: " << path << std::endl;
-        std::cerr << "STB Error: " << stbi_failure_reason() << std::endl;
-        return;
-    }
+    std::cerr << "Failed to load texture: " << path << "\n";
+    std::cerr << "STB Error: " << stbi_failure_reason() << "\n";
+
+    // IMPORTANT: mark this texture invalid so the loader can detect failure
+    glDeleteTextures(1, &ID);
+    ID = 0;
+    return;
+}
+
     
     // Determine format based on number of channels
     GLenum format = GL_RGB;
