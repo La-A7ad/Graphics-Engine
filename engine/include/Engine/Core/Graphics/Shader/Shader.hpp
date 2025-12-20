@@ -19,7 +19,7 @@ public:
     void setInt(const std::string &name, int value) const;
     void setFloat(const std::string &name, float value) const;
     void setMat4(const std::string& name, const float* value) const;
-    void setVec4(const std::string& name, const float* value) const;
+    void setVec4(const std::string& name, const float* value); //aaa
 
 
     //functions used by the VAO to link attributes to the vertex attrib pointer
