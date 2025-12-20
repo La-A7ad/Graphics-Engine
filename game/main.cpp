@@ -11,7 +11,6 @@
 #define LOG(msg) std::cout << msg << std::endl
 
 int main() {
-    // Create renderer + init OpenGL context / window
     engine::Renderer renderer;
     if (!renderer.Init()) {
         std::cerr << "Failed to initialize renderer.\n";
@@ -24,10 +23,9 @@ int main() {
         return -1;
     }
 
-    //Create world
     engine::World world;
 
-    //Create camera entity
+    // Camera
     engine::Entity* cameraEntity = world.CreateEntity("MainCamera");
     if (!cameraEntity) {
         std::cerr << "Failed to create camera entity.\n";
@@ -40,134 +38,94 @@ int main() {
         return -1;
     }
 
-    // Position the camera a bit back on +Z
-    cameraEntity->position = glm::vec3(0.0f, 0.0f, 3.0f);
+    cameraEntity->position = glm::vec3(0.0f, 0.6f, 10.0f);
     cameraEntity->rotation = glm::vec3(0.0f);
     cameraEntity->scale    = glm::vec3(1.0f);
 
-    // Set aspect ratio from framebuffer size
     int fbWidth = 0, fbHeight = 0;
     glfwGetFramebufferSize(window, &fbWidth, &fbHeight);
     if (fbWidth > 0 && fbHeight > 0) {
         camera->aspectRatio = static_cast<float>(fbWidth) / static_cast<float>(fbHeight);
     }
 
-    //Load a model via MeshLoader (lifetime managed there)
-    std::string modelPath = "game/assets/models/cube.obj";
-    engine::Model* cubeModel = engine::MeshLoader::Instance().Load("cube", modelPath);
-    if (!cubeModel || cubeModel->meshes.empty()) {
-        std::cerr << "Failed to load cube model or it has no meshes. Path: "
-                  << modelPath << "\n";
+    // Load Cat glTF
+    const std::string modelPath = "game/assets/models/Cat/scene.gltf";
+    engine::Model* catModel = engine::MeshLoader::Instance().Load("cat", modelPath);
+
+    if (!catModel || catModel->meshes.empty()) {
+        std::cerr << "Failed to load Cat model or it has no meshes. Path: " << modelPath << "\n";
         return -1;
     }
 
-    //Create a tinted cube
-    engine::Entity* tintedCube = world.CreateEntity("TintedCube");
-    if (!tintedCube) {
-        std::cerr << "Failed to create tinted cube entity.\n";
+    // Load Cat baseColor texture (manual, since you’re just testing on your pipeline)
+    const std::string texPath = "game/assets/models/Cat/textures/Material.002_baseColor.png";
+    engine::Texture* catTex = engine::TextureLoader::Instance().Load("cat_albedo", texPath);
+
+    if (!catTex) {
+        std::cerr << "Failed to load Cat texture. Path: " << texPath << "\n";
         return -1;
     }
 
-    tintedCube->position = glm::vec3(2.0f, 0.0f, 0.0f);
-    tintedCube->rotation = glm::vec3(0.0f);
-    tintedCube->scale    = glm::vec3(1.0f);
-
-    auto* tintedMR = tintedCube->AddComponent<engine::MeshRendererComponent>();
-    if (!tintedMR) {
-        std::cerr << "Failed to add MeshRendererComponent to tinted cube.\n";
+    // Create entity
+    engine::Entity* catEntity = world.CreateEntity("Cat");
+    if (!catEntity) {
+        std::cerr << "Failed to create Cat entity.\n";
         return -1;
     }
 
-    // Point to the first mesh in the model (Mesh is non-owning)
-    tintedMR->mesh = &cubeModel->meshes[0];
+    catEntity->position = glm::vec3(0.0f, -0.5f, 0.0f);
+    catEntity->rotation = glm::vec3(0.0f);
+    catEntity->scale    = glm::vec3(1.0f);
 
-    // Create a tinted material with the basic shader
-    auto tintedMat = std::make_unique<engine::TintedMaterial>();
-    tintedMat->shader = std::make_shared<engine::Shader>(
-        "game/assets/shaders/basic.vert",
-        "game/assets/shaders/basic.frag"
+    auto* mr = catEntity->AddComponent<engine::MeshRendererComponent>();
+    if (!mr) {
+        std::cerr << "Failed to add MeshRendererComponent to Cat.\n";
+        return -1;
+    }
+
+    // Use first mesh for now (you can loop meshes later)
+    mr->mesh = &catModel->meshes[0];
+
+    // Textured material
+    auto mat = std::make_unique<engine::TexturedMaterial>();
+    mat->shader = std::make_shared<engine::Shader>(
+        "game/assets/shaders/psx_unlit.vert",
+        "game/assets/shaders/psx_unlit.frag"
     );
-    // Bright orange so it's clearly visible
-    tintedMat->tint = glm::vec4(1.0f, 0.5f, 0.2f, 1.0f);
 
-    tintedMR->material = std::move(tintedMat);
+    mat->albedoMap = catTex;
 
-    // Textured cube using TextureLoader + TexturedMaterial
-    std::string texPath = "game/assets/textures/osaka.jpg";
-    engine::Texture* albedoTex =
-        engine::TextureLoader::Instance().Load("osaka", texPath);
+    // PSX-ish test: nearest filtering
+    mat->sampler = std::make_shared<engine::Sampler>();
+    mat->sampler->SetMinFilter(GL_NEAREST);
+    mat->sampler->SetMagFilter(GL_NEAREST);
 
-    engine::Entity* texturedCube = nullptr;
+    mat->tint = glm::vec4(1.0f);
 
-    if (albedoTex) {
-        texturedCube = world.CreateEntity("TexturedCube");
-        if (texturedCube) {
-            texturedCube->position = glm::vec3(0.0f, 0.0f, 0.0f);
-            texturedCube->rotation = glm::vec3(0.0f);
-            texturedCube->scale    = glm::vec3(1.0f);
-
-            auto* texMR = texturedCube->AddComponent<engine::MeshRendererComponent>();
-            if (texMR) {
-                texMR->mesh = &cubeModel->meshes[0];
-
-                auto texturedMat = std::make_unique<engine::TexturedMaterial>();
-                texturedMat->shader = std::make_shared<engine::Shader>(
-                    "game/assets/shaders/textured.vert",
-                    "game/assets/shaders/textured.frag"
-                );
-
-                texturedMat->albedoMap = albedoTex;
-                texturedMat->sampler   = std::make_shared<engine::Sampler>();
-                texturedMat->tint      = glm::vec4(1.0f); // no color change
-
-                texMR->material = std::move(texturedMat);
-            }
-        }
-    } else {
-        LOG("Warning: Failed to load texture " << texPath
-            << ". Textured cube will be skipped.");
-    }
+    mr->material = std::move(mat);
 
     LOG("Entering main loop...");
-    int frames = 0;
-
-    // Rotation state
     float lastTime = glfwGetTime();
     float angle = 0.0f;
 
-    //  Main loop
     while (!glfwWindowShouldClose(window)) {
-        // ESC to quit
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GLFW_TRUE);
         }
 
-        // Time & rotation
         float currentTime = glfwGetTime();
         float deltaTime   = currentTime - lastTime;
         lastTime = currentTime;
 
-        angle += deltaTime * 1.0f; // 1 rad/s around Y axis
+        angle += deltaTime * 0.7f;
+        catEntity->rotation.y = angle;
 
-        tintedCube->rotation.y = angle;
-        if (texturedCube) {
-            texturedCube->rotation.y = angle;
-            texturedCube->rotation.x = angle;
-        }
-
-        // Render the world from the main camera
         renderer.Render(&world, camera);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-
-        frames++;
-        if (frames == 1) {
-            LOG("First frame rendered successfully.");
-        }
     }
 
-    // Cleanup GL resources while the context still exists
     engine::ShaderLoader::Instance().Clear();
     engine::MeshLoader::Instance().Clear();
     engine::TextureLoader::Instance().Clear();

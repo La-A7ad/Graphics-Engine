@@ -14,7 +14,7 @@
 namespace engine {
 
         Renderer::Renderer()
-    : width(800), height(600), initialized(false), m_Window(nullptr) {
+    : width(320), height(240), initialized(false), m_Window(nullptr) {
     // vao/vbo are nullptr initially
 }
 

@@ -7,19 +7,27 @@
 
 namespace engine {
 
+/**
+ * Model is a renderable *data structure* (meshes + metadata).
+ * Loading/parsing file formats is handled by asset importers (OBJ/GLTF),
+ * not by this class.
+ */
 class Model {
 public:
-    Model(const std::string& path);
+    Model() = default;
     ~Model() = default;
-    
-    void Draw(const Shader& shader);
-    std::vector<Mesh> meshes; //testing it as public
 
-private:
-    
+    // Convenience draw (not required by the engine; renderer can also draw meshes directly)
+    void Draw(const Shader& shader);
+
+    // Public for now (matches your current usage pattern)
+    std::vector<Mesh> meshes;
+
+    // Useful for resolving relative asset paths (e.g., textures referenced by the model)
     std::string directory;
-    
-    void loadModel(const std::string& path);
+
+    // Optional: keep the original source path for debugging/caching
+    std::string sourcePath;
 };
 
 } // namespace engine

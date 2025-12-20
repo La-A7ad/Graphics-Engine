@@ -31,15 +31,10 @@ void Texture::LoadFromFile(const std::string& path, bool generateMipmap) {
     unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
     
     if (!data) {
-    std::cerr << "Failed to load texture: " << path << "\n";
-    std::cerr << "STB Error: " << stbi_failure_reason() << "\n";
-
-    // IMPORTANT: mark this texture invalid so the loader can detect failure
-    glDeleteTextures(1, &ID);
-    ID = 0;
-    return;
-}
-
+        std::cerr << "Failed to load texture: " << path << std::endl;
+        std::cerr << "STB Error: " << stbi_failure_reason() << std::endl;
+        return;
+    }
     
     // Determine format based on number of channels
     GLenum format = GL_RGB;
@@ -60,13 +55,8 @@ void Texture::LoadFromFile(const std::string& path, bool generateMipmap) {
         glGenerateMipmap(target);
     }
     
-    // Set default texture parameters
-    // These can be overridden using Sampler objects
-    glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(target, GL_TEXTURE_MIN_FILTER, 
-                   generateMipmap ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR);
-    glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+   glTexParameteri(target, GL_TEXTURE_BASE_LEVEL, 0);
+   glTexParameteri(target, GL_TEXTURE_MAX_LEVEL, generateMipmap ? 1000 : 0);
     
     // Free image data from CPU memory
     stbi_image_free(data);

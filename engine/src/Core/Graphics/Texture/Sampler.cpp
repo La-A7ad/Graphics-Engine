@@ -4,7 +4,17 @@ namespace engine {
 
 Sampler::Sampler() {
     glGenSamplers(1, &ID);
+
+    // default sampling
+    glSamplerParameteri(ID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glSamplerParameteri(ID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glSamplerParameteri(ID, GL_TEXTURE_WRAP_R, GL_REPEAT);
+
+    // degault filtering
+    glSamplerParameteri(ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glSamplerParameteri(ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
+
 
 Sampler::~Sampler() {
     glDeleteSamplers(1, &ID);

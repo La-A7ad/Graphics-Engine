@@ -20,6 +20,9 @@ endif()
 # 2. Engine Library
 # ===================================
 add_library(engine
+    #Assets / Importers
+    engine/src/Assets/Importers/ObjImporter.cpp
+    engine/src/Assets/Importers/GltfImporter.cpp
     # Assets / Loaders
     engine/src/Assets/Loaders/Mesh/MeshLoader.cpp
     engine/src/Assets/Loaders/Shader/ShaderLoader.cpp
@@ -60,6 +63,7 @@ target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/external/stb
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/cgltf
 )
 
 # Link Libraries
