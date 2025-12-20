@@ -1,5 +1,7 @@
 #include "Engine/Assets/Loaders/Mesh/MeshLoader.hpp"
 
+#include <memory>
+
 namespace engine {
 
 MeshLoader& MeshLoader::Instance() {
@@ -7,33 +9,27 @@ MeshLoader& MeshLoader::Instance() {
     return instance;
 }
 
-MeshLoader::~MeshLoader() {
-    Clear();
-}
-
 Model* MeshLoader::Load(const std::string& name, const std::string& path) {
     auto it = models.find(name);
     if (it != models.end()) {
-        return it->second;
+        return it->second.get();
     }
-    
-    Model* model = new Model(path);
-    models[name] = model;
-    return model;
+
+    auto model = std::make_unique<Model>(path);
+    Model* raw = model.get();
+    models.emplace(name, std::move(model));
+    return raw;
 }
 
 Model* MeshLoader::Get(const std::string& name) {
     auto it = models.find(name);
     if (it != models.end()) {
-        return it->second;
+        return it->second.get();
     }
     return nullptr;
 }
 
 void MeshLoader::Clear() {
-    for (auto& pair : models) {
-        delete pair.second;
-    }
     models.clear();
 }
 

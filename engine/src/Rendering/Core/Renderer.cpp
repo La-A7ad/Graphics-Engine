@@ -86,8 +86,9 @@ bool Renderer::Init() {
     glm::mat4 projection = camera->GetProjectionMatrix();
     glm::mat4 view       = camera->GetViewMatrix();
 
-    // Loop over entities
-    for (engine::Entity* entity : world->entities) {
+    // Loop over entities (World owns them; we iterate non-owning views)
+    for (auto& entityPtr : world->entities) {
+        engine::Entity* entity = entityPtr.get();
         if (!entity) continue;
 
         auto* meshRenderer = entity->GetComponent<engine::MeshRendererComponent>();
