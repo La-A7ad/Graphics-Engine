@@ -82,17 +82,12 @@ void Shader::setFloat(const std::string &name, float value) const {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
-void Shader::setVec4(const std::string& name, const float* value) {
-    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, value);
-}
-
-
 // FIX: Implement missing setMat4 function
 void Shader::setMat4(const std::string& name, const float* value) const {
     glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, value);
 }
 
-void Shader::setVec4(const std::string& name, const float* value) {
+void Shader::setVec4(const std::string& name, const float* value) const {
     glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, value);
 }
 
