@@ -82,9 +82,14 @@ bool Renderer::Init() {
     glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Keep camera aspect in sync with framebuffer size
+    camera->aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+
     // Camera matrices
     glm::mat4 projection = camera->GetProjectionMatrix();
-    glm::mat4 view       = camera->GetViewMatrix();
+    glm::mat4 view = camera->GetViewMatrix();
+
+    
 
     // Loop over entities
     for (engine::Entity* entity : world->entities) {
@@ -109,6 +114,18 @@ bool Renderer::Init() {
         shader->setMat4("uProj",  glm::value_ptr(projection));
         shader->setMat4("uView",  glm::value_ptr(view));
         shader->setMat4("uModel", glm::value_ptr(model));
+
+        // ---- PSX shader knobs (harmless if uniforms don't exist) ----
+        shader->setVec2("uViewportSize", glm::vec2((float)width, (float)height));
+
+        // PS1-ish snap grid (tweak)
+        shader->setVec2("uSnapRes", glm::vec2((float)width * 0.5f, (float)height * 0.5f));
+        shader->setFloat("uSnapStrength", 1.0f);
+
+        // Optional: posterize + dithering (only affects PSX frag shader)
+        shader->setFloat("uColorSteps", 31.0f);
+        shader->setFloat("uDitherStrength", 0.35f);
+
 
         // Material-specific uniforms (tint, etc.)
         material->Setup();

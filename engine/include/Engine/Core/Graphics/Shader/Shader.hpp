@@ -19,7 +19,9 @@ public:
     void setInt(const std::string &name, int value) const;
     void setFloat(const std::string &name, float value) const;
     void setMat4(const std::string& name, const float* value) const;
-    void setVec4(const std::string& name, const float* value);
+    void setVec4(const std::string& name, const float* value) const;
+    void setVec2(const std::string& name, const glm::vec2& v) const;
+
 
 
     //functions used by the VAO to link attributes to the vertex attrib pointer
@@ -30,11 +32,6 @@ public:
 
     GLint getUniformLocation(const std::string& name) const;
     GLuint getID() const { return ID; }
-
-    
-
-
-
 
 
     void ReflectAttribs();
