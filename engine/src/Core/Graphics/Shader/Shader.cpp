@@ -1,18 +1,11 @@
+#include "Engine/Core/Graphics/Shader/Shader.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <vector>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>  
-
-
-#include "Engine/Core/Graphics/Shader/Shader.hpp"
-
+#include <glm/gtc/type_ptr.hpp>
 
 namespace engine {
-
-
-
 
 std::string Shader::readFile(const char* path) {
     std::ifstream file(path, std::ios::in);
@@ -74,31 +67,35 @@ void Shader::use() const {
 }
 
 void Shader::setBool(const std::string &name, bool value) const {
-    glUniform1i(Shader::getUniformLocation(name), (int)value);
+    glUniform1i(getUniformLocation(name), (int)value);
 }
 
 void Shader::setInt(const std::string &name, int value) const {
-    glUniform1i(Shader::getUniformLocation(name), value);
+    glUniform1i(getUniformLocation(name), value);
 }
 
 void Shader::setFloat(const std::string &name, float value) const {
-    glUniform1f(Shader::getUniformLocation(name), value);
+    glUniform1f(getUniformLocation(name), value);
 }
 
 void Shader::setMat4(const std::string& name, const float* value) const {
-    glUniformMatrix4fv(Shader::getUniformLocation(name), 1, GL_FALSE, value);
+    glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, value);
 }
 
 void Shader::setVec4(const std::string& name, const glm::vec4& v) const {
-    glUniform4fv(Shader::getUniformLocation(name), 1, glm::value_ptr(v)); 
+    glUniform4fv(getUniformLocation(name), 1, glm::value_ptr(v)); 
+}
+
+void Shader::setVec3(const std::string& name, const glm::vec3& v) const {
+    glUniform3fv(getUniformLocation(name), 1, glm::value_ptr(v));
 }
 
 void Shader::setVec2(const std::string& name, const glm::vec2& v) const {
-    glUniform2fv(Shader::getUniformLocation(name), 1, glm::value_ptr(v));
+    glUniform2fv(getUniformLocation(name), 1, glm::value_ptr(v));
 }
 
 GLint Shader::getAttribLocation(const std::string& name) const {
-    return (glGetAttribLocation(ID, name.c_str()));
+    return glGetAttribLocation(ID, name.c_str());
 }
 
 GLint Shader::getUniformLocation(const std::string& name) const {
@@ -115,7 +112,6 @@ const Shader::ReflectedAttribs* Shader::getAttrib(const std::string& name) const
     return &it->second; 
 }
 
-
 void Shader::ReflectAttribs() {
     GLint count = 0;
     glGetProgramiv(ID, GL_ACTIVE_ATTRIBUTES, &count);
@@ -125,7 +121,6 @@ void Shader::ReflectAttribs() {
 
     std::vector<char> nameBuf(maxNameLen);
     m_Attributes.clear();
-
 
     for (GLint i = 0; i < count; ++i) {
         GLsizei written   = 0;
@@ -142,7 +137,6 @@ void Shader::ReflectAttribs() {
             nameBuf.data()
         );
 
-       
         std::string name(nameBuf.data(), written);
         GLint location = getAttribLocation(name);
 
@@ -237,9 +231,6 @@ void Shader::ReflectAttribs() {
             ReflectedAttribs(name, location, components, baseType)
         );
     }
-
-
-
 }
 
 Shader::~Shader() {
@@ -248,8 +239,5 @@ Shader::~Shader() {
         ID = 0;
     }
 }
-
-
- 
 
 } // namespace engine

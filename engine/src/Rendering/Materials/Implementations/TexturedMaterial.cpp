@@ -55,9 +55,8 @@ void TexturedMaterial::Setup() {
         unit++;
     }
 
-    //i set it only once
-    shader->setVec4("uTint", &tint[0]);
+    // FIXED: Pass glm::vec4 directly instead of pointer
+    shader->setVec4("uTint", tint);
 }
-
 
 } // namespace engine
