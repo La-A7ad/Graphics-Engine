@@ -84,10 +84,16 @@ set_target_properties(engine PROPERTIES
 # ===================================
 add_executable(GameApp
     game/main.cpp
+    game/src/PS1Material.cpp
 )
 
 # Link Engine
 target_link_libraries(GameApp PRIVATE engine)
+
+target_include_directories(GameApp PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/game/include 
+)
+
 
 # Copy Assets
 add_custom_command(

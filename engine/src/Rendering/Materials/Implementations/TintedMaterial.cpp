@@ -7,9 +7,9 @@ TintedMaterial::TintedMaterial() : tint(1.0f) {
 
 void TintedMaterial::Setup() {
     if (shader) {
-        shader->setVec4("uTint", &tint[0]);
-
+        // FIXED: Pass glm::vec4 directly instead of pointer
+        shader->setVec4("uTint", tint);
     }
 }
 
-}
+} // namespace engine

@@ -3,40 +3,32 @@
 #include <glad/glad.h>
 #include <string>
 #include <unordered_map>
+#include <glm/glm.hpp>
 
 namespace engine {
 
 class Shader {
-
 public:
-
     Shader(const char* vertexPath, const char* fragmentPath);
     ~Shader();
 
     void use() const;
 
+    // Uniform setters (all const - they don't modify the Shader object)
     void setBool(const std::string &name, bool value) const;
     void setInt(const std::string &name, int value) const;
     void setFloat(const std::string &name, float value) const;
     void setMat4(const std::string& name, const float* value) const;
-    void setVec4(const std::string& name, const float* value);
+    void setVec4(const std::string& name, const glm::vec4& v) const;
+    void setVec2(const std::string& name, const glm::vec2& v) const;
+    void setVec3(const std::string& name, const glm::vec3& v) const;
 
-
-    //functions used by the VAO to link attributes to the vertex attrib pointer
-
-
+    // Functions used by the VAO to link attributes to the vertex attrib pointer
     GLint getAttribLocation(const std::string&) const;
-
-
     GLint getUniformLocation(const std::string& name) const;
     GLuint getID() const { return ID; }
 
-    
-
-
-
-
-
+    // Attribute reflection
     void ReflectAttribs();
 
     struct ReflectedAttribs {
@@ -50,13 +42,10 @@ public:
                     GLint comp,
                     GLenum type)
         : name(n), location(loc), components(comp), baseType(type)
-    {}
-
-
-     };
+        {}
+    };
 
     const Shader::ReflectedAttribs* getAttrib(const std::string&) const;
-
 
     // Delete Copy
     Shader(const Shader&) = delete;
@@ -77,23 +66,12 @@ public:
         return *this;
     }
 
-
-
-
 private:
-
     unsigned int ID;
     static std::string readFile(const char* path);
     static unsigned int compileShader(GLenum type, const std::string& source);
 
-
-     std::unordered_map<std::string, ReflectedAttribs> m_Attributes;
-
-
-
-
-
-
+    std::unordered_map<std::string, ReflectedAttribs> m_Attributes;
 };
 
 } // namespace engine
