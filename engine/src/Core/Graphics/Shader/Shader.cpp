@@ -2,6 +2,9 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>  
+
 
 #include "Engine/Core/Graphics/Shader/Shader.hpp"
 
@@ -71,24 +74,27 @@ void Shader::use() const {
 }
 
 void Shader::setBool(const std::string &name, bool value) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+    glUniform1i(Shader::getUniformLocation(name), (int)value);
 }
 
 void Shader::setInt(const std::string &name, int value) const {
-    glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+    glUniform1i(Shader::getUniformLocation(name), value);
 }
 
 void Shader::setFloat(const std::string &name, float value) const {
-    glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+    glUniform1f(Shader::getUniformLocation(name), value);
 }
 
-// FIX: Implement missing setMat4 function
 void Shader::setMat4(const std::string& name, const float* value) const {
-    glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, value);
+    glUniformMatrix4fv(Shader::getUniformLocation(name), 1, GL_FALSE, value);
 }
 
-void Shader::setVec4(const std::string& name, const float* value) {
-    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, value);
+void Shader::setVec4(const std::string& name, const glm::vec4& v) const {
+    glUniform4fv(Shader::getUniformLocation(name), 1, glm::value_ptr(v)); 
+}
+
+void Shader::setVec2(const std::string& name, const glm::vec2& v) const {
+    glUniform2fv(Shader::getUniformLocation(name), 1, glm::value_ptr(v));
 }
 
 GLint Shader::getAttribLocation(const std::string& name) const {
