@@ -55,7 +55,7 @@ void PS1Material::SetPS1Inspired() {
     snapResolution = glm::vec2(640.0f, 480.0f);  // Less wobbly
     snapStrength = 0.7f;                         // Subtle wobble
     colorDepth = 64.0f;                          // Smoother colors (6-bit)
-    ditherStrength = 0.5f;                       // Subtle dither
+    ditherStrength = 1.0f;                       // Subtle dither
     fogStart = 20.0f;
     fogEnd = 50.0f;
     fogColor = glm::vec3(0.5f, 0.5f, 0.6f);

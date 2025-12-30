@@ -1,0 +1,155 @@
+{
+  "name": "Example Scene",
+  "description": "A simple scene demonstrating the scene loader",
+  
+  "assets": {
+    "shaders": {
+      "basic": {
+        "vertex": "assets/shaders/basic.vert",
+        "fragment": "assets/shaders/basic.frag"
+      },
+      "textured": {
+        "vertex": "assets/shaders/textured.vert",
+        "fragment": "assets/shaders/textured.frag"
+      },
+      "psx": {
+        "vertex": "assets/shaders/psx_unlit.vert",
+        "fragment": "assets/shaders/psx_unlit.frag"
+      }
+    },
+    
+    "textures": {
+      "cat_texture": "assets/models/Cat/textures/Material.002_baseColor.png",
+      "grass": "assets/textures/Grass_Block_TEX.png",
+      "shawarma": "assets/textures/Shawarma.png"
+    },
+    
+    "models": {
+      "cat": "assets/models/Cat/scene.gltf",
+      "cube": "assets/models/cube.obj",
+      "grass_block": "assets/models/Grass_Block.obj",
+      "shawarma": "assets/models/shawarma.obj"
+    }
+  },
+  
+  "entities": [
+    {
+      "name": "Camera",
+      "transform": {
+        "position": [0, 2, 5],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Camera",
+          "cameraType": "perspective",
+          "fovY": 60.0,
+          "near": 0.1,
+          "far": 100.0
+        }
+      ]
+    },
+    
+    {
+      "name": "Cat",
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "cat",
+          "meshIndex": 0,
+          "material": {
+            "type": "textured",
+            "shader": "textured",
+            "albedoMap": "cat_texture",
+            "tint": [1.0, 1.0, 1.0, 1.0],
+            "transparent": false,
+            "pipelineState": {
+              "faceCulling": true,
+              "cullFace": "back",
+              "depthTesting": true,
+              "depthMask": true,
+              "blending": false
+            }
+          }
+        }
+      ]
+    },
+    
+    {
+      "name": "Ground",
+      "transform": {
+        "position": [0, -1, 0],
+        "rotation": [0, 0, 0],
+        "scale": [5, 0.1, 5]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "cube",
+          "meshIndex": 0,
+          "material": {
+            "type": "tinted",
+            "shader": "basic",
+            "tint": [0.3, 0.5, 0.3, 1.0],
+            "transparent": false,
+            "pipelineState": {
+              "faceCulling": true,
+              "depthTesting": true,
+              "depthMask": true
+            }
+          }
+        }
+      ]
+    },
+    
+    {
+      "name": "Floating Cube",
+      "transform": {
+        "position": [2, 1, 0],
+        "rotation": [45, 45, 0],
+        "scale": [0.5, 0.5, 0.5]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "cube",
+          "meshIndex": 0,
+          "material": {
+            "type": "tinted",
+            "shader": "basic",
+            "tint": [1.0, 0.5, 0.2, 1.0],
+            "transparent": false
+          }
+        }
+      ]
+    },
+    
+    {
+      "name": "Grass Block",
+      "transform": {
+        "position": [-2, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "grass_block",
+          "meshIndex": 0,
+          "material": {
+            "type": "textured",
+            "shader": "textured",
+            "albedoMap": "grass",
+            "tint": [1.0, 1.0, 1.0, 1.0]
+          }
+        }
+      ]
+    }
+  ]
+}

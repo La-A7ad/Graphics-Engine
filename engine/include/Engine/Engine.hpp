@@ -2,7 +2,6 @@
 
 // Single public include for the engine.
 // Game code should include only:  #include "Engine/Engine.hpp"
-// Engine internals should include specific headers directly (avoid including this umbrella from engine headers).
 
 // ---- Core / windowing / rendering ----
 #include "Engine/Rendering/Core/Renderer.hpp"
@@ -36,3 +35,9 @@
 #include "Engine/Assets/Loaders/Shader/ShaderLoader.hpp"
 #include "Engine/Assets/Loaders/Texture/TextureLoader.hpp"
 #include "Engine/Assets/Loaders/Mesh/MeshLoader.hpp"
+
+// ---- Scene system ----
+#include "Engine/Scene/SceneLoader.hpp"
+
+// ---- Input system ----
+#include "Engine/Core/Input/InputManager.hpp"
