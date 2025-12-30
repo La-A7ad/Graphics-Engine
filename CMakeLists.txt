@@ -54,6 +54,12 @@ add_library(engine
     engine/src/Rendering/Materials/Base/Material.cpp
     engine/src/Rendering/Materials/Implementations/TexturedMaterial.cpp
     engine/src/Rendering/Materials/Implementations/TintedMaterial.cpp
+
+    #Core input
+    engine/src/Core/Input/InputManager.cpp
+
+    #Scene system
+    engine/src/Scene/SceneLoader.cpp
 )
 
 # Include Directories
@@ -64,6 +70,8 @@ target_include_directories(engine PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/external/stb
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
     ${CMAKE_CURRENT_SOURCE_DIR}/external/cgltf
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/nlohmann/json/single_include
+
 )
 
 # Link Libraries
@@ -85,6 +93,7 @@ set_target_properties(engine PROPERTIES
 add_executable(GameApp
     game/main.cpp
     game/src/PS1Material.cpp
+    game/src/CameraController.cpp
 )
 
 # Link Engine

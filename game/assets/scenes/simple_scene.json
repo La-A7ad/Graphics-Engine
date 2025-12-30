@@ -1,0 +1,57 @@
+{
+  "name": "Simple Test Scene",
+  
+  "assets": {
+    "shaders": {
+      "basic": {
+        "vertex": "assets/shaders/basic.vert",
+        "fragment": "assets/shaders/basic.frag"
+      }
+    },
+    
+    "models": {
+      "cube": "assets/models/cube.obj"
+    }
+  },
+  
+  "entities": [
+    {
+      "name": "Camera",
+      "transform": {
+        "position": [0, 0, 5],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Camera",
+          "cameraType": "perspective",
+          "fovY": 60.0,
+          "near": 0.1,
+          "far": 100.0
+        }
+      ]
+    },
+    
+    {
+      "name": "Red Cube",
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "cube",
+          "meshIndex": 0,
+          "material": {
+            "type": "tinted",
+            "shader": "basic",
+            "tint": [1.0, 0.0, 0.0, 1.0]
+          }
+        }
+      ]
+    }
+  ]
+}
