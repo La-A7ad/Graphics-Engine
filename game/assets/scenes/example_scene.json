@@ -5,30 +5,30 @@
   "assets": {
     "shaders": {
       "basic": {
-        "vertex": "assets/shaders/basic.vert",
-        "fragment": "assets/shaders/basic.frag"
+        "vertex": "game/assets/shaders/basic.vert",
+        "fragment": "game/assets/shaders/basic.frag"
       },
       "textured": {
-        "vertex": "assets/shaders/textured.vert",
-        "fragment": "assets/shaders/textured.frag"
+        "vertex": "game/assets/shaders/textured.vert",
+        "fragment": "game/assets/shaders/textured.frag"
       },
       "psx": {
-        "vertex": "assets/shaders/psx_unlit.vert",
-        "fragment": "assets/shaders/psx_unlit.frag"
+        "vertex": "game/assets/shaders/psx_unlit.vert",
+        "fragment": "game/assets/shaders/psx_unlit.frag"
       }
     },
     
     "textures": {
-      "cat_texture": "assets/models/Cat/textures/Material.002_baseColor.png",
-      "grass": "assets/textures/Grass_Block_TEX.png",
-      "shawarma": "assets/textures/Shawarma.png"
+      "cat_texture": "game/assets/models/Cat/textures/Material.002_baseColor.png",
+      "grass": "game/assets/textures/Grass_Block_TEX.png",
+      "shawarma": "game/assets/textures/Shawarma.png"
     },
     
     "models": {
-      "cat": "assets/models/Cat/scene.gltf",
-      "cube": "assets/models/cube.obj",
-      "grass_block": "assets/models/Grass_Block.obj",
-      "shawarma": "assets/models/shawarma.obj"
+      "cat": "game/assets/models/Cat/scene.gltf",
+      "cube": "game/assets/models/cube.obj",
+      "grass_block": "game/assets/models/Grass_Block.obj",
+      "shawarma": "game/assets/models/shawarma.obj"
     }
   },
   

@@ -4,13 +4,13 @@
   "assets": {
     "shaders": {
       "basic": {
-        "vertex": "assets/shaders/basic.vert",
-        "fragment": "assets/shaders/basic.frag"
+        "vertex": "game/assets/shaders/basic.vert",
+        "fragment": "game/assets/shaders/basic.frag"
       }
     },
     
     "models": {
-      "cube": "assets/models/cube.obj"
+      "cube": "game/assets/models/cube.obj"
     }
   },
   
