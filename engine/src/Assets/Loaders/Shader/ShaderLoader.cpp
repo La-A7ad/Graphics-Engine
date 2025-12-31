@@ -21,6 +21,14 @@ Shader* ShaderLoader::Load(const std::string& name,
     return shader.get();  // Return raw pointer for compatibility
 }
 
+Shader* ShaderLoader::Get(const std::string& name) {
+    auto it = shaders.find(name);
+    if (it != shaders.end()) {
+        return it->second.get();
+    }
+    return nullptr;
+}
+
 void ShaderLoader::Clear() {
     shaders.clear();   // shared_ptr counts drop to 0 -> ~Shader() deletes GL program
 }

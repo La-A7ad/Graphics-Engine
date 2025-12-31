@@ -5,30 +5,30 @@
   "assets": {
     "shaders": {
       "basic": {
-        "vertex": "assets/shaders/basic.vert",
-        "fragment": "assets/shaders/basic.frag"
+        "vertex": "../shaders/basic.vert",
+        "fragment": "../assets/shaders/basic.frag"
       },
       "textured": {
-        "vertex": "assets/shaders/textured.vert",
-        "fragment": "assets/shaders/textured.frag"
+        "vertex": "../shaders/textured.vert",
+        "fragment": "../shaders/textured.frag"
       },
       "psx": {
-        "vertex": "assets/shaders/psx_unlit.vert",
-        "fragment": "assets/shaders/psx_unlit.frag"
+        "vertex": "../shaders/psx_unlit.vert",
+        "fragment": "../shaders/psx_unlit.frag"
       }
     },
     
     "textures": {
-      "cat_texture": "assets/models/Cat/textures/Material.002_baseColor.png",
-      "grass": "assets/textures/Grass_Block_TEX.png",
-      "shawarma": "assets/textures/Shawarma.png"
+      "cat_texture": "../models/Cat/textures/Material.002_baseColor.png",
+      "grass": "../textures/Grass_Block_TEX.png",
+      "shawarma": "../textures/Shawarma.png"
     },
     
     "models": {
-      "cat": "assets/models/Cat/scene.gltf",
-      "cube": "assets/models/cube.obj",
-      "grass_block": "assets/models/Grass_Block.obj",
-      "shawarma": "assets/models/shawarma.obj"
+      "cat": "../models/Cat/scene.gltf",
+      "cube": "../models/cube.obj",
+      "grass_block": "../models/Grass_Block.obj",
+      "shawarma": "../models/shawarma.obj"
     }
   },
   

@@ -22,7 +22,7 @@ int main() {
     // ═══════════════════════════════════════════════════════════════
     // LOAD SCENE FROM FILE
     // ═══════════════════════════════════════════════════════════════
-    auto world = engine::SceneLoader::LoadScene("assets/scenes/example_scene.json");
+    auto world = engine::SceneLoader::LoadScene("game/assets/scenes/example_scene.json");
     if (!world) {
         std::cerr << "Failed to load scene\n";
         return -1;
