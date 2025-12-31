@@ -1,0 +1,126 @@
+.
+├── assets
+│   ├── models
+│   │   ├── AbandonedHouse
+│   │   │   ├── license.txt
+│   │   │   ├── scene.bin
+│   │   │   ├── scene.gltf
+│   │   │   └── textures
+│   │   │       ├── Arbol1_baseColor.png
+│   │   │       ├── Baera_baseColor.png
+│   │   │       ├── Banqueta_baseColor.jpeg
+│   │   │       ├── Basura_baseColor.jpeg
+│   │   │       ├── Cables_baseColor.jpeg
+│   │   │       ├── Cajadefusiles_baseColor.jpeg
+│   │   │       ├── Carpet_01_baseColor.png
+│   │   │       ├── Carpet_02_baseColor.png
+│   │   │       ├── Carton_baseColor.jpeg
+│   │   │       ├── Casa_f_baseColor.png
+│   │   │       ├── Colchon_baseColor.jpeg
+│   │   │       ├── Cuadros_baseColor.png
+│   │   │       ├── Cuar2.001_baseColor.jpeg
+│   │   │       ├── Cuar2_baseColor.jpeg
+│   │   │       ├── Cuero_baseColor.jpeg
+│   │   │       ├── Foco_baseColor.png
+│   │   │       ├── Fusil_baseColor.png
+│   │   │       ├── Ladrillos_baseColor.jpeg
+│   │   │       ├── Lampara1_baseColor.png
+│   │   │       ├── Lampara2_baseColor.png
+│   │   │       ├── Lampara3.001_baseColor.png
+│   │   │       ├── Lavadora_baseColor.jpeg
+│   │   │       ├── Madera1_baseColor.jpeg
+│   │   │       ├── Madera2_baseColor.jpeg
+│   │   │       ├── Madera3_baseColor.jpeg
+│   │   │       ├── Madera4.001_baseColor.jpeg
+│   │   │       ├── Madera5_baseColor.jpeg
+│   │   │       ├── Madera6_baseColor.jpeg
+│   │   │       ├── Madera7_baseColor.jpeg
+│   │   │       ├── Madera8_baseColor.jpeg
+│   │   │       ├── Material.002_baseColor.jpeg
+│   │   │       ├── Material.022_baseColor.jpeg
+│   │   │       ├── material_39_baseColor.jpeg
+│   │   │       ├── material_40_baseColor.jpeg
+│   │   │       ├── material_63_baseColor.jpeg
+│   │   │       ├── material_63_metallicRoughness.png
+│   │   │       ├── material_63_specularf0.png
+│   │   │       ├── material_baseColor.jpeg
+│   │   │       ├── Material_baseColor.jpeg
+│   │   │       ├── Mesa_T_baseColor.jpeg
+│   │   │       ├── Metal1_baseColor.jpeg
+│   │   │       ├── Metal1_metallicRoughness.png
+│   │   │       ├── Metal2_baseColor.jpeg
+│   │   │       ├── Metal2_metallicRoughness.png
+│   │   │       ├── Metal3_baseColor.jpeg
+│   │   │       ├── Metal3_metallicRoughness.png
+│   │   │       ├── Metal4_baseColor.jpeg
+│   │   │       ├── Monitores_baseColor.jpeg
+│   │   │       ├── Muro_baseColor.jpeg
+│   │   │       ├── Pared2_baseColor.jpeg
+│   │   │       ├── Pared_baseColor.jpeg
+│   │   │       ├── Pasto1_baseColor.jpeg
+│   │   │       ├── Piso2_baseColor.jpeg
+│   │   │       ├── Piso_baseColor.png
+│   │   │       ├── Piso_cocina_baseColor.jpeg
+│   │   │       ├── Piso_Piscina_baseColor.jpeg
+│   │   │       ├── Pizarra_baseColor.jpeg
+│   │   │       ├── Planta5_baseColor.png
+│   │   │       ├── Plastico_baseColor.jpeg
+│   │   │       ├── Puerta_baseColor.jpeg
+│   │   │       ├── Refrigerador_baseColor.png
+│   │   │       ├── Retrete_baseColor.jpeg
+│   │   │       ├── Road_baseColor.jpeg
+│   │   │       ├── Techo_baseColor.jpeg
+│   │   │       ├── Tela1_baseColor.jpeg
+│   │   │       ├── Tela2_baseColor.jpeg
+│   │   │       ├── Tela3_baseColor.jpeg
+│   │   │       ├── Tela4_baseColor.jpeg
+│   │   │       ├── Tela5_baseColor.jpeg
+│   │   │       ├── Telaraa_baseColor.png
+│   │   │       ├── Tele1_baseColor.jpeg
+│   │   │       ├── Tele2_baseColor.jpeg
+│   │   │       ├── Telefono_baseColor.jpeg
+│   │   │       └── Vidrio_baseColor.jpeg
+│   │   ├── Cat
+│   │   │   ├── license.txt
+│   │   │   ├── scene.bin
+│   │   │   ├── scene.gltf
+│   │   │   └── textures
+│   │   │       └── Material.002_baseColor.png
+│   │   ├── cube
+│   │   │   ├── cube.obj
+│   │   │   └── osaka.jpg
+│   │   ├── Grass_Block
+│   │   │   ├── Grass_Block.obj
+│   │   │   └── Grass_Block_TEX.png
+│   │   ├── Mordecai
+│   │   │   ├── Modredcai.mtl
+│   │   │   └── Modredcai.obj
+│   │   ├── Rigby
+│   │   │   ├── Rigby.mtl
+│   │   │   └── Rigby.obj
+│   │   └── Shawarma
+│   │       ├── shawarma.mtl
+│   │       ├── shawarma.obj
+│   │       └── Shawarma.png
+│   ├── scenes
+│   │   ├── example_scene.json
+│   │   └── simple_scene.json
+│   ├── shaders
+│   │   ├── basic.frag
+│   │   ├── basic.vert
+│   │   ├── psx_unlit.frag
+│   │   ├── psx_unlit.vert
+│   │   ├── textured.frag
+│   │   └── textured.vert
+│   └── Tree.mtl
+├── gametree.txt
+├── include
+│   ├── CameraController.hpp
+│   └── Materials
+│       └── PS1Material.hpp
+├── main.cpp
+└── src
+    ├── CameraController.cpp
+    └── PS1Material.cpp
+
+17 directories, 107 files

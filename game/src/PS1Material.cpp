@@ -1,4 +1,3 @@
-// game/src/Materials/PS1Material.cpp
 #include "Materials/PS1Material.hpp"
 #include <iostream>
 

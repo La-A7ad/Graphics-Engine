@@ -6,7 +6,7 @@
     "shaders": {
       "basic": {
         "vertex": "../shaders/basic.vert",
-        "fragment": "../assets/shaders/basic.frag"
+        "fragment": "../shaders/basic.frag"
       },
       "textured": {
         "vertex": "../shaders/textured.vert",

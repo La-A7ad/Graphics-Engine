@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cat - PS1 Low Poly (Rigged)
+* source:	https://sketchfab.com/3d-models/cat-ps1-low-poly-rigged-78d863ba43b34a6c9fdd6c61dbf5776f
+* author:	Wersaus33 (https://sketchfab.com/wersaus33)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cat - PS1 Low Poly (Rigged)" (https://sketchfab.com/3d-models/cat-ps1-low-poly-rigged-78d863ba43b34a6c9fdd6c61dbf5776f) by Wersaus33 (https://sketchfab.com/wersaus33) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
