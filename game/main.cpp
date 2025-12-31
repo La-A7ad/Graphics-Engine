@@ -1,5 +1,5 @@
 #include "Engine/Engine.hpp"
-#include "CameraController.hpp"
+#include "CatController.hpp"
 #include "Materials/PS1Material.hpp"
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -49,7 +49,7 @@ void ConvertToPS1Materials(engine::World* world) {
         ps1Mat->pipelineState = renderer->material->pipelineState;
         
         // Apply PS1 effect preset
-        ps1Mat->SetAuthenticPS1();  // Subtle, playable preset
+        ps1Mat->SetPS1Inspired();  // Subtle, playable preset
         
         // Replace the material
         renderer->material = std::move(ps1Mat);
@@ -79,7 +79,7 @@ int main() {
     // ═══════════════════════════════════════════════════════════════
     // LOAD SCENE FROM FILE
     // ═══════════════════════════════════════════════════════════════
-    auto world = engine::SceneLoader::LoadScene("game/assets/scenes/example_scene.json");
+    auto world = engine::SceneLoader::LoadScene("game/assets/scenes/abandoned_house_scene.json");
     if (!world) {
         std::cerr << "Failed to load scene\n";
         return -1;
@@ -91,9 +91,10 @@ int main() {
     ConvertToPS1Materials(world.get());
     
     // ═══════════════════════════════════════════════════════════════
-    // FIND CAMERA
+    // FIND CAMERA AND CAT
     // ═══════════════════════════════════════════════════════════════
     engine::Entity* cameraEntity = world->FindByName("Camera");
+    engine::Entity* catEntity = world->FindByName("Cat");
     engine::CameraComponent* camera = nullptr;
     
     if (cameraEntity) {
@@ -105,22 +106,26 @@ int main() {
         return -1;
     }
     
+    if (!catEntity) {
+        std::cerr << "ERROR: No cat entity found in scene\n";
+        return -1;
+    }
+    
     // ═══════════════════════════════════════════════════════════════
-    // CREATE CAMERA CONTROLLER
+    // CREATE CAT CONTROLLER (THIRD-PERSON)
     // ═══════════════════════════════════════════════════════════════
-    CameraController cameraController(cameraEntity);
+    CatController catController(catEntity, cameraEntity);
     
     // ═══════════════════════════════════════════════════════════════
     // GAME LOOP
     // ═══════════════════════════════════════════════════════════════
     std::cout << "\n";
     std::cout << "═══════════════════════════════════════\n";
-    std::cout << "   PS1-STYLE RENDERER RUNNING\n";
+    std::cout << "   CAT'S ABANDONED HOUSE ADVENTURE\n";
     std::cout << "═══════════════════════════════════════\n";
     std::cout << "Controls:\n";
-    std::cout << "  WASD      - Move camera\n";
-    std::cout << "  Q/E       - Move up/down\n";
-    std::cout << "  Right Mouse - Look around\n";
+    std::cout << "  WASD      - Move cat\n";
+    std::cout << "  Right Mouse - Rotate cat\n";
     std::cout << "  Shift     - Sprint\n";
     std::cout << "  ESC       - Exit\n";
     std::cout << "═══════════════════════════════════════\n";
@@ -151,18 +156,27 @@ int main() {
             glfwSetWindowShouldClose(renderer.GetWindow(), true);
         }
         
-        // Update camera controller
-        cameraController.Update(deltaTime);
+        // Update cat controller (moves cat + updates camera)
+        catController.Update(deltaTime);
         
         // ═══════════════════════════════════════════════════════════
-        // UPDATE GAME LOGIC HERE
+        // UPDATE GAME LOGIC
         // ═══════════════════════════════════════════════════════════
         
-        // Example: Rotate an object
-        engine::Entity* floatingCube = world->FindByName("Floating Cube");
-        if (floatingCube) {
-            floatingCube->rotation.y += 0.5f * deltaTime;
-            floatingCube->rotation.x += 0.3f * deltaTime;
+        // Rotate osaka cubes
+        for (int i = 1; i <= 4; i++) {
+            std::string cubeName = "OsakaCube" + std::to_string(i);
+            engine::Entity* cube = world->FindByName(cubeName);
+            if (cube) {
+                cube->rotation.x += 0.5f * deltaTime;
+                cube->rotation.y += 0.3f * deltaTime;
+                
+                // Make cubes bob up and down
+                float bobSpeed = 2.0f;
+                float bobAmount = 0.5f;
+                float time = currentFrame + i; // Offset each cube
+                cube->position.y = 2.0f + std::sin(time * bobSpeed) * bobAmount;
+            }
         }
         
         // ═══════════════════════════════════════════════════════════

@@ -103,6 +103,7 @@
 │   │       ├── shawarma.obj
 │   │       └── Shawarma.png
 │   ├── scenes
+│   │   ├── abandoned_house_scene.json
 │   │   ├── example_scene.json
 │   │   └── simple_scene.json
 │   ├── shaders
@@ -112,15 +113,19 @@
 │   │   ├── psx_unlit.vert
 │   │   ├── textured.frag
 │   │   └── textured.vert
+│   ├── textures
+│   │   └── skybox.jpg
 │   └── Tree.mtl
 ├── gametree.txt
 ├── include
 │   ├── CameraController.hpp
+│   ├── CatController.hpp
 │   └── Materials
 │       └── PS1Material.hpp
 ├── main.cpp
 └── src
     ├── CameraController.cpp
+    ├── CatController.cpp
     └── PS1Material.cpp
 
-17 directories, 107 files
+18 directories, 111 files

@@ -94,6 +94,7 @@ add_executable(GameApp
     game/main.cpp
     game/src/PS1Material.cpp
     game/src/CameraController.cpp
+    game/src/CatController.cpp
 )
 
 # Link Engine

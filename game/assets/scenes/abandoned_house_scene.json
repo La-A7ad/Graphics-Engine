@@ -1,0 +1,89 @@
+{
+  "name": "Abandoned House (engine-ready)",
+  "description": "Scene wiring for AbandonedHouse: uses embedded glTF materials and explicit skybox binding",
+
+  "assets": {
+    "textures": {
+      "skybox": "../textures/skybox.jpg"
+    },
+
+    "models": {
+      "abandoned_house": "../models/AbandonedHouse/scene.gltf"
+    }
+  },
+
+  "sceneSettings": {
+    "loadMaterials": true,
+    "preferEmbeddedMaterials": true,
+    "autoGenerateCubemapFromEquirectangular": true
+  },
+
+  "environment": {
+    "ambient": {
+      "intensity": 1.0
+    },
+    "skybox": {
+      "type": "equirectangular",
+      "texture": "skybox",
+      "srgb": true,
+      "exposure": 1.0,
+      "rotation": 0.0
+    }
+  },
+
+  "entities": [
+    {
+      "name": "MainCamera",
+      "transform": {
+        "position": [0, 2.2, 6],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Camera",
+          "cameraType": "perspective",
+          "fovY": 60,
+          "near": 0.1,
+          "far": 250
+        }
+      ]
+    },
+
+    {
+      "name": "AbandonedHouse",
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "MeshRenderer",
+          "mesh": "abandoned_house",
+          "meshIndex": 0,
+          "useEmbeddedMaterials": true,
+          "allowMaterialOverrides": false
+        }
+      ]
+    },
+
+    {
+      "name": "SkyboxEntity_Fallback",
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Skybox",
+          "mapping": "equirectangular",
+          "texture": "skybox",
+          "enabled": true,
+          "castShadows": false
+        }
+      ]
+    }
+  ]
+}
