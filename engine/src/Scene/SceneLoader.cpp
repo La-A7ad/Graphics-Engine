@@ -172,7 +172,7 @@ Entity* SceneLoader::LoadEntity(World* world, const json& entityJson, Entity* pa
     
     // Load components
     if (entityJson.contains("components")) {
-        LoadComponents(entity, entityJson["components"]);
+        LoadComponents(entity, entityJson["components"], world);
     }
     
     // Load children recursively
@@ -186,14 +186,14 @@ Entity* SceneLoader::LoadEntity(World* world, const json& entityJson, Entity* pa
     return entity;
 }
 
-void SceneLoader::LoadComponents(Entity* entity, const json& componentsJson) {
+void SceneLoader::LoadComponents(Entity* entity, const json& componentsJson, World* world) {
     for (const auto& compJson : componentsJson) {
         std::string type = compJson.value("type", "");
         
         if (type == "Camera") {
             LoadCameraComponent(entity, compJson);
         } else if (type == "MeshRenderer") {
-            LoadMeshRendererComponent(entity, compJson);
+            LoadMeshRendererComponent(entity, compJson, world);
         } else {
             std::cerr << "Warning: Unknown component type: " << type << "\n";
         }
@@ -218,31 +218,162 @@ void SceneLoader::LoadCameraComponent(Entity* entity, const json& camJson) {
     std::cout << "  + Camera component\n";
 }
 
-void SceneLoader::LoadMeshRendererComponent(Entity* entity, const json& rendererJson) {
-    auto* renderer = entity->AddComponent<MeshRendererComponent>();
+// Helper to create a material from embedded material data
+std::unique_ptr<Material> SceneLoader::CreateMaterialFromEmbedded(
+    const EmbeddedMaterialData& matData, 
+    const std::string& modelDirectory,
+    Shader* defaultShader) 
+{
+    auto mat = std::make_unique<TexturedMaterial>();
     
-    // Load mesh
-    if (rendererJson.contains("mesh")) {
-        std::string meshName = rendererJson["mesh"];
-        Model* model = MeshLoader::Instance().Get(meshName);
-        if (model && !model->meshes.empty()) {
-            // For now, use first mesh
-            // TODO: Support multi-mesh models with mesh index
-            int meshIndex = rendererJson.value("meshIndex", 0);
-            if (meshIndex >= 0 && meshIndex < (int)model->meshes.size()) {
-                renderer->mesh = &model->meshes[meshIndex];
-            }
-        } else {
-            std::cerr << "Warning: Mesh not found: " << meshName << "\n";
+    auto& texLoader = TextureLoader::Instance();
+    
+    // Load base color texture if available
+    if (!matData.baseColorTexturePath.empty()) {
+        std::string fullPath = modelDirectory + "/" + matData.baseColorTexturePath;
+        // Use the texture path as a unique name (prefixed to avoid collisions)
+        std::string texName = "embedded_" + matData.baseColorTexturePath;
+        
+        Texture* tex = texLoader.Get(texName);
+        if (!tex) {
+            tex = texLoader.Load(texName, fullPath);
         }
+        mat->albedoMap = tex;
     }
     
-    // Load material
-    if (rendererJson.contains("material")) {
-        renderer->material = LoadMaterial(rendererJson["material"]);
+    // Set tint from base color factor
+    mat->tint = glm::vec4(matData.baseColorR, matData.baseColorG, matData.baseColorB, matData.baseColorA);
+    
+    // Create sampler
+    mat->sampler = std::make_shared<Sampler>();
+    
+    // Set shader
+    if (defaultShader) {
+        mat->shader = std::shared_ptr<Shader>(defaultShader, [](Shader*) {
+            // Empty deleter - ShaderLoader owns the shader
+        });
     }
     
-    std::cout << "  + MeshRenderer component\n";
+    // Configure pipeline state based on material properties
+    if (matData.doubleSided) {
+        mat->pipelineState.faceCulling = false;
+    } else {
+        mat->pipelineState.faceCulling = true;
+        mat->pipelineState.cullFace = GL_BACK;
+    }
+    
+    // Handle alpha modes
+    if (matData.alphaMode == "BLEND") {
+        mat->transparent = true;
+        mat->pipelineState.blending = true;
+    } else if (matData.alphaMode == "MASK") {
+        // For alpha cutoff, we'd need shader support
+        // For now, treat as opaque
+        mat->transparent = false;
+    } else {
+        mat->transparent = false;
+    }
+    
+    mat->pipelineState.depthTesting = true;
+    mat->pipelineState.depthMask = !mat->transparent;
+    
+    return mat;
+}
+
+void SceneLoader::LoadMeshRendererComponent(Entity* entity, const json& rendererJson, World* world) {
+    // Check if we should use embedded materials
+    bool useEmbeddedMaterials = rendererJson.value("useEmbeddedMaterials", false);
+    
+    std::string meshName;
+    if (rendererJson.contains("mesh")) {
+        meshName = rendererJson["mesh"];
+    }
+    
+    Model* model = MeshLoader::Instance().Get(meshName);
+    if (!model || model->meshes.empty()) {
+        std::cerr << "Warning: Mesh not found or empty: " << meshName << "\n";
+        return;
+    }
+    
+    // Get default shader for embedded materials
+    Shader* defaultShader = ShaderLoader::Instance().Get("textured");
+    if (!defaultShader) {
+        // Try to load textured shader if not already loaded
+        // This is a fallback - normally shaders should be declared in the scene
+        std::cerr << "Warning: 'textured' shader not found for embedded materials\n";
+    }
+    
+    if (useEmbeddedMaterials && model->meshes.size() > 1) {
+        // Multi-mesh model with embedded materials:
+        // Create child entities for each mesh
+        std::cout << "  Loading " << model->meshes.size() << " submeshes with embedded materials\n";
+        
+        for (size_t i = 0; i < model->meshes.size(); ++i) {
+            // Create child entity for each submesh
+            std::string childName = entity->name + "_submesh_" + std::to_string(i);
+            Entity* childEntity = world->CreateEntity(childName);
+            entity->AddChild(childEntity);
+            
+            // Child inherits parent transform (position at origin relative to parent)
+            childEntity->position = glm::vec3(0.0f);
+            childEntity->rotation = glm::vec3(0.0f);
+            childEntity->scale = glm::vec3(1.0f);
+            
+            // Add MeshRenderer to child
+            auto* renderer = childEntity->AddComponent<MeshRendererComponent>();
+            renderer->mesh = &model->meshes[i];
+            
+            // Create material from embedded data
+            if (i < model->embeddedMaterials.size()) {
+                renderer->material = CreateMaterialFromEmbedded(
+                    model->embeddedMaterials[i], 
+                    model->directory,
+                    defaultShader
+                );
+            } else {
+                // Fallback: create a default tinted material
+                auto mat = std::make_unique<TintedMaterial>();
+                mat->tint = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+                if (defaultShader) {
+                    mat->shader = std::shared_ptr<Shader>(defaultShader, [](Shader*) {});
+                }
+                renderer->material = std::move(mat);
+            }
+        }
+        
+        std::cout << "  + MeshRenderer with " << model->meshes.size() << " submesh entities\n";
+        
+    } else if (useEmbeddedMaterials && model->meshes.size() == 1) {
+        // Single mesh with embedded material
+        auto* renderer = entity->AddComponent<MeshRendererComponent>();
+        renderer->mesh = &model->meshes[0];
+        
+        if (!model->embeddedMaterials.empty()) {
+            renderer->material = CreateMaterialFromEmbedded(
+                model->embeddedMaterials[0],
+                model->directory,
+                defaultShader
+            );
+        }
+        
+        std::cout << "  + MeshRenderer with embedded material\n";
+        
+    } else {
+        // Original behavior: use specified meshIndex and explicit material
+        auto* renderer = entity->AddComponent<MeshRendererComponent>();
+        
+        int meshIndex = rendererJson.value("meshIndex", 0);
+        if (meshIndex >= 0 && meshIndex < (int)model->meshes.size()) {
+            renderer->mesh = &model->meshes[meshIndex];
+        }
+        
+        // Load explicit material if specified
+        if (rendererJson.contains("material")) {
+            renderer->material = LoadMaterial(rendererJson["material"]);
+        }
+        
+        std::cout << "  + MeshRenderer component\n";
+    }
 }
 
 std::unique_ptr<Material> SceneLoader::LoadMaterial(const json& matJson) {

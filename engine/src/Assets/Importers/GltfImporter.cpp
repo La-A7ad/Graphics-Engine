@@ -21,6 +21,66 @@ static cgltf_accessor* findAttr(const cgltf_primitive& prim, cgltf_attribute_typ
     return nullptr;
 }
 
+// Helper to get texture URI from a cgltf_texture_view
+static std::string getTextureUri(const cgltf_texture_view& texView) {
+    if (texView.texture && texView.texture->image && texView.texture->image->uri) {
+        return texView.texture->image->uri;
+    }
+    return "";
+}
+
+// Extract material data from a cgltf_material
+static EmbeddedMaterialData extractMaterialData(const cgltf_material* mat) {
+    EmbeddedMaterialData data;
+    
+    if (!mat) {
+        return data;
+    }
+    
+    data.name = mat->name ? mat->name : "unnamed";
+    data.doubleSided = mat->double_sided;
+    
+    // Alpha mode
+    if (mat->alpha_mode == cgltf_alpha_mode_mask) {
+        data.alphaMode = "MASK";
+        data.hasAlphaCutoff = true;
+        data.alphaCutoff = mat->alpha_cutoff;
+    } else if (mat->alpha_mode == cgltf_alpha_mode_blend) {
+        data.alphaMode = "BLEND";
+    } else {
+        data.alphaMode = "OPAQUE";
+    }
+    
+    // PBR metallic roughness
+    if (mat->has_pbr_metallic_roughness) {
+        const cgltf_pbr_metallic_roughness& pbr = mat->pbr_metallic_roughness;
+        
+        // Base color texture
+        data.baseColorTexturePath = getTextureUri(pbr.base_color_texture);
+        
+        // Metallic roughness texture
+        data.metallicRoughnessTexturePath = getTextureUri(pbr.metallic_roughness_texture);
+        
+        // Factors
+        data.metallicFactor = pbr.metallic_factor;
+        data.roughnessFactor = pbr.roughness_factor;
+        
+        // Base color factor
+        data.baseColorR = pbr.base_color_factor[0];
+        data.baseColorG = pbr.base_color_factor[1];
+        data.baseColorB = pbr.base_color_factor[2];
+        data.baseColorA = pbr.base_color_factor[3];
+    }
+    
+    // Normal map
+    data.normalTexturePath = getTextureUri(mat->normal_texture);
+    
+    // Emissive map
+    data.emissiveTexturePath = getTextureUri(mat->emissive_texture);
+    
+    return data;
+}
+
 std::unique_ptr<Model> GltfImporter::Import(const std::string& path) {
     cgltf_options options{};
     cgltf_data* data = nullptr;
@@ -106,6 +166,10 @@ std::unique_ptr<Model> GltfImporter::Import(const std::string& path) {
 
             if (!vertices.empty()) {
                 model->meshes.emplace_back(std::move(vertices), std::move(indices));
+                
+                // Extract and store material data for this mesh
+                EmbeddedMaterialData matData = extractMaterialData(prim.material);
+                model->embeddedMaterials.push_back(matData);
             }
         }
     }
@@ -114,6 +178,8 @@ std::unique_ptr<Model> GltfImporter::Import(const std::string& path) {
 
     if (model->meshes.empty()) {
         std::cerr << "GltfImporter: loaded glTF but found no triangle meshes: " << path << "\n";
+    } else {
+        std::cout << "GltfImporter: loaded " << model->meshes.size() << " meshes with embedded materials from: " << path << "\n";
     }
 
     return model;
