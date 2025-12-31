@@ -56,7 +56,7 @@ std::unique_ptr<World> SceneLoader::LoadScene(const std::string& path) {
     
     // Load assets first
     if (sceneJson.contains("assets")) {
-        LoadAssets(sceneJson["assets"], "");
+        LoadAssets(sceneJson["assets"], sceneDir);
     }
     
     // Create world
